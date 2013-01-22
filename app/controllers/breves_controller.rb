@@ -9,7 +9,7 @@ class BrevesController < ApplicationController
 		if @breve.save
 			redirect_to @breve
 		else
-			render 'new'
+			render :action => :new
 		end
 	end
 
