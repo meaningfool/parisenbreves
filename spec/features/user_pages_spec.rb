@@ -43,6 +43,7 @@ describe "User pages" do
 				end
 				it { should have_selector('.user_name', text: @new_user.name)}
 				it { should have_selector('.user_email', text: @new_user.email)}
+				it { should have_link('Sign out') }
 			end
 		end
 

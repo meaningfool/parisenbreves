@@ -12,6 +12,7 @@ describe User do
 	it { should respond_to(:password)}
 	it { should respond_to(:password_confirmation)}
 	it { should respond_to(:authenticate)}
+	it { should respond_to(:remember_token)}
 
 	describe "Name validation" do
 		it "is invalid without a name" do 
@@ -123,6 +124,11 @@ describe User do
   		it "does not authenticate with any other password" do
   			expect(found_user.authenticate("invalid")).to be_false
   		end
+  	end
+
+  	describe "remember token" do
+		before { @user.save }
+		its(:remember_token) { should_not be_blank }
   	end
 
 end
