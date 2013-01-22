@@ -7,6 +7,7 @@ gem 'rails', '3.2.11'
 
 gem 'sqlite3'
 
+gem 'bootstrap-sass'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -23,12 +24,14 @@ end
 gem 'jquery-rails'
 
 group :test, :development do
-	gem 'turn'
 	gem 'rspec-rails'
 	gem 'capybara'
 	gem 'rb-fsevent'
 	gem 'guard-rspec'
 	gem 'ruby_gntp'
+	gem 'launchy'
+	gem 'database_cleaner'
+	gem 'factory_girl_rails'
 end
 
 # To use ActiveModel has_secure_password
