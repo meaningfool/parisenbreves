@@ -6,8 +6,8 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
 gem 'bootstrap-sass'
+gem 'bcrypt-ruby'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -32,6 +32,7 @@ group :test, :development do
 	gem 'launchy'
 	gem 'database_cleaner'
 	gem 'factory_girl_rails'
+	gem 'faker'
 end
 
 # To use ActiveModel has_secure_password

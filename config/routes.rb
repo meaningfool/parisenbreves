@@ -1,5 +1,7 @@
 Parisenbreves::Application.routes.draw do
 
+  get "users/new"
+
   root :to => 'Breves#index'
 
   resources :breves  
