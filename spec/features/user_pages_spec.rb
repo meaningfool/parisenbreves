@@ -11,10 +11,6 @@ describe "User pages" do
 				@user = User.new
 				visit new_user_path(@user)
 			end
-			it { should have_field('user_name') }
-			it { should have_field('user_email') }
-			it { should have_field('user_password')}
-			it { should have_field('user_password_confirmation')}
 			it { should have_button('submit')}
 		end
 
@@ -37,12 +33,11 @@ describe "User pages" do
 				expect(current_path).to eql(user_path(User.last))
 			end
 
-			describe "information has been savec and is displayed on the show page" do
+			describe "saves the information" do
 				before do
 					click_button "submit"
 				end
-				it { should have_selector('.user_name', text: @new_user.name)}
-				it { should have_selector('.user_email', text: @new_user.email)}
+				it { expect(User.last.email).to eql(@new_user.email) }
 				it { should have_link('Sign out') }
 			end
 		end
@@ -62,11 +57,6 @@ describe "User pages" do
 				expect {click_button "submit"}.not_to change(User, :count)
 			end
 
-			#it "renders the new page" do
-			#	click_button "submit"
-			#	expect(current_path).to eql(new_user_path(@new_user_2))
-			#end
-
 			describe "displays the field values entered before submitting" do
 				before do 
 					click_button "submit" 
@@ -80,47 +70,88 @@ describe "User pages" do
 	end
 
 	describe "List page" do
-		before do
-			@user = FactoryGirl.create(:user)
-			visit users_path
-			#save_and_open_page
-		end
 
-		describe "The page displays the users and delete link" do
-			it { should have_selector('.user_name', :text => @user.name) }
-
-			it "has links with the appropriate ids for show and delete" do
-				expect { find("#show_user_#{@user.id}").not_to be_nil}
-				expect { find("#delete_user_#{@user.id}").not_to be_nil}
-			end
-			it "has actually links towards the show and delete actions" do
-				expect { find("#show_user_#{@user.id}")[:href].to eql(breve_url(@user)) }
-				expect { find("#delete_user_#{@user.id}")[:method].to eql("delete") }
-			end
-		end
-
-		describe "Clicking on the breve title displays the breve show page" do
+		describe "Non signed in users" do
 			before do
-				click_link("show_user_#{@user.id}")
+				@user = FactoryGirl.create(:user)
+				visit users_path
 			end
-			it "displays the user show page" do
-				expect(current_path).to eql(user_path(@user))
+
+			describe "The page displays the users and delete link" do
+				it { should have_selector('.user_name', :text => @user.name) }
+
+				it "has actually links towards the show and delete actions" do
+					expect(find_by_id("show_user_#{@user.id}")[:href]).to eql(user_path(@user))
+					expect(element_not_found?("delete_user_#{@user.id}")).to be_true
+				end
+			end
+
+			describe "Clicking on the user name displays the user show page" do
+				before do
+					click_link("show_user_#{@user.id}")
+				end
+				it "displays the user show page" do
+					expect(current_path).to eql(user_path(@user))
+				end
 			end
 		end
-=begin
-		describe "Clicking the delete link deletes the user and renders the users list page" do
+
+		describe "Signed in users" do
+
+			let(:user) {FactoryGirl.create(:user)}
+			before do
+				sign_in user
+				visit users_path
+			end 
+
+			describe "Clicking the delete link deletes the user and renders the users list page" do
+				it "decreases by 1 the number of users" do
+					expect{click_link("delete_user_#{user.id}")}.to change(User, :count).by(-1)
+				end
+				it "displays the users list page" do
+					click_link("delete_user_#{user.id}")
+					expect(current_path).to eql(users_path)
+				end
+				it "deleted the user" do
+					click_link("delete_user_#{user.id}")
+					expect(User.exists?(user)).to be_false
+				end
+			end
+		end
+	end
+
+	describe "Show page" do
+
+		describe "Non signed in users" do
+			before do
+				@user = FactoryGirl.create(:user)
+				visit user_path(@user)
+			end
+
+			it "has no delete link" do
+				expect(element_not_found?("delete_user_#{@user.id}")).to be_true
+			end
+		end
+
+		describe "Signed in users" do
+
+			let(:user) {FactoryGirl.create(:user)}
+			before do
+				sign_in user
+				visit users_path
+			end 
 			it "decreases by 1 the number of users" do
-				expect{click_link("delete_user_#{@user.id}")}.to change(User, :count).by(-1)
+				expect{click_link("delete_user_#{user.id}")}.to change(User, :count).by(-1)
 			end
 			it "displays the users list page" do
+				click_link("delete_user_#{user.id}")
 				expect(current_path).to eql(users_path)
 			end
-			it "does not display the deleted user" do
-				expect { find("#show_user_#{@user.id}").to be_nil}
+			it "deleted the user" do
+				click_link("delete_user_#{user.id}")
+				expect(User.exists?(user)).to be_false
 			end
 		end
-=end
-
 	end
 
 end

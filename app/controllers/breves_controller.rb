@@ -1,4 +1,7 @@
 class BrevesController < ApplicationController
+
+	before_filter :signed_in_user, only: [:edit, :update, :destroy]
+
 	def index
 		@breve = Breve.new
 		@breves = Breve.all	
@@ -42,4 +45,15 @@ class BrevesController < ApplicationController
 			render 'index'
 		end
 	end
+
+	private
+
+		def signed_in_user
+			unless signed_in?
+				store_location
+				redirect_to signin_url, notice: "Please sign in."
+			end
+		end
+
+
 end

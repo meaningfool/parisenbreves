@@ -186,6 +186,7 @@ DEPENDENCIES
   guard-rspec
   jquery-rails
   launchy
+  pry
   rails (= 3.2.11)
   rb-fsevent
   rspec-rails

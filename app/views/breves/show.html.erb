@@ -1,6 +1,16 @@
-<h1 class='title'><%= @breve.title %></h1>
-<span class='location'><%= @breve.location %></span>
-<p class='description'><%= @breve.description %></p>
-<a class='source' href="<%= @breve.source_URL %>"><%= @breve.source_name %></a>
-<span class='latitude'><%= @breve.latitude %></span>
-<span class='longitude'><%= @breve.longitude %></span>
+<div class="span8">
+	<div class="row">
+		<h2 class='title'><%= @breve.title %></h2>
+		<span class='location span8'><%= @breve.location %></span>
+		<p class='description span8'><%= @breve.description %></p>
+		<a class='source span8' href="<%= @breve.source_URL %>"><%= @breve.source_name %></a>
+		<span class='latitude span8'><%= @breve.latitude %></span>
+		<span class='longitude span8'><%= @breve.longitude %></span>
+	</div>
+	<div class="row">
+		<% if signed_in? %>
+			<%= link_to 'Editer', edit_breve_path(@breve), :id => "edit_breve_#{@breve.id}", :class => "btn btn-large" %>
+			<%= link_to 'Delete', @breve, method: :delete, :id => "delete_breve_#{@breve.id}", data: { :confirm => "Are you sure ?"} %>
+		<% end %>
+	</div>
+</div>

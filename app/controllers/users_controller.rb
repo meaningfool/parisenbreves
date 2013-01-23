@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+	before_filter :signed_in_user, only: [:edit, :update, :destroy]
+
 	def index
 		@user = User.new
 		@users = User.all	
@@ -24,11 +27,20 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		@breve = Breve.find params[:id]
-		if @breve.delete
-			redirect_to :breves
+		@user = User.find params[:id]
+		if @user.delete
+			redirect_to :users
 		else
 			render 'index'
 		end
 	end
+	
+	private
+
+		def signed_in_user
+			unless signed_in?
+				store_location
+				redirect_to signin_url, notice: "Please sign in."
+			end
+		end
 end

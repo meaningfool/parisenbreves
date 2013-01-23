@@ -1,15 +1,16 @@
-<h1>Breves</h1>
+<h3>Liste des brèves</h1>
 
-<ul>
+<ul class="unstyled span8">
 	<% for @breve in @breves %>
 		<li>
+			<div>
 			<%= link_to(@breve, :id => "show_breve_#{@breve.id}") do %> 
-				<h2 class="title"><%= @breve.title %></h2>
+				<h4 class="title"><%= @breve.title %></h4>
 			<% end %>
-		 	/ 
-			<%= link_to 'Edit', edit_breve_path(@breve), :id => "edit_breve_#{@breve.id}" %>
-			/
-			<%= link_to 'Delete', @breve, method: :delete, :id => "delete_breve_#{@breve.id}", data: { :confirm => "Are you sure ?"} %>
+			<% if signed_in? %>
+				<span class="pull-right"><%= link_to 'Delete', @breve, method: :delete, :id => "delete_breve_#{@breve.id}", data: { :confirm => "Are you sure ?"} %></span>
+			<% end %>
+			</div>
 		</li>	
 	<% end %>
 </ul>

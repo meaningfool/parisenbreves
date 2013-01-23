@@ -35,6 +35,34 @@ describe 'Authentication' do
         		it { should have_link('Sign in') }
       		end
 		end
+	end
 
+	describe "authorization" do
+		describe "Non signed in users" do
+			let(:user) { FactoryGirl.create(:user) }
+			let(:breve) { FactoryGirl.create(:breve) }
+
+			describe "cannot access the breve edit page" do
+				before { visit edit_breve_path(breve) }
+				it { expect(current_path).to eql(signin_path)}
+			end
+
+			describe "friendly forwarding when trying to access a protected page" do
+
+				before do
+					visit edit_breve_path(breve)
+					fill_in "Email",    with: user.email
+					fill_in "Password", with: user.password
+					click_button "Sign in"
+				end
+
+				describe "after signing in" do
+
+					it "should render the desired protected page" do
+						expect(current_path).to eql(edit_breve_path(breve))
+					end
+				end	
+			end
+		end
 	end
 end
