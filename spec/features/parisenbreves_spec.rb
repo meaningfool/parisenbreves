@@ -115,65 +115,28 @@ describe "Breve pages" do
 	end
 
 	describe "Breve edit page" do
-		let(:user) {FactoryGirl.create(:user)}
-		before do
-			@edit_breve = FactoryGirl.create(:breve)
-			sign_in user
-			visit edit_breve_path(@edit_breve)
-		end
 
-		describe "The form should display the field values corresponding to the breve being edited" do
-			it { should have_field('breve_title', :with => @edit_breve.title) }
-			it { should have_field('breve_location', :with => @edit_breve.location)}
-			it { should have_field('breve_description'), :with => @edit_breve.description}
-
-			it { should have_field('breve_source_name', :with => @edit_breve.source_name)}
-			it { should have_field('breve_source_URL', :with => @edit_breve.source_URL)}
-			it { should have_field('breve_latitude', :with => @edit_breve.latitude.to_s)}
-			it { should have_field('breve_longitude', :with => @edit_breve.longitude.to_s)}
-		end
-
-		describe "Submission with valid input" do
+		describe "Non signed in users" do
+			let(:user) {FactoryGirl.create(:user)}
 			before do
-				@new_breve = FactoryGirl.build(:breve)
-				fill_in 'breve_title', with: @new_breve.title
-				fill_in 'breve_location', with: @new_breve.location
-				fill_in 'breve_description', with: @new_breve.description
-				fill_in 'breve_source_name', with: @new_breve.source_name
-				fill_in 'breve_source_URL', with: @new_breve.source_URL
-				fill_in 'breve_latitude', with: @new_breve.latitude
-				fill_in 'breve_longitude', with: @new_breve.longitude		
+				@edit_breve = FactoryGirl.create(:breve)
+				visit edit_breve_path(@edit_breve)
 			end
 
-			it "does not change the number of breves" do
-				expect {click_button "submit"}.not_to change(Breve, :count)
-			end
-
-			it "redirects to the show page of the breve created" do
-				click_button "submit"
-				expect(current_path).to eql(breve_path(@edit_breve))
-			end
-
-			describe "The breve information have been saved" do	
-				before {click_button "submit"}
-				it { @edit_breve.reload.title == @new_breve.title }
+			it "displays the loggin page" do
+				expect(current_path).to eql(signin_path)
 			end
 		end
 
-		describe "Submission with invalid input" do
+		describe "Signed in users" do
+			let(:user) {FactoryGirl.create(:user)}
 			before do
-				@edit_breve.title = " "
-				fill_in 'breve_title', with: @edit_breve.title
-			end
-			
-			it "leaves the number of breves unchanged" do
-				expect{ click_button "submit"}.not_to change(Breve, :count)
+				@edit_breve = FactoryGirl.create(:breve)
+				sign_in user
+				visit edit_breve_path(@edit_breve)
 			end
 
-			describe "The form should display the field values entered before submitting" do
-				before do
-					click_button "submit"
-				end
+			describe "The form should display the field values corresponding to the breve being edited" do
 				it { should have_field('breve_title', :with => @edit_breve.title) }
 				it { should have_field('breve_location', :with => @edit_breve.location)}
 				it { should have_field('breve_description'), :with => @edit_breve.description}
@@ -184,7 +147,59 @@ describe "Breve pages" do
 				it { should have_field('breve_longitude', :with => @edit_breve.longitude.to_s)}
 			end
 
-			#it { should have_selector('.flash') }
+			describe "Submission with valid input" do
+				before do
+					@new_breve = FactoryGirl.build(:breve)
+					fill_in 'breve_title', with: @new_breve.title
+					fill_in 'breve_location', with: @new_breve.location
+					fill_in 'breve_description', with: @new_breve.description
+					fill_in 'breve_source_name', with: @new_breve.source_name
+					fill_in 'breve_source_URL', with: @new_breve.source_URL
+					fill_in 'breve_latitude', with: @new_breve.latitude
+					fill_in 'breve_longitude', with: @new_breve.longitude		
+				end
+
+				it "does not change the number of breves" do
+					expect {click_button "submit"}.not_to change(Breve, :count)
+				end
+
+				it "redirects to the show page of the breve created" do
+					click_button "submit"
+					expect(current_path).to eql(breve_path(@edit_breve))
+				end
+
+				describe "The breve information have been saved" do	
+					before {click_button "submit"}
+					it { @edit_breve.reload.title == @new_breve.title }
+				end
+			end
+
+			describe "Submission with invalid input" do
+				before do
+					@edit_breve.title = " "
+					fill_in 'breve_title', with: @edit_breve.title
+				end
+				
+				it "leaves the number of breves unchanged" do
+					expect{ click_button "submit"}.not_to change(Breve, :count)
+				end
+
+				describe "The form should display the field values entered before submitting" do
+					before do
+						click_button "submit"
+					end
+					it { should have_field('breve_title', :with => @edit_breve.title) }
+					it { should have_field('breve_location', :with => @edit_breve.location)}
+					it { should have_field('breve_description'), :with => @edit_breve.description}
+
+					it { should have_field('breve_source_name', :with => @edit_breve.source_name)}
+					it { should have_field('breve_source_URL', :with => @edit_breve.source_URL)}
+					it { should have_field('breve_latitude', :with => @edit_breve.latitude.to_s)}
+					it { should have_field('breve_longitude', :with => @edit_breve.longitude.to_s)}
+				end
+
+				#it { should have_selector('.flash') }
+			end
 		end
 	end
 

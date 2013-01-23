@@ -31,3 +31,4 @@ def element_not_found?(element_id)
   rescue Capybara::ElementNotFound
     true
 end
+

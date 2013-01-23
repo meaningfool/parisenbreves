@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
-	before_filter :signed_in_user, only: [:edit, :update, :destroy]
+	before_filter :admin_user, only: [:index, :edit, :update, :destroy]
 
 	def index
 		@user = User.new
-		@users = User.all	
+		@users = User.paginate(page: params[:page])	
 	end
 
 	def new
@@ -37,10 +37,9 @@ class UsersController < ApplicationController
 	
 	private
 
-		def signed_in_user
-			unless signed_in?
-				store_location
-				redirect_to signin_url, notice: "Please sign in."
+		def admin_user
+			unless admin?
+				not_found 
 			end
 		end
 end

@@ -71,85 +71,104 @@ describe "User pages" do
 
 	describe "List page" do
 
-		describe "Non signed in users" do
-			before do
+		describe "Non admin users" do
+			it "redirects non signed in users to the 404 page" do
 				@user = FactoryGirl.create(:user)
-				visit users_path
+				expect {visit users_path}.to raise_error(ActionController::RoutingError)
 			end
 
-			describe "The page displays the users and delete link" do
-				it { should have_selector('.user_name', :text => @user.name) }
+			it "redirects signed in but non admin users to the 404 page" do
+				@user = FactoryGirl.create(:user)
+				sign_in @user
+				expect {visit users_path}.to raise_error(ActionController::RoutingError)
+			end
+		end
 
-				it "has actually links towards the show and delete actions" do
-					expect(find_by_id("show_user_#{@user.id}")[:href]).to eql(user_path(@user))
-					expect(element_not_found?("delete_user_#{@user.id}")).to be_true
+		describe "Admin users" do
+
+			#let(:admin) {FactoryGirl.create(:admin, name: "moi")}
+			before do
+				@admin = FactoryGirl.create(:admin, name: "moi")
+				@bob = FactoryGirl.create(:user, name: "bob")
+				sign_in @admin
+				visit users_path
+			end 
+
+			describe "pagination" do
+				before(:all) { 30.times {FactoryGirl.create(:user)} }
+				after(:all) { User.delete_all }
+
+				it { should have_selector('div.pagination') }
+				it "should list each user" do
+					User.paginate(page: 1).each do |u|
+						page.should have_selector('li', text: u.name)
+					end
 				end
 			end
 
 			describe "Clicking on the user name displays the user show page" do
 				before do
-					click_link("show_user_#{@user.id}")
+					click_link("show_user_#{@bob.id}")
 				end
 				it "displays the user show page" do
-					expect(current_path).to eql(user_path(@user))
+					expect(current_path).to eql(user_path(@bob))
 				end
 			end
-		end
 
-		describe "Signed in users" do
-
-			let(:user) {FactoryGirl.create(:user)}
-			before do
-				sign_in user
-				visit users_path
-			end 
+			it "does not display a delete link for the admin" do
+				expect(element_not_found?("delete_user_#{@admin.id}")).to be_true
+			end
 
 			describe "Clicking the delete link deletes the user and renders the users list page" do
 				it "decreases by 1 the number of users" do
-					expect{click_link("delete_user_#{user.id}")}.to change(User, :count).by(-1)
+					expect{click_link("delete_user_#{@bob.id}")}.to change(User, :count).by(-1)
 				end
 				it "displays the users list page" do
-					click_link("delete_user_#{user.id}")
+					click_link("delete_user_#{@bob.id}")
 					expect(current_path).to eql(users_path)
 				end
 				it "deleted the user" do
-					click_link("delete_user_#{user.id}")
-					expect(User.exists?(user)).to be_false
+					click_link("delete_user_#{@bob.id}")
+					expect(User.exists?(@bob)).to be_false
 				end
 			end
+
 		end
 	end
 
 	describe "Show page" do
 
-		describe "Non signed in users" do
-			before do
+		describe "Non admin" do
+			it "redirects non signed in users to the 404 page" do
 				@user = FactoryGirl.create(:user)
-				visit user_path(@user)
+				expect {visit users_path}.to raise_error(ActionController::RoutingError)
 			end
 
-			it "has no delete link" do
-				expect(element_not_found?("delete_user_#{@user.id}")).to be_true
+			it "redirects signed in but non admin users to the 404 page" do
+				@user = FactoryGirl.create(:user)
+				sign_in @user
+				expect {visit users_path}.to raise_error(ActionController::RoutingError)
 			end
 		end
 
 		describe "Signed in users" do
 
-			let(:user) {FactoryGirl.create(:user)}
+			let(:user) {FactoryGirl.create(:admin)}
 			before do
+				@bob = FactoryGirl.create(:user, name: "bob")
 				sign_in user
 				visit users_path
 			end 
 			it "decreases by 1 the number of users" do
-				expect{click_link("delete_user_#{user.id}")}.to change(User, :count).by(-1)
+				expect{click_link("delete_user_#{@bob.id}")}.to change(User, :count).by(-1)
 			end
 			it "displays the users list page" do
-				click_link("delete_user_#{user.id}")
+				click_link("delete_user_#{@bob.id}")
 				expect(current_path).to eql(users_path)
 			end
 			it "deleted the user" do
-				click_link("delete_user_#{user.id}")
-				expect(User.exists?(user)).to be_false
+				click_link("delete_user_#{@bob.id}")
+				expect(User.exists?(@bob)).to be_false
 			end
 		end
 	end

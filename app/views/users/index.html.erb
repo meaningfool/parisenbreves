@@ -1,16 +1,9 @@
 <h3>Users</h3>
 
-<ul class="unstyled span8">
-	<% for @user in @users %>
-		<li>
-			<div>
-				<%= link_to(@user, :id => "show_user_#{@user.id}") do %> 
-					<h4 class="user_name"><%= @user.name%></h4>
-				<% end %>
-				<% if signed_in? %>
-					<span class="pull-right"><%= link_to 'Delete', @user, method: :delete, :id => "delete_user_#{@user.id}", data: { :confirm => "Are you sure ?"} %></span>
-				<% end %>
-			</div>
-		</li>	
-	<% end %>
+<%= will_paginate %>
+
+<ul class="users unstyled span8">
+	<%= render @users %>	
 </ul>
+
+<%= will_paginate %>

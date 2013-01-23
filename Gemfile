@@ -8,6 +8,8 @@ gem 'rails', '3.2.11'
 gem 'sqlite3'
 gem 'bootstrap-sass'
 gem 'bcrypt-ruby'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 # Gems used only for assets and not required
 # in production environments by default.

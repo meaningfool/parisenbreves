@@ -33,6 +33,8 @@ GEM
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.2.2.0)
       sass (~> 3.2)
+    bootstrap-will_paginate (0.0.9)
+      will_paginate
     builder (3.0.4)
     capybara (2.0.2)
       mime-types (>= 1.16)
@@ -169,6 +171,7 @@ GEM
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     websocket (1.0.6)
+    will_paginate (3.0.4)
     xpath (1.0.0)
       nokogiri (~> 1.3)
 
@@ -178,6 +181,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby
   bootstrap-sass
+  bootstrap-will_paginate
   capybara
   coffee-rails (~> 3.2.1)
   database_cleaner
@@ -194,3 +198,4 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)
+  will_paginate
