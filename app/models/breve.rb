@@ -1,5 +1,6 @@
 class Breve < ActiveRecord::Base
   attr_accessible :description, :title, :location, :source_name, :source_URL, :latitude, :longitude
+  has_paper_trail
   
   validates :title, presence: true
   validates :title, :length => { :maximum => 100 }
