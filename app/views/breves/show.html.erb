@@ -1,11 +1,16 @@
+<% content_for(:head) do %>
+	<%= javascript_include_tag 'breve_show' %>
+<% end %>
+
 <div class="span8">
 	<div class="row">
 		<h2 class='title'><%= @breve.title %></h2>
 		<span class='location span8'><%= @breve.location %></span>
 		<p class='description span8'><%= @breve.description %></p>
 		<a class='source span8' href="<%= @breve.source_URL %>"><%= @breve.source_name %></a>
-		<span class='latitude span8'><%= @breve.latitude %></span>
-		<span class='longitude span8'><%= @breve.longitude %></span>
+		<span class='latitude span8' id='breve_latitude'><%= @breve.latitude %></span>
+		<span class='longitude span8' id='breve_longitude'><%= @breve.longitude %></span>
+		<div id="map_canvas" style="width:500px; height:300px"></div>
 	</div>
 	<div class="row">
 		<% if signed_in? %>

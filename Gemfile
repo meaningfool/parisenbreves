@@ -11,6 +11,7 @@ gem 'bcrypt-ruby'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'paper_trail'
+gem 'geocoder'
 
 # Gems used only for assets and not required
 # in production environments by default.

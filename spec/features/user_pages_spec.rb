@@ -38,7 +38,7 @@ describe "User pages" do
 					click_button "submit"
 				end
 				it { expect(User.last.email).to eql(@new_user.email) }
-				it { should have_link('Sign out') }
+				it { should have_link('sign_out') }
 			end
 		end
 

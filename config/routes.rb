@@ -1,6 +1,10 @@
 Parisenbreves::Application.routes.draw do
 
-  root :to => 'Breves#index'
+  root :to => 'static_pages#home'
+
+  match '/contenus', to: 'static_pages#content', as: 'content'
+  match '/contribuer', to: 'static_pages#contribute', as: 'contribute'
+
 
   resources :breves  
   resources :users

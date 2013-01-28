@@ -3,11 +3,12 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title><%= content_for?(:title) ? yield(:title) : "Myapp" %></title>
+		<title><%= content_for?(:title) ? yield(:title) : "Paris en brèves" %></title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<%= stylesheet_link_tag "application", :media => "all" %>
 		<%= javascript_include_tag "application" %>
+		<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
 		<%= csrf_meta_tags %>
 		<%= yield(:head) %>
 	</head>
@@ -25,10 +26,9 @@
 							<%= yield %>
 						</div>
 					</div>
-					<footer>
-					</footer>
 				</div>
 			</div> <!--! end of .container -->
-		</div> <!--! end of #main -->
+		</div> <!--! end of #main -->		
+		<%= render 'layouts/footer' %>
 	</body>
 </html>

@@ -49,10 +49,10 @@ describe Breve do
 			expect(FactoryGirl.build(:breve, latitude: " ")).to_not be_valid
 		end
 		it "is invalid when latitude inferior to -0.7854 radians" do
-			expect(FactoryGirl.build(:breve, latitude: -0.79)).to_not be_valid
+			expect(FactoryGirl.build(:breve, latitude: -91)).to_not be_valid
 		end
 		it "is invalid when latitude superior to 0.7854 radians" do
-			expect(FactoryGirl.build(:breve, latitude: 0.79)).to_not be_valid
+			expect(FactoryGirl.build(:breve, latitude: 91)).to_not be_valid
 		end
 	end
 
@@ -67,10 +67,30 @@ describe Breve do
 			expect(FactoryGirl.build(:breve, longitude: " ")).to_not be_valid
 		end
 		it "is invalid when longitude inferior to -1.5708 radians" do
-			expect(FactoryGirl.build(:breve, longitude: -1.5708)).to_not be_valid
+			expect(FactoryGirl.build(:breve, longitude: -181)).to_not be_valid
 		end
 		it "is invalid when longitude superior to 1.5708 radians" do
-			expect(FactoryGirl.build(:breve, longitude: 1.5708)).to_not be_valid
+			expect(FactoryGirl.build(:breve, longitude: 181)).to_not be_valid
 		end
 	end
+
+	describe "Find near" do
+		let!(:breve_NY) do
+			FactoryGirl.create(:breve, title: "breve NY", latitude: 40.71, longitude: -74, updated_at: 1.day.ago)
+		end
+		let!(:breve_Vanves) do
+			FactoryGirl.create(:breve, title: "breve Vanves", latitude: 48.82, longitude: 2.3, updated_at: 2.days.ago)
+		end
+		let!(:breve_Bordeaux) do
+			FactoryGirl.create(:breve, title: "breve Bordeaux", latitude: 44.83, longitude: -0.57, updated_at: 3.days.ago)
+		end
+		it do
+			@reference_point = [48.85, 2.35]
+			ordered = Breve.find_near(@reference_point,10000)
+			expect(ordered[0]).to eql(breve_Vanves)
+			expect(ordered[1]).to eql(breve_Bordeaux)
+			expect(ordered[2]).to eql(breve_NY)
+		end
+	end
+
 end

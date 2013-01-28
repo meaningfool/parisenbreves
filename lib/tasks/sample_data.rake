@@ -24,8 +24,8 @@ namespace :db do
       description = Faker::Lorem.paragraph(3)
       source_name = Faker::Company.name
       source_URL = "http://" + Faker::Internet.domain_name
-      latitude = Random::rand(-Math::PI/4..Math::PI/4)
-      longitude = Random::rand(-Math::PI/2..Math::PI/2)
+      latitude = Random::rand(48.8..48.93)
+      longitude = Random::rand(2.2..2.5)
       Breve.create!(title: title,
                     location: location,
                     description: description,

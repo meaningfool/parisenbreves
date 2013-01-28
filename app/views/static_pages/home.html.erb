@@ -1,0 +1,14 @@
+<div class="span5 pull-left">
+	<h3>Liste classée par date de dernière modification</h3>
+	<ul class="list" id="time_ordered">
+		<%= render @update_ordered, detail: 'time_update' %>
+	</ul>
+	<%= will_paginate @update_ordered %>
+</div>
+<div class="span5 pull-right">
+	<h3>Liste classée par distance au centre de Paris</h3>
+	<ul class="list" id="distance_ordered">
+		<%= render @location_ordered, detail: 'distance' %>
+	</ul>
+	<%= will_paginate @location_ordered %>
+</div>

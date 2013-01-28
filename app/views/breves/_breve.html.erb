@@ -1,0 +1,12 @@
+<li>
+	<div>
+		<%= link_to(breve, :id => "show_breve_#{breve.id}") do %> 
+			<h4 class="breve_name"><%= breve.title %></h4>
+		<% end %>
+		<% if detail == 'time_update' %>
+			<span><%= breve.updated_at %></span>
+		<% elsif detail == 'distance' %>
+			<span><%= Geocoder::Calculations.distance_between(@reference_point, [breve.latitude, breve.longitude]) %></span>
+		<% end %>
+	</div>
+</li>
