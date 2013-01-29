@@ -1,5 +1,5 @@
 class Breve < ActiveRecord::Base
-  attr_accessible :description, :title, :location, :source_name, :source_URL, :latitude, :longitude
+  attr_accessible :description, :title, :location, :source_name, :source_URL, :latitude, :longitude, :photo
   has_paper_trail
   reverse_geocoded_by :latitude, :longitude
   
@@ -24,7 +24,14 @@ class Breve < ActiveRecord::Base
   	:less_than => 180
   }
 
+  has_attached_file :photo, styles: {
+    thumb: '64x64>',
+    medium: '400x300#',
+    large: '1000x500>'
+  }
 
+  validates_attachment_size :photo, :less_than => 3.megabytes
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
   private
 

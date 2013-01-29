@@ -40,4 +40,11 @@ Parisenbreves::Application.configure do
   silence_warnings do
     BCrypt::Engine::DEFAULT_COST = BCrypt::Engine::MIN_COST
   end
+
+  # Paperclip configuration
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => YAML.load_file("#{Rails.root}/config/s3_credentials.yml")
+  } 
+  
 end

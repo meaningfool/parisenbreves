@@ -19,3 +19,6 @@
 
 # Ignore Apple specific files
 .DS_Store
+
+#Ignore the s3 credentials file
+/config/s3_credentials.yml

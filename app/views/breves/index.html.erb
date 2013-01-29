@@ -5,6 +5,7 @@
 		<li>
 			<div>
 			<%= link_to(@breve, :id => "show_breve_#{@breve.id}") do %> 
+				<%= image_tag @breve.photo.url(:thumbnail) %>
 				<h4 class="title"><%= @breve.title %></h4>
 			<% end %>
 			<% if signed_in? %>

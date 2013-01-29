@@ -12,6 +12,8 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'paper_trail'
 gem 'geocoder'
+gem 'paperclip'
+gem 'aws-sdk'
 
 # Gems used only for assets and not required
 # in production environments by default.
