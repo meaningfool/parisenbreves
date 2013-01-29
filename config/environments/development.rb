@@ -34,4 +34,11 @@ Parisenbreves::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Paperclip configuration
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => YAML.load_file("#{Rails.root}/config/s3_credentials.yml")
+  } 
+
 end

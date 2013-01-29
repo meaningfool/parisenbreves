@@ -13,6 +13,7 @@ describe Breve do
 	it { should respond_to(:source_URL)}
 	it { should respond_to(:latitude)}
 	it { should respond_to(:longitude)}
+	it { should respond_to(:photo)}
 
 
 	describe "Title validation" do

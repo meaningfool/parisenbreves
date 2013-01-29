@@ -1,5 +1,6 @@
 <li>
 	<div>
+		<%= image_tag breve.photo.url(:thumb) %>
 		<%= link_to(breve, :id => "show_breve_#{breve.id}") do %> 
 			<h4 class="breve_name"><%= breve.title %></h4>
 		<% end %>
