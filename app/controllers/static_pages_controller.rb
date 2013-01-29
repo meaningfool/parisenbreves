@@ -1,6 +1,7 @@
 require 'will_paginate/array'
 
 class StaticPagesController < ApplicationController
+
 	def home
 		@update_ordered = Breve.order("updated_at DESC").paginate(page: params[:page])
 		@reference_point = [48.85, 2.35]

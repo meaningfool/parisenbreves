@@ -3,7 +3,7 @@
 		<%= link_to(user, :id => "show_user_#{user.id}") do %> 
 			<h4 class="user_name"><%= user.name%></h4>
 		<% end %>
-		<% if current_user.admin? && !current_user?(user) %>
+		<% if can? :destroy, user && !current_user?(user) %>
 			<span class="pull-right"><%= link_to 'Delete', user, method: :delete, :id => "delete_user_#{user.id}", data: { :confirm => "Are you sure ?"} %></span>
 		<% end %>
 	</div>

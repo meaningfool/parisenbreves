@@ -5,7 +5,7 @@ describe "Authentication" do
 	describe "authorization" do
 
 		describe "in the Breves controller" do
-
+=begin
 			describe "for non signed in users" do
 				let(:breve) { FactoryGirl.create(:breve) }
 
@@ -19,7 +19,7 @@ describe "Authentication" do
 					specify { response.should redirect_to(signin_path)}
 				end
 			end
-=begin
+
 			describe "for the signed in users" do
 				let(:breve) { FactoryGirl.create(:breve) }
 				before do 
@@ -50,13 +50,13 @@ describe "Authentication" do
 
 				describe "accessing the index page" do
 					specify do
-						lambda {get users_path}.should raise_error(ActionController::RoutingError)
+						lambda {get users_path}.should raise_error(CanCan::AccessDenied)
 					end
 				end
 
 				describe "submitting to the destroy action" do
 					specify do
-						lambda {delete user_path(user)}.should raise_error(ActionController::RoutingError)
+						lambda {delete user_path(user)}.should raise_error(CanCan::AccessDenied)
 					end
 				end
 			end

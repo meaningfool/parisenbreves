@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   VALID_NAME_REGEX = /^\w+$/i
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  ROLES = %w[guest standard editor admin]
 
   validates :name, presence: true
   validates :name, :format => { with: VALID_NAME_REGEX }
@@ -21,6 +22,9 @@ class User < ActiveRecord::Base
 
   validates_confirmation_of :password
   validates :password_confirmation, presence: true
+
+  #validates :role, presence: true
+  validates :role, :inclusion => { :in => ROLES }
 
   private
 

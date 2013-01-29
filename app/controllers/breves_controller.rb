@@ -1,6 +1,6 @@
 class BrevesController < ApplicationController
-
-	before_filter :signed_in_user, only: [:edit, :update, :destroy]
+	load_and_authorize_resource
+	#before_filter :signed_in_user, only: [:edit, :update, :destroy]
 
 	def index
 		@breve = Breve.new

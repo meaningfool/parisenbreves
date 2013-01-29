@@ -14,7 +14,17 @@ module SessionsHelper
 	end
 
 	def admin?
-		signed_in? && current_user.admin?
+		current_user.role == "admin"
+	end
+
+	def guest?
+		#binding.pry
+		current_user.role == nil || current_user.role == "guest"
+	end
+
+	def standard?
+		#binding.pry
+		current_user.role == "standard"
 	end
 
 	def current_user

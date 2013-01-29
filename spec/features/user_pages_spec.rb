@@ -68,7 +68,7 @@ describe "User pages" do
 			end
 		end
 	end
-
+=begin
 	describe "List page" do
 
 		describe "Non admin users" do
@@ -135,22 +135,16 @@ describe "User pages" do
 
 		end
 	end
-
+=end
 	describe "Show page" do
 
-		describe "Non admin" do
+		describe "Guest role" do
 			it "redirects non signed in users to the 404 page" do
 				@user = FactoryGirl.create(:user)
-				expect {visit users_path}.to raise_error(ActionController::RoutingError)
-			end
-
-			it "redirects signed in but non admin users to the 404 page" do
-				@user = FactoryGirl.create(:user)
-				sign_in @user
-				expect {visit users_path}.to raise_error(ActionController::RoutingError)
+				expect {visit users_path}.to raise_error(CanCan::AccessDenied)
 			end
 		end
-
+=begin
 		describe "Signed in users" do
 
 			let(:user) {FactoryGirl.create(:admin)}
@@ -171,6 +165,7 @@ describe "User pages" do
 				expect(User.exists?(@bob)).to be_false
 			end
 		end
+=end
 	end
 
 end

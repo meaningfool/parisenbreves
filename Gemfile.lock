@@ -41,6 +41,7 @@ GEM
     bootstrap-will_paginate (0.0.9)
       will_paginate
     builder (3.0.4)
+    cancan (1.6.8)
     capybara (2.0.2)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -204,6 +205,7 @@ DEPENDENCIES
   bcrypt-ruby
   bootstrap-sass
   bootstrap-will_paginate
+  cancan
   capybara
   coffee-rails (~> 3.2.1)
   database_cleaner

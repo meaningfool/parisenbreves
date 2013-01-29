@@ -25,7 +25,7 @@ describe "Breve pages" do
 		end
 
 		describe "For logged in users" do
-			let(:user) {FactoryGirl.create(:user)}
+			let(:user) {FactoryGirl.create(:standard)}
 			before do
 				@breve = FactoryGirl.create(:breve)
 				sign_in user
@@ -41,98 +41,106 @@ describe "Breve pages" do
 
 	describe "Breve new page" do
 
-		before do
-			@new_breve = Breve.new
-			visit new_breve_path(@new_breve)
+		describe "for guest users" do
+			before { @new_breve = Breve.new }
+			it do 
+				expect {visit new_breve_path(@new_breve)}.to raise_error(CanCan::AccessDenied)
+			end
 		end
 
-		describe "The structure of the page" do 
-			it {should have_field('breve_latitude')}
-			it {should have_field('breve_longitude')}
-			it {should have_button('submit')}
-		end
-
-		describe "Submission with valid input" do
+		describe "for standard, editor and admin roles" do
+			let(:user) { FactoryGirl.create(:standard) }
 			before do
-				@new_breve = FactoryGirl.build(:breve)
-				fill_in 'breve_title', with: @new_breve.title
-				fill_in 'breve_location', with: @new_breve.location
-				fill_in 'breve_description', with: @new_breve.description
-				fill_in 'breve_source_name', with: @new_breve.source_name
-				fill_in 'breve_source_URL', with: @new_breve.source_URL
-				fill_in 'breve_latitude', with: @new_breve.latitude
-				fill_in 'breve_longitude', with: @new_breve.longitude
-				
+				sign_in user
+				@new_breve = Breve.new
+				#binding.pry
+				visit new_breve_path(@new_breve)
 			end
 
-			it "increases the number of breves by 1" do
-				expect {click_button "submit"}.to change(Breve, :count).by(1)
+			describe "The structure of the page" do 
+				it {should have_field('breve_latitude')}
+				it {should have_field('breve_longitude')}
+				it {should have_button('submit')}
 			end
 
-			it "redirects to the show page of the breve created" do
-				click_button "submit"
-				expect(current_path).to eql(breve_path(Breve.last))
-			end
-
-			it "properly saves the data" do	
-				click_button "submit"
-				expect(Breve.last.title).to eql(@new_breve.title)	
-			end
-		end
-
-		describe "Submission with invalid input" do
-			before do
-				@new_breve = FactoryGirl.build(:breve, title: " ")
-				fill_in 'breve_title', with: @new_breve.title
-				fill_in 'breve_location', with: @new_breve.location
-				fill_in 'breve_description', with: @new_breve.description
-				fill_in 'breve_source_name', with: @new_breve.source_name
-				fill_in 'breve_source_URL', with: @new_breve.source_URL
-				fill_in 'breve_latitude', with: @new_breve.latitude
-				fill_in 'breve_longitude', with: @new_breve.longitude
-			end
-			
-			it "leaves the number of breves unchanged" do
-				expect{ click_button "submit"}.not_to change(Breve, :count)
-			end
-
-			describe "The form should display the field values entered before submitting" do
+			describe "Submission with valid input" do
 				before do
-					click_button "submit"
+					@new_breve = FactoryGirl.build(:breve)
+					fill_in 'breve_title', with: @new_breve.title
+					fill_in 'breve_location', with: @new_breve.location
+					fill_in 'breve_description', with: @new_breve.description
+					fill_in 'breve_source_name', with: @new_breve.source_name
+					fill_in 'breve_source_URL', with: @new_breve.source_URL
+					fill_in 'breve_latitude', with: @new_breve.latitude
+					fill_in 'breve_longitude', with: @new_breve.longitude
+					
 				end
-				it { should have_field('breve_title', :with => @new_breve.title) }
-				it { should have_field('breve_location', :with => @new_breve.location)}
-				it { should have_field('breve_description'), :with => @new_breve.description}
 
-				it { should have_field('breve_source_name', :with => @new_breve.source_name)}
-				it { should have_field('breve_source_URL', :with => @new_breve.source_URL)}
-				it { should have_field('breve_latitude', :with => @new_breve.latitude.to_s)}
-				it { should have_field('breve_longitude', :with => @new_breve.longitude.to_s)}
+				it "increases the number of breves by 1" do
+					expect {click_button "submit"}.to change(Breve, :count).by(1)
+				end
+
+				it "redirects to the show page of the breve created" do
+					click_button "submit"
+					expect(current_path).to eql(breve_path(Breve.last))
+				end
+
+				it "properly saves the data" do	
+					click_button "submit"
+					expect(Breve.last.title).to eql(@new_breve.title)	
+				end
 			end
 
-			#it { should have_selector('.flash') }
+			describe "Submission with invalid input" do
+				before do
+					@new_breve = FactoryGirl.build(:breve, title: " ")
+					fill_in 'breve_title', with: @new_breve.title
+					fill_in 'breve_location', with: @new_breve.location
+					fill_in 'breve_description', with: @new_breve.description
+					fill_in 'breve_source_name', with: @new_breve.source_name
+					fill_in 'breve_source_URL', with: @new_breve.source_URL
+					fill_in 'breve_latitude', with: @new_breve.latitude
+					fill_in 'breve_longitude', with: @new_breve.longitude
+				end
+				
+				it "leaves the number of breves unchanged" do
+					expect{ click_button "submit"}.not_to change(Breve, :count)
+				end
+
+				describe "The form should display the field values entered before submitting" do
+					before do
+						click_button "submit"
+					end
+					it { should have_field('breve_title', :with => @new_breve.title) }
+					it { should have_field('breve_location', :with => @new_breve.location)}
+					it { should have_field('breve_description'), :with => @new_breve.description}
+
+					it { should have_field('breve_source_name', :with => @new_breve.source_name)}
+					it { should have_field('breve_source_URL', :with => @new_breve.source_URL)}
+					it { should have_field('breve_latitude', :with => @new_breve.latitude.to_s)}
+					it { should have_field('breve_longitude', :with => @new_breve.longitude.to_s)}
+				end
+			end
 		end
 	end
 
 	describe "Breve edit page" do
 
-		describe "Non signed in users" do
-			let(:user) {FactoryGirl.create(:user)}
+		describe "Guest role" do
 			before do
 				@edit_breve = FactoryGirl.create(:breve)
-				visit edit_breve_path(@edit_breve)
 			end
 
-			it "displays the loggin page" do
-				expect(current_path).to eql(signin_path)
+			it "raises an error" do
+				expect { visit edit_breve_path(@edit_breve) }.to raise_error(CanCan::AccessDenied)
 			end
 		end
 
-		describe "Signed in users" do
-			let(:user) {FactoryGirl.create(:user)}
+		describe "Standard role" do
+			let(:standard) {FactoryGirl.create(:editor)}
 			before do
 				@edit_breve = FactoryGirl.create(:breve)
-				sign_in user
+				sign_in standard
 				visit edit_breve_path(@edit_breve)
 			end
 
@@ -201,6 +209,30 @@ describe "Breve pages" do
 				#it { should have_selector('.flash') }
 			end
 		end
+		describe "Editor role" do
+			let(:editor) {FactoryGirl.create(:editor)}
+			before do
+				@edit_breve = FactoryGirl.create(:breve)
+				sign_in editor
+				visit edit_breve_path(@edit_breve)
+			end
+
+			describe "The form should display the field values corresponding to the breve being edited" do
+				it { should have_field('breve_title', :with => @edit_breve.title) }
+			end
+		end
+		describe "Admin role" do
+			let(:admin) {FactoryGirl.create(:admin)}
+			before do
+				@edit_breve = FactoryGirl.create(:breve)
+				sign_in admin
+				visit edit_breve_path(@edit_breve)
+			end
+
+			describe "The form should display the field values corresponding to the breve being edited" do
+				it { should have_field('breve_title', :with => @edit_breve.title) }
+			end
+		end
 	end
 
 	describe "Breve list page" do
@@ -215,7 +247,6 @@ describe "Breve pages" do
 
 			it "has actually links towards the show, edit and delete actions" do
 				expect(find_by_id("show_breve_#{@breve.id}")[:href]).to eql(breve_path(@breve))
-				expect(element_not_found?("delete_breve_#{@breve.id}")).to be_true
 			end
 
 			describe "Clicking on the breve title displays the breve show page" do
@@ -228,11 +259,11 @@ describe "Breve pages" do
 			end	
 		end
 
-		describe "Signed in users" do
-			let(:user) {FactoryGirl.create(:user)}
+		describe "Editor users" do
+			let(:editor) {FactoryGirl.create(:editor)}
 			before do
 				@breve = FactoryGirl.create(:breve)
-				sign_in user
+				sign_in editor
 				visit breve_path(@breve)
 			end 
 

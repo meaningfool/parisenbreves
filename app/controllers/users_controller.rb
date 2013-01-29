@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-
-	before_filter :admin_user, only: [:index, :edit, :update, :destroy]
+	load_and_authorize_resource
 
 	def index
 		@user = User.new
@@ -13,11 +12,14 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new params[:user]
+		@user.role = "standard"
 		if @user.save
+			@user.reload
 			sign_in @user
   			flash[:success] = "Welcome to the Sample App!"
 			redirect_to @user
 		else
+			flash.now[:error] = 'Formulaire incomplet'
 			render 'new'
 		end
 	end
