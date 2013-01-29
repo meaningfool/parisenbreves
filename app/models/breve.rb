@@ -1,7 +1,9 @@
 class Breve < ActiveRecord::Base
-  attr_accessible :description, :title, :location, :source_name, :source_URL, :latitude, :longitude, :photo
+  attr_accessible :description, :title, :location, :source_name, :source_URL, :latitude, :longitude, :photo, :status
   has_paper_trail
   reverse_geocoded_by :latitude, :longitude
+
+  STATUS = %w[draft published]
   
   validates :title, presence: true
   validates :title, :length => { :maximum => 100 }
@@ -32,6 +34,10 @@ class Breve < ActiveRecord::Base
 
   validates_attachment_size :photo, :less_than => 3.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+
+  validates :status, presence: true
+  validates :status, :inclusion => { :in => STATUS }
+
 
   private
 

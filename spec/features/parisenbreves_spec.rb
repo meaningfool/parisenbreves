@@ -48,7 +48,7 @@ describe "Breve pages" do
 			end
 		end
 
-		describe "for standard, editor and admin roles" do
+		describe "for standard role" do
 			let(:user) { FactoryGirl.create(:standard) }
 			before do
 				sign_in user
@@ -61,6 +61,7 @@ describe "Breve pages" do
 				it {should have_field('breve_latitude')}
 				it {should have_field('breve_longitude')}
 				it {should have_button('submit')}
+				it {should_not have_field('breve_status')}
 			end
 
 			describe "Submission with valid input" do
@@ -88,6 +89,11 @@ describe "Breve pages" do
 				it "properly saves the data" do	
 					click_button "submit"
 					expect(Breve.last.title).to eql(@new_breve.title)	
+				end
+
+				describe "Submission including a status update should fail" do
+					before { select 'Published', :from => 'breve_status' }
+					it { expect {click_button "submit"}.to raise_error(CanCan::AccessDenied)}
 				end
 			end
 
@@ -122,6 +128,34 @@ describe "Breve pages" do
 				end
 			end
 		end
+		describe "For editor role" do
+			let(:user) { FactoryGirl.create(:editor) }
+			before do
+				sign_in user
+				@new_breve = Breve.new
+				#binding.pry
+				visit new_breve_path(@new_breve)
+			end
+			
+			it {should have_field('breve_status')}
+
+			describe "The status should be saved" do
+				before do
+					@new_breve = FactoryGirl.build(:breve)
+					fill_in 'breve_title', with: @new_breve.title
+					fill_in 'breve_location', with: @new_breve.location
+					fill_in 'breve_description', with: @new_breve.description
+					fill_in 'breve_source_name', with: @new_breve.source_name
+					fill_in 'breve_source_URL', with: @new_breve.source_URL
+					fill_in 'breve_latitude', with: @new_breve.latitude
+					fill_in 'breve_longitude', with: @new_breve.longitude
+					select 'Published', :from => 'breve_status'
+					click_button "submit"
+				end
+
+				it {expect(Breve.last.status).to eql('published')}
+			end
+		end
 	end
 
 	describe "Breve edit page" do
@@ -153,6 +187,7 @@ describe "Breve pages" do
 				it { should have_field('breve_source_URL', :with => @edit_breve.source_URL)}
 				it { should have_field('breve_latitude', :with => @edit_breve.latitude.to_s)}
 				it { should have_field('breve_longitude', :with => @edit_breve.longitude.to_s)}
+				it { should_not have_field('breve_status')}
 			end
 
 			describe "Submission with valid input" do
@@ -179,6 +214,11 @@ describe "Breve pages" do
 				describe "The breve information have been saved" do	
 					before {click_button "submit"}
 					it { @edit_breve.reload.title == @new_breve.title }
+				end
+
+				describe "Submission including a status update should fail" do
+					before { select 'Published', :from => 'breve_status' }
+					it { expect {click_button "submit"}.to raise_error(CanCan::AccessDenied)}
 				end
 			end
 
@@ -219,18 +259,21 @@ describe "Breve pages" do
 
 			describe "The form should display the field values corresponding to the breve being edited" do
 				it { should have_field('breve_title', :with => @edit_breve.title) }
-			end
-		end
-		describe "Admin role" do
-			let(:admin) {FactoryGirl.create(:admin)}
-			before do
-				@edit_breve = FactoryGirl.create(:breve)
-				sign_in admin
-				visit edit_breve_path(@edit_breve)
+				it { should have_field('breve_status', :with => @edit_breve.status)}
 			end
 
-			describe "The form should display the field values corresponding to the breve being edited" do
-				it { should have_field('breve_title', :with => @edit_breve.title) }
+			describe "The status should save" do
+				before do
+					@former_status = @edit_breve.status
+					if @edit_breve.status == 'draft'
+						select 'Published', :from => 'breve_status'
+					else
+						select 'Draft', :from => 'breve_status'
+					end
+					click_button 'submit'
+					@edit_breve.reload
+				end
+				it { expect(@edit_breve.status).not_to eql(@former_status)}
 			end
 		end
 	end

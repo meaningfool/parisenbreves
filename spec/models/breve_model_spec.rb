@@ -14,6 +14,7 @@ describe Breve do
 	it { should respond_to(:latitude)}
 	it { should respond_to(:longitude)}
 	it { should respond_to(:photo)}
+	it { should respond_to(:status)}
 
 
 	describe "Title validation" do
@@ -75,6 +76,17 @@ describe Breve do
 		end
 	end
 
+	describe "Status validity" do
+		it "is invalid without a status" do
+			expect(FactoryGirl.build(:breve, status: nil)).to_not be_valid
+		end
+		it "should take one of the 2 values draft or published" do
+			expect(FactoryGirl.build(:breve, status: 'aa')).to_not be_valid
+			expect(FactoryGirl.build(:breve, status: 'draft')).to be_valid
+			expect(FactoryGirl.build(:breve, status: 'published')).to be_valid
+		end
+	end
+
 	describe "Find near" do
 		let!(:breve_NY) do
 			FactoryGirl.create(:breve, title: "breve NY", latitude: 40.71, longitude: -74, updated_at: 1.day.ago)
@@ -93,5 +105,4 @@ describe Breve do
 			expect(ordered[2]).to eql(breve_NY)
 		end
 	end
-
 end

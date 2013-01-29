@@ -7,5 +7,6 @@ FactoryGirl.define do
 		f.source_URL "http://" + Faker::Internet.domain_name
 		f.latitude Random::rand(-89.99..89.99)
 		f.longitude Random::rand(-179.99..179.99)
+		f.status "draft"
 	end
 end

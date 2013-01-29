@@ -35,7 +35,7 @@ namespace :db do
       fake_user.save!
     end
 
-    100.times do |b|
+    50.times do |b|
       title = Faker::Company.catch_phrase
       location = Faker::Address.street_address
       description = Faker::Lorem.paragraph(3)
@@ -49,7 +49,26 @@ namespace :db do
                     source_name: source_name,
                     source_URL: source_URL,
                     latitude: latitude,
-                    longitude: longitude)
+                    longitude: longitude,
+                    status: 'published')
+     end 
+
+     50.times do |b|
+      title = Faker::Company.catch_phrase
+      location = Faker::Address.street_address
+      description = Faker::Lorem.paragraph(3)
+      source_name = Faker::Company.name
+      source_URL = "http://" + Faker::Internet.domain_name
+      latitude = Random::rand(48.8..48.93)
+      longitude = Random::rand(2.2..2.5)
+      Breve.create!(title: title,
+                    location: location,
+                    description: description,
+                    source_name: source_name,
+                    source_URL: source_URL,
+                    latitude: latitude,
+                    longitude: longitude,
+                    status: 'draft')
      end 
   end
 end
