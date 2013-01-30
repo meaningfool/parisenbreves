@@ -9,6 +9,9 @@ class BrevesController < ApplicationController
 
 	def create 
 		@breve = Breve.new params[:breve]
+		if !(current_user.role == "editor" || current_user.role == "admin")
+			@breve.status = "draft"
+		end
 		if @breve.save
 			redirect_to @breve
 		else
@@ -30,6 +33,9 @@ class BrevesController < ApplicationController
 
 	def update
 		@breve = Breve.find params[:id]
+		if current_user.role == nil || current_user.role == "guest" || current_user.role == "standard"
+			params[:breve][:status] = @breve.status
+		end
 		if @breve.update_attributes params[:breve]
 			redirect_to @breve
 		else

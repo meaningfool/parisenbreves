@@ -19,8 +19,10 @@
 	<%= f.text_field :latitude %>
 	<%= f.label :longitude %>
 	<%= f.text_field :longitude %>
-	<%= f.label :status %>
-	<%= f.collection_select :status, Breve::STATUS, :to_s, :titleize %>
+	<% if (current_user.role == "editor" || current_user.role == "admin") %>
+		<%= f.label :status %>
+		<%= f.collection_select :status, Breve::STATUS, :to_s, :titleize %>
+	<% end %>
 	<%= f.file_field :photo %>	
 
 	<input name="location" id="search_address" type="textbox">
