@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
 gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'bootstrap-sass'
 gem 'bcrypt-ruby'
 gem 'will_paginate'
@@ -41,6 +41,12 @@ group :test, :development do
 	gem 'factory_girl_rails'
 	gem 'faker'
 	gem 'pry'
+	gem 'sqlite3'
+end
+
+group :production do
+	gem 'pg'
+	gem 'thin'
 end
 
 # To use ActiveModel has_secure_password
