@@ -1,0 +1,31 @@
+
+<% content_for :content do %>
+	<div class="span12">
+		<div class="row">
+			<ul class="nav nav-pills">
+				<li class="span4 <%= @content_type == 'subject' ? 'active' : '' %>">
+					<%= link_to drafts_path do %>
+						<h5>Sujets</h5>
+						<span>Les sujets regroupent des documents ou des extraits de textes pouvant donner lieu à la création de brèves. Vous avez une idée ? Ajoutez un sujet ! Ou alors emparez-vous de l'un d'eux et traitez-le !</span>
+					<% end %>
+				</li>
+				<li class="span4 <%= @content_type == 'draft' ? 'active' : '' %>">
+					<%= link_to drafts_path do %>
+						<h5>Brouillons</h5>
+						<span>Les brouillons sont de futures brèves qui nécessitent encore un travail d'écriture pour atteindre les critères de publication d'une brève. La section Contribuer vous donne des astuces pour améliorer les brouillons.</span>
+					<% end %>
+				</li>
+				<li class="span4 <%= @content_type == 'published' ? 'active' : '' %>">
+					<%= link_to published_path do %>
+						<h5>Brèves</h5>
+						<span>aujourd'hui au nombre de</span>
+						<span><%= @published_count %></span>
+					<% end %>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<%= yield %>
+<% end %>
+
+<%= render :template =>'layouts/application' %>

@@ -7,6 +7,20 @@ class BrevesController < ApplicationController
 		@breves = Breve.all	
 	end
 
+	def published	
+		@published_count = Breve.where("status='published'").count
+		@published = Breve.where("status='published'").order("updated_at DESC").paginate(page: params[:page])
+		@content_type = 'published'
+		render layout: 'contents'
+	end
+
+	def drafts
+		@published_count = Breve.where("status='published'").count
+		@draft = Breve.where("status='draft'").order("updated_at DESC").paginate(page: params[:page])
+		@content_type = 'draft'
+		render layout: 'contents'
+	end
+
 	def create 
 		@breve = Breve.new params[:breve]
 		if !(current_user.role == "editor" || current_user.role == "admin")
@@ -20,15 +34,24 @@ class BrevesController < ApplicationController
 	end
 
 	def show
+		@published_count = Breve.where("status='published'").count
 		@breve = Breve.find params[:id]
+		@content_type = @breve.status
+		render layout: 'contents'
 	end
 
 	def edit
+		@published_count = Breve.where("status='published'").count
 		@breve = Breve.find params[:id]
+		@content_type = @breve.status
+		render layout: 'contents'
 	end
 
 	def new
+		@published_count = Breve.where("status='published'").count
 		@breve = Breve.new
+		@content_type = @breve.status
+		render layout: 'contents'
 	end
 
 	def update

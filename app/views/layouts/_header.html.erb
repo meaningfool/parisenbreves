@@ -5,20 +5,20 @@
       <nav>
         <ul class="nav pull-left">
           <li><%= link_to "Accueil", root_path, :id => "home" %></li>
-          <li><%= link_to "Brèves", content_path, :id => "content" %></li>
+          <li><%= link_to "Brèves", published_path, :id => "content" %></li>
           <li><%= link_to "Contribuer", contribute_path, :id => "contribute" %></li>
         </ul>
         <ul class="nav pull-right">
           <% if signed_in? %>
             <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <%= current_user.name %><b class="caret"></b>
+              <a class="dropdown-toggle" id="dropx" role="button" data-toggle="dropdown" href="#">
+                <%= current_user.name %> <b class="caret"></b>
               </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Profil", current_user %></li>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropx">
+                <li><%= link_to "Profil", current_user, tabindex: "-1" %></li>
                 <li class="divider"></li>
                 <li>
-                  <%= link_to "Déconnexion", signout_path, method: "delete", :id => "sign_out" %>
+                  <%= link_to "Déconnexion", signout_path, method: "delete", :id => "sign_out", tabindex: "-1" %>
                 </li>
               </ul>
             </li>

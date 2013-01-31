@@ -2,7 +2,6 @@ Parisenbreves::Application.routes.draw do
 
   root :to => 'static_pages#home'
 
-  match '/contenus', to: 'static_pages#content', as: 'content'
   match '/contribuer', to: 'static_pages#contribute', as: 'contribute'
 
 
@@ -14,6 +13,8 @@ Parisenbreves::Application.routes.draw do
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
+  match '/published', to: 'breves#published'
+  match '/drafts', to: 'breves#drafts'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

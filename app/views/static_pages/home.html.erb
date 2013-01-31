@@ -10,19 +10,19 @@
 		      	</div>
 		    </div>
 	    <% end %>
-	    <div class="carousel-principes">
-	    	<div>
-	    		<span>Les imaginaires des lieux de Paris racontés... en brèves</span>
-	    	</div>
-	    	<div>
-	    		<span>Un projet associatif et contributif.</span>
-	    		<span>Rejoignez-nous !</span>
-	    	</div>
-	    	<div>
-	    		<span>Des contenus sous licence Creative Commons</span>
-	    	</div>
-	    </div>
   	</div><!-- /.carousel-inner -->
+  	<div class="carousel-principes">
+    	<div>
+    		<span>Les imaginaires des lieux de Paris racontés... en brèves</span>
+    	</div>
+    	<div>
+    		<span>Un projet associatif et contributif.</span>
+    		<span>Rejoignez-nous !</span>
+    	</div>
+    	<div>
+    		<span>Des contenus sous licence Creative Commons</span>
+    	</div>
+    </div>
   <!--  Next and Previous controls below
         href values must reference the id for this carousel -->
     <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
@@ -38,4 +38,4 @@
 	</div>
 <% end %>
 
-<div class="span12 content_link"><%= link_to "Voir l'ensemble des brèves", content_path(content: "published")  %></a></div>
+<div class="span12 content_link"><%= link_to "Voir l'ensemble des brèves", published_path  %></a></div>

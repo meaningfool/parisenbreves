@@ -35,6 +35,9 @@ Parisenbreves::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  # Does not fetch precompiled assets
+  config.serve_static_assets = false
+
   # Paperclip configuration
   config.paperclip_defaults = {
     :storage => :s3,

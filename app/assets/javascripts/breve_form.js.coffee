@@ -12,7 +12,7 @@ $(document).ready ->
     addMarker p
 
   $("#search_button").click ->
-    loc = $("#search_address").val()
+    loc = $("#appendedInputButton").val()
     jumpTo loc
 
 initialize = ->

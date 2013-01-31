@@ -3,31 +3,68 @@
 	<%= javascript_include_tag 'breve_form' %>
 <% end %>
 
-<%= form_for @breve, html: {multipart: true} do |f| %>
+<%= form_for @breve, html: {multipart: true, class: "form-horizontal breve-form"} do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
-	<%= f.label :title %>
-	<%= f.text_field :title %>
-	<%= f.label :location %>
-	<%= f.text_field :location %>
-	<%= f.label :description %>
-	<%= f.text_area :description %>
-	<%= f.label :source_name %>
-	<%= f.text_field :source_name %>
-	<%= f.label :source_URL %>
-	<%= f.text_field :source_URL %>
-	<%= f.label :latitude %>
-	<%= f.text_field :latitude %>
-	<%= f.label :longitude %>
-	<%= f.text_field :longitude %>
+	<div class="control-group">
+		<%= f.label "Titre", class: "control-label", for: "breve_title" %>
+		<div class="controls">
+			<%= f.text_field :title, placeholder: "Titre" %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label "Lieu", class: "control-label", for: "breve_location" %>
+		<div class="controls">
+			<%= f.text_field :location, placeholder: "Lieu" %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label "Localisation", class: "control-label" %>
+		<div class="controls">
+			<div class="input-append">
+				<input name="location" class="span4 search-adress" id="appendedInputButton" type="text">
+				<button class="btn" type="button" id="search_button">Chercher</button>
+			</div>
+			<div id="map_canvas"></div>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label "Description", class: "control-label", for: "breve_description" %>
+		<div class="controls">
+			<%= f.text_area :description, placeholder: "Description" %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label "Nom de la source", class: "control-label", for: "breve_source_name" %>
+		<div class="controls">
+			<%= f.text_field :source_name, placeholder: "Exemple : Wikipedia" %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label "URL de la source", class: "control-label", for: "breve_source_URL" %>
+		<div class="controls">
+			<%= f.text_field :source_URL, placeholder: "Adresse du site de la source, exemple : http://fr.wikipedia.org/Paris" %>
+		</div>
+	</div>
+	<%= f.hidden_field :latitude %>
+	<%= f.hidden_field :longitude %>
 	<% if (current_user.role == "editor" || current_user.role == "admin") %>
-		<%= f.label :status %>
-		<%= f.collection_select :status, Breve::STATUS, :to_s, :titleize %>
+		<div class="control-group">
+			<%= f.label "Statut", class: "control-label", for: "breve_status" %>
+			<div class="controls">
+				<%= f.collection_select :status, Breve::STATUS, :to_s, :titleize %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label "Photo", class: "control-label", for: "breve_photo" %>
+			<div class="controls">
+				<%= f.file_field :photo %>
+			</div>
+		</div>
 	<% end %>
-	<%= f.file_field :photo %>	
-
-	<input name="location" id="search_address" type="textbox">
-	<input type="button" id="search_button" value="Chercher">
-	<div id="map_canvas" style="width:500px; height:300px"></div>
-
-	<%= f.submit "submit" %>
+	<div class="control-group">
+		<div class="controls">
+			<%= f.submit "Enregistrer", class: "btn btn-primary" %>
+			<%= link_to "Annuler", @breve, class: "btn" %>
+		</div>
+	</div>
 <% end %>

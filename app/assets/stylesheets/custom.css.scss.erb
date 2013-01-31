@@ -104,14 +104,45 @@ footer {
 
 }
 
+/* Brève */
 
-#map_canvas {
-    width: 500px;
-    height: 400px;
-    float: left;
+.breve-content {
+  img {
+    margin: 20px 0;
   }
 
+  .text-content {
+    width: 50%;
+    float: left;
+  }
+  #map_canvas {
+    width: 40%;
+    float: right;
+  }
+  .latitude, .longitude {
+    visibility: hidden;
+  }
+  .edit-btn {
+    margin-right: 40px;
+    margin-bottom: 20px;
+  }
+  .action {
+    clear: both;
+  }
 
+}
+
+/* Breve form */
+  .breve-form {
+    .input-append {
+      margin-bottom: 20px;
+    }
+    #map_canvas {
+      width: 100%;
+    }
+
+  }
+  
 
 @mixin box_sizing {
   -moz-box-sizing: border-box; 

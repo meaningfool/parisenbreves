@@ -10,12 +10,6 @@ class StaticPagesController < ApplicationController
 		#binding.pry
 	end
 
-	def content
-		@published_count = Breve.where("status='published'").count
-		@published = Breve.where("status='published'").order("updated_at DESC").paginate(page: params[:page])
-		@draft = Breve.where("status='draft'").order("updated_at DESC").paginate(page: params[:page])
-	end
-
 	def contribute
 	end
 end

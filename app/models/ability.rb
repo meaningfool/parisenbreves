@@ -8,13 +8,13 @@ class Ability
     user ||= User.new # guest user (not logged in)
     #binding.pry
     if user.role == nil || user.role == "guest"
-        can :read, Breve
+        can [:read, :published, :drafts], Breve
         can :create, User
     elsif user.role == "standard"
-        can [:read, :create, :update], Breve
+        can [:read, :published, :drafts, :create, :update], Breve
         can :read, User
     elsif user.role == "editor"
-        can [:read, :create, :update, :destroy], Breve
+        can [:read, :published, :drafts, :create, :update, :destroy], Breve
         can :read, User
     elsif user.role == "admin"
         can :manage, Breve

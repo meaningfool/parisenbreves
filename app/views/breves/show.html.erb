@@ -2,23 +2,42 @@
 	<%= javascript_include_tag 'breve_show' %>
 	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
 <% end %>
+<div class="span4 sidebar">
+
+</div>
 
 <div class="span8">
-	<div class="row">	
-		<%= image_tag @breve.photo.url(:large) %>
-		<h2 class='title'><%= @breve.title %></h2>
-		<span class='location span8'><%= @breve.location %></span>
-		<p class='description span8'><%= @breve.description %></p>
-		<a class='source span8' href="<%= @breve.source_URL %>"><%= @breve.source_name %></a>
-		<span class='latitude span8' id='breve_latitude'><%= @breve.latitude %></span>
-		<span class='longitude span8' id='breve_longitude'><%= @breve.longitude %></span>
-		<div id="map_canvas" style="width:500px; height:300px"></div>
-		<%= image_tag @breve.photo.url(:medium) %>
-	</div>
-	<div class="row">
-		<% if signed_in? %>
-			<%= link_to 'Editer', edit_breve_path(@breve), :id => "edit_breve_#{@breve.id}", :class => "btn btn-large" %>
-			<%= link_to 'Delete', @breve, method: :delete, :id => "delete_breve_#{@breve.id}", data: { :confirm => "Are you sure ?"} %>
-		<% end %>
+	<div class="tabbable">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#tab1" data-toggle="tab">Brève</a></li>
+			<li><a href="#tab2" data-toggle="tab">Discussion</a></li>
+			<li><a href="#tab3" data-toggle="tab">Historique</a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane active breve-content" id="tab1">
+				<h2 class='title'><%= @breve.title %></h2>
+				<span class='location'><%= @breve.location %></span>
+				<%= image_tag @breve.photo.url(:large) %>
+				<div class="text-content">
+					<p class='description'><%= @breve.description %></p>
+					<a class='source' href="<%= @breve.source_URL %>"><%= @breve.source_name %></a>
+					<span class='latitude' id='breve_latitude'><%= @breve.latitude %></span>
+					<span class='longitude' id='breve_longitude'><%= @breve.longitude %></span>
+				</div>		
+				<div id="map_canvas"></div>
+				<div class="action">
+					<% if can? :update, @breve %>
+						<%= link_to 'Editer', edit_breve_path(@breve), :id => "edit_breve_#{@breve.id}", :class => "btn btn-large edit-btn" %>
+					<% end %>
+					<% if can? :destroy, @breve %>
+						<%= link_to 'Delete', @breve, method: :delete, :id => "delete_breve_#{@breve.id}", data: { :confirm => "Are you sure ?"} %>
+					<% end %>
+				</div>
+			</div>
+			<div class="tab-pane" id="tab2">
+			</div>
+			<div class="tab-pane" id="tab3">
+			</div>
+		</div>
 	</div>
 </div>

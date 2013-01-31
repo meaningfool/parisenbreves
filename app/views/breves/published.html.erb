@@ -1,0 +1,5 @@
+<div class="span8 offset4">
+	<% if @published.any? %>
+		<%= render "shared/content_list", content: @published, type: "published", detail: "update_based" %>
+	<% end %>
+</div>

@@ -4,15 +4,15 @@
 	<div class="span6 offset3">
 		<%= form_for(@user) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
-			<%= f.label :name %>
+			<%= f.label :name, "Nom d'uilisateur" %>
 			<%= f.text_field :name %>
 			<%= f.label :email %>
 			<%= f.text_field :email %>
-			<%= f.label :password %>
-			<%= f.text_field :password %>
-			<%= f.label :password_confirmation %>
-			<%= f.text_field :password_confirmation %>
-			<%= f.submit "submit", class: "btn btn-large btn-primary" %>
+			<%= f.label :password, "Mot de passe" %>
+			<%= f.password_field :password %>
+			<%= f.label :password_confirmation, "Confirmez votre mot de passe" %>
+			<%= f.password_field :password_confirmation %>
+			<%= f.submit "Valider", class: "btn btn-large btn-primary" %>
 		<% end %>
 	</div>
 </div>
