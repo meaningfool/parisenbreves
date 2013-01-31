@@ -1,0 +1,25 @@
+<ul class="list">
+	<% content.each do |item| %>
+		<li>
+			<div>		
+				<%= link_to item do %> 
+					<% if type == 'published' %>
+						<%= image_tag item.photo.url(:thumb) %>
+					<% end %>
+					<h4><%= item.title %></h4>
+					<% if type == 'published' || type == 'draft' %>
+						<span><%= item.location %></span>
+					<% end %>
+					<p><%= truncate item.description, length: 200 %></p>
+					<% if detail == 'update_based' %>
+						<% time = item.updated_at %>
+						<span>Mis à jour le <%= time.day %>/<%= time.month %>/<%= time.year %> à <%= time.hour %>:<%= time.min %></span>
+					<% elsif detail == 'distance_based' %>
+						<span>A <%= (Geocoder::Calculations.distance_between(@reference_point, [item.latitude, item.longitude])*1000).floor %></span>
+					<% end %>
+				<% end %>
+			</div>
+		</li>
+	<% end %>
+</ul>
+<%= will_paginate content %>

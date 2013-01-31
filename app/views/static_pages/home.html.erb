@@ -1,14 +1,41 @@
-<div class="span5 pull-left">
-	<h3>Liste classée par date de dernière modification</h3>
-	<ul class="list" id="time_ordered">
-		<%= render @update_ordered, detail: 'time_update' %>
-	</ul>
-	<%= will_paginate @update_ordered %>
-</div>
-<div class="span5 pull-right">
-	<h3>Liste classée par distance au centre de Paris</h3>
-	<ul class="list" id="distance_ordered">
-		<%= render @location_ordered, detail: 'distance' %>
-	</ul>
-	<%= will_paginate @location_ordered %>
-</div>
+<div id="this-carousel-id" class="carousel slide span12"><!-- class of slide for animation -->
+	<div class="carousel-inner">
+	  	<% @featured_breves.each_with_index do |breve, index| %>
+		    <div class="item <%= index == 0 ? 'active' : '' %>"><!-- class of active since it's the first item -->
+		      	<%= image_tag breve.photo.url(:large) %>
+		      	<div class="carousel-breve">
+		        	<h3><%= breve.title %></h3>
+		        	<span><%= breve.location %></span>
+		        	<p><%= breve.description %></p>
+		      	</div>
+		    </div>
+	    <% end %>
+	    <div class="carousel-principes">
+	    	<div>
+	    		<span>Les imaginaires des lieux de Paris racontés... en brèves</span>
+	    	</div>
+	    	<div>
+	    		<span>Un projet associatif et contributif.</span>
+	    		<span>Rejoignez-nous !</span>
+	    	</div>
+	    	<div>
+	    		<span>Des contenus sous licence Creative Commons</span>
+	    	</div>
+	    </div>
+  	</div><!-- /.carousel-inner -->
+  <!--  Next and Previous controls below
+        href values must reference the id for this carousel -->
+    <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
+</div><!-- /.carousel -->
+
+
+<% @last_published.each do |breve| %>
+	<div class="span3 pull-left">
+		<%= image_tag breve.photo.url(:medium) %>
+		<h4><%= breve.title %></h4>
+		<span><%= breve.location %></span>
+	</div>
+<% end %>
+
+<div class="span12 content_link"><%= link_to "Voir l'ensemble des brèves", content_path(content: "published")  %></a></div>

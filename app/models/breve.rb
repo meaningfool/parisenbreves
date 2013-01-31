@@ -27,10 +27,10 @@ class Breve < ActiveRecord::Base
   }
 
   has_attached_file :photo, styles: {
-    thumb: '64x64>',
-    medium: '400x300#',
-    large: '1000x500>'
-  }
+    thumb: '64x64',
+    medium: '400x300^',
+    large: '1280x960^'
+  }, :default_url => "https://s3.amazonaws.com/paris_en_breves/breves/photos/000/000/086/large/missing_large.png"
 
   validates_attachment_size :photo, :less_than => 3.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
