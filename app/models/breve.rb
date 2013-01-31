@@ -39,24 +39,27 @@ class Breve < ActiveRecord::Base
   validates :status, :inclusion => { :in => STATUS }
 
 
+  def find_near(distance)
+    breve_coordinates = [self.latitude, self.longitude]
+    return (Breve.find_near(breve_coordinates, distance) - [self])
+  end
+
   private
 
       def self.find_near(coordinates, distance)
         nearby_breves = self.near(coordinates, distance)
         breves_array = []
-        #binding.pry
         nearby_breves.each do |breve|
           breve_coordinates = [breve.latitude, breve.longitude]
           breves_array.push([breve, Geocoder::Calculations.distance_between(coordinates, breve_coordinates)])
-          #binding.pry
         end
         breves_array = breves_array.sort { |a,b| a[1] <=> b[1] }
         ordered_breves = []
         breves_array.each do |item|
           ordered_breves.push(item[0])
         end
-        #binding.pry
         return ordered_breves
       end
+
 
 end

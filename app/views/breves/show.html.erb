@@ -3,13 +3,16 @@
 	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
 <% end %>
 <div class="span4 sidebar">
-
+	<div><%= @breve.status == "published" ? "Brèves" : "Brouillons" %> à proximité</div>
+	<% if @closeby.any? %>
+		<%= render "shared/sidebar_content_list", content: @closeby[0..9], type: @breve.status, detail: "distance_based" %>
+	<% end %>
 </div>
 
 <div class="span8">
 	<div class="tabbable">
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="#tab1" data-toggle="tab">Brève</a></li>
+			<li class="active"><a href="#tab1" data-toggle="tab"><%= @breve.status == "published" ? "Brève" : "Brouillon" %></a></li>
 			<li><a href="#tab2" data-toggle="tab">Discussion</a></li>
 			<li><a href="#tab3" data-toggle="tab">Historique</a></li>
 		</ul>
@@ -36,7 +39,29 @@
 			</div>
 			<div class="tab-pane" id="tab2">
 			</div>
-			<div class="tab-pane" id="tab3">
+			<div class="tab-pane breve-history" id="tab3">
+				<% @breve.versions.reverse_each do |version| %>
+					<div class="version">
+						<div class="version-description">
+							<span><%= version.created_at %></span>
+							<span>
+								<%= version.whodunnit == nil ? "Paris en brèves " : User.find_by_id(version.whodunnit).name %>
+								<%= version.event == "create" ? "a créé la brève" : "a mis à jour" %>
+								<% if version.event == "update" %>
+									<%= version.changeset.keys.join(", ") %>
+								<% end %>
+							</span>
+						</div>
+						<% if version.event != "create" %>
+							<div class="version-action">
+								<%= link_to "Voir avant modification", @breve %>
+								<% if can? :revert, @breve %>
+									<%= link_to "Rétablir", @breve %>
+								<% end %>
+							</div>
+						<% end %>
+					</div>
+				<% end %>
 			</div>
 		</div>
 	</div>
