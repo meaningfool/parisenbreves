@@ -37,6 +37,7 @@ class BrevesController < ApplicationController
 		@published_count = Breve.where("status='published'").count
 		@breve = Breve.find params[:id]
 		@content_type = @breve.status
+		@view_pane = "content"
 		@reference_point = [@breve.latitude, @breve.longitude]
 		@closeby = @breve.find_near(10000).paginate(page: params[:page])
 		render layout: 'contents'

@@ -9,15 +9,19 @@ class Ability
     #binding.pry
     if user.role == nil || user.role == "guest"
         can [:read, :published, :drafts], Breve
+        can [:read], Version
         can :create, User
     elsif user.role == "standard"
         can [:read, :published, :drafts, :create, :update], Breve
+        can [:read, :revert], Version
         can :read, User
     elsif user.role == "editor"
         can [:read, :published, :drafts, :create, :update, :destroy], Breve
+        can [:read, :revert], Version
         can :read, User
     elsif user.role == "admin"
         can :manage, Breve
+        can [:read, :revert], Version
         can :manage, User
     end
     #binding.pry

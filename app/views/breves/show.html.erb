@@ -10,14 +10,23 @@
 </div>
 
 <div class="span8">
-	<div class="tabbable">
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="#tab1" data-toggle="tab"><%= @breve.status == "published" ? "Brève" : "Brouillon" %></a></li>
-			<li><a href="#tab2" data-toggle="tab">Discussion</a></li>
-			<li><a href="#tab3" data-toggle="tab">Historique</a></li>
-		</ul>
+	<div class="tabbable">		
+		<% if @view_pane != 'history' %>
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#tab1" data-toggle="tab"><%= @breve.status == "published" ? "Brève" : "Brouillon" %></a></li>
+				<li><a href="#tab2" data-toggle="tab">Discussion</a></li>
+				<li><a href="#tab3" data-toggle="tab">Historique</a></li>
+			</ul>
+		<% else %>
+			<ul class="nav nav-tabs history">
+				<li class="disabled"><a href="#"><%= @breve.status == "published" ? "Brève" : "Brouillon" %></a></li>
+				<li class="disabled"><a href="#">Discussion</a></li>
+				<li class="active"><a href="" data-toggle="tab">Historique</a></li>
+			</ul>
+		<% end %>
 		<div class="tab-content">
 			<div class="tab-pane active breve-content" id="tab1">
+				<%= render 'layouts/static_messages' %>
 				<h2 class='title'><%= @breve.title %></h2>
 				<span class='location'><%= @breve.location %></span>
 				<%= image_tag @breve.photo.url(:large) %>
@@ -29,19 +38,30 @@
 				</div>		
 				<div id="map_canvas"></div>
 				<div class="action">
-					<% if can? :update, @breve %>
-						<%= link_to 'Editer', edit_breve_path(@breve), :id => "edit_breve_#{@breve.id}", :class => "btn btn-large edit-btn" %>
-					<% end %>
-					<% if can? :destroy, @breve %>
-						<%= link_to 'Delete', @breve, method: :delete, :id => "delete_breve_#{@breve.id}", data: { :confirm => "Are you sure ?"} %>
+					<% if @view_pane != 'history' %>
+						<% if (current_user != nil && ((@breve.status == "published" && ( editor? || admin? )) || @breve.status == "draft") && can?(:update, @breve)) %>
+							<%= link_to 'Editer', edit_breve_path(@breve), :id => "edit_breve_#{@breve.id}", :class => "btn btn-large edit-btn" %>
+						<% end %>
+						<% if can? :destroy, @breve %>
+							<%= link_to 'Delete', @breve, method: :delete, :id => "delete_breve_#{@breve.id}", data: { :confirm => "Are you sure ?"} %>
+						<% end %>
 					<% end %>
 				</div>
 			</div>
 			<div class="tab-pane" id="tab2">
 			</div>
 			<div class="tab-pane breve-history" id="tab3">
+				<%= render 'layouts/static_messages' %>
 				<% @breve.versions.reverse_each do |version| %>
 					<div class="version">
+						<% if version.event != "create" %>
+							<div class="version-action">
+								<%= link_to "Voir avant modification", breve_version_path(@breve, version) %>
+								<% if can? :revert, version %>
+									<%= link_to "Rétablir", revert_version_path(@breve, version), method: :post %>
+								<% end %>
+							</div>
+						<% end %>
 						<div class="version-description">
 							<span><%= version.created_at %></span>
 							<span>
@@ -52,14 +72,6 @@
 								<% end %>
 							</span>
 						</div>
-						<% if version.event != "create" %>
-							<div class="version-action">
-								<%= link_to "Voir avant modification", @breve %>
-								<% if can? :revert, @breve %>
-									<%= link_to "Rétablir", @breve %>
-								<% end %>
-							</div>
-						<% end %>
 					</div>
 				<% end %>
 			</div>

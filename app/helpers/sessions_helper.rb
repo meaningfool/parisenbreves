@@ -27,6 +27,11 @@ module SessionsHelper
 		current_user.role == "standard"
 	end
 
+	def editor?
+		#binding.pry
+		current_user.role == "editor"
+	end
+
 	def current_user
 		@current_user ||= User.find_by_remember_token(cookies[:remember_token])
 	end
