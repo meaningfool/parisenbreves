@@ -12,7 +12,8 @@ class Ability
         can [:read], Version
         can :create, User
     elsif user.role == "standard"
-        can [:read, :published, :drafts, :create, :update], Breve
+        can [:read, :published, :drafts, :create], Breve
+        can [:update], Breve, status: "draft"
         can [:read, :revert], Version
         can :read, User
     elsif user.role == "editor"

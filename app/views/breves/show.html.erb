@@ -39,7 +39,7 @@
 				<div id="map_canvas"></div>
 				<div class="action">
 					<% if @view_pane != 'history' %>
-						<% if (current_user != nil && ((@breve.status == "published" && ( editor? || admin? )) || @breve.status == "draft") && can?(:update, @breve)) %>
+						<% if can? :update, @breve %>
 							<%= link_to 'Editer', edit_breve_path(@breve), :id => "edit_breve_#{@breve.id}", :class => "btn btn-large edit-btn" %>
 						<% end %>
 						<% if can? :destroy, @breve %>
