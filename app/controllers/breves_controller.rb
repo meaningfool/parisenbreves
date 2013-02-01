@@ -1,24 +1,17 @@
 class BrevesController < ApplicationController
 	load_and_authorize_resource
-	#before_filter :signed_in_user, only: [:edit, :update, :destroy]
-
-	def index
-		@breve = Breve.new
-		@breves = Breve.all	
+	before_filter do
+		@published_count = Breve.where("status='published'").count
 	end
 
 	def published	
-		@published_count = Breve.where("status='published'").count
-		@published = Breve.where("status='published'").order("updated_at DESC").paginate(page: params[:page])
-		@content_type = 'published'
-		render layout: 'contents'
+		@content = Breve.where("status='published'").order("updated_at DESC").paginate(page: params[:page])
+		render template: 'shared/_content_list', layout: 'contents'
 	end
 
 	def drafts
-		@published_count = Breve.where("status='published'").count
-		@draft = Breve.where("status='draft'").order("updated_at DESC").paginate(page: params[:page])
-		@content_type = 'draft'
-		render layout: 'contents'
+		@content = Breve.where("status='draft'").order("updated_at DESC").paginate(page: params[:page])
+		render template: 'shared/_content_list', layout: 'contents'
 	end
 
 	def create 
@@ -34,9 +27,6 @@ class BrevesController < ApplicationController
 	end
 
 	def show
-		@published_count = Breve.where("status='published'").count
-		@breve = Breve.find params[:id]
-		@content_type = @breve.status
 		@view_pane = "content"
 		@reference_point = [@breve.latitude, @breve.longitude]
 		@closeby = @breve.find_near(10000).paginate(page: params[:page])
@@ -44,21 +34,14 @@ class BrevesController < ApplicationController
 	end
 
 	def edit
-		@published_count = Breve.where("status='published'").count
-		@breve = Breve.find params[:id]
-		@content_type = @breve.status
 		render layout: 'contents'
 	end
 
 	def new
-		@published_count = Breve.where("status='published'").count
-		@breve = Breve.new
-		@content_type = @breve.status
 		render layout: 'contents'
 	end
 
 	def update
-		@breve = Breve.find params[:id]
 		if current_user.role == nil || current_user.role == "guest" || current_user.role == "standard"
 			params[:breve][:status] = @breve.status
 		end
@@ -70,16 +53,11 @@ class BrevesController < ApplicationController
 	end
 
 	def destroy
-		@breve = Breve.find params[:id]
 		if @breve.delete
 			redirect_to :breves
 		else
 			render 'index'
 		end
-	end
-
-	def revert 
-
 	end
 
 	private

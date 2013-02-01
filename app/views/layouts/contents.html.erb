@@ -1,21 +1,32 @@
 
 <% content_for :content do %>
+
+	<% if params[:controller] == "breves" %>
+		<% if params[:action] == "published" || params[:action] == "drafts" %>
+			<% content_type = params[:action] %>
+		<% else %>
+			<% content_type = @breve.status %>
+		<% end %>
+	<% else %>
+		<% content_type = "subject" %>
+	<% end %>
+
 	<div class="span12">
 		<div class="row">
 			<ul class="nav nav-pills">
-				<li class="span4 <%= @content_type == 'subject' ? 'active' : '' %>">
+				<li class="span4 <%= content_type == 'subject' ? 'active' : '' %>">
 					<%= link_to drafts_path do %>
 						<h5>Sujets</h5>
 						<span>Les sujets regroupent des documents ou des extraits de textes pouvant donner lieu à la création de brèves. Vous avez une idée ? Ajoutez un sujet ! Ou alors emparez-vous de l'un d'eux et traitez-le !</span>
 					<% end %>
 				</li>
-				<li class="span4 <%= @content_type == 'draft' ? 'active' : '' %>">
+				<li class="span4 <%= (content_type == 'drafts' || content_type == 'draft') ? 'active' : '' %>">
 					<%= link_to drafts_path do %>
 						<h5>Brouillons</h5>
 						<span>Les brouillons sont de futures brèves qui nécessitent encore un travail d'écriture pour atteindre les critères de publication d'une brève. La section Contribuer vous donne des astuces pour améliorer les brouillons.</span>
 					<% end %>
 				</li>
-				<li class="span4 <%= @content_type == 'published' ? 'active' : '' %>">
+				<li class="span4 <%= content_type == 'published' ? 'active' : '' %>">
 					<%= link_to published_path do %>
 						<h5>Brèves</h5>
 						<span>aujourd'hui au nombre de</span>

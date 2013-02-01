@@ -5,7 +5,7 @@ Parisenbreves::Application.routes.draw do
   match '/contribuer', to: 'static_pages#contribute', as: 'contribute'
 
 
-  resources :breves do
+  resources :breves, except: [:index]  do
     resources :versions, only: [:show]
   end
   resources :users

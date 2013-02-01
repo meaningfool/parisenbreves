@@ -1,0 +1,24 @@
+<table class="table table-hover">
+	<tbody>
+		<% @breve.versions.reverse_each do |version| %>
+			<tr>
+				<td><%= version.created_at %></td>
+				<td><%= version.whodunnit == nil ? "Paris en brèves " : User.find_by_id(version.whodunnit).name %></td>
+				<td>
+					<%= version.event == "create" ? "a créé la brève" : "a mis à jour" %>
+					<% if version.event == "update" %>
+						<%= version.changeset.keys.join(", ") %>
+					<% end %>
+				</td>
+				<td>
+					<% if version.event != "create" %>
+						<%= link_to "Voir avant modification", breve_version_path(@breve, version) %>
+						<% if can? :revert, version %>
+							<%= link_to "Rétablir", revert_version_path(@breve, version), method: :post %>
+						<% end %>
+					<% end %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

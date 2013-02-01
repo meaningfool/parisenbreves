@@ -14,7 +14,10 @@ class Ability
     elsif user.role == "standard"
         can [:read, :published, :drafts, :create], Breve
         can [:update], Breve, status: "draft"
-        can [:read, :revert], Version
+        can [:read], Version
+        can [:revert], Version do |version|
+            version.reify.status == "draft"
+        end
         can :read, User
     elsif user.role == "editor"
         can [:read, :published, :drafts, :create, :update, :destroy], Breve
