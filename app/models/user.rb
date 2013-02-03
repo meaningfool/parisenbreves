@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
+  attr_accessible :email, :name, :password, :password_confirmation, :role, as: :admin
   has_secure_password
 
   before_save { |user| user.email = user.email.downcase }
@@ -18,10 +19,13 @@ class User < ActiveRecord::Base
   validates :email, :format => { with: VALID_EMAIL_REGEX }
   validates :email, uniqueness: { case_sensitive: false }
 
-  validates :password, :length => { minimum: 6}
+  validates :password, :length => { minimum: 6}, on: :create
+  validates_confirmation_of :password, on: :create
+  validates :password_confirmation, presence: true, on: :create
 
-  validates_confirmation_of :password
-  validates :password_confirmation, presence: true
+  validates :password, :length => { minimum: 6}, on: :update, :unless => lambda{ |user| user.password.blank? } 
+  validates_confirmation_of :password, on: :update, :unless => lambda{ |user| user.password.blank? } 
+  validates :password_confirmation, presence: true, on: :update, :unless => lambda{ |user| user.password.blank? } 
 
   #validates :role, presence: true
   validates :role, :inclusion => { :in => ROLES }

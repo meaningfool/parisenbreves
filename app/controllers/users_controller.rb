@@ -11,8 +11,35 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		@user = User.new params[:user]
-		@user.role = "standard"
+		if signed_in? && admin?
+			@user = User.new(params[:user], as: :admin)
+			@user.role ||= "standard"
+		else
+			@user = User.new params[:user]
+			@user.role ||= "standard"
+		end
+		
+		if @user.save
+			@user.reload
+			sign_in @user
+  			flash[:success] = "Welcome to the Sample App!"
+			redirect_to @user
+		else
+			flash.now[:error] = 'Formulaire incomplet'
+			render 'new'
+		end
+	end
+
+	def update
+		params[:user].delete(:password) if params[:user][:password].blank?
+		if signed_in? && admin?
+			@user = User.new(params[:user], as: :admin)
+			@user.role ||= "standard"
+		else
+			@user = User.new params[:user]
+			@user.role ||= "standard"
+		end
+
 		if @user.save
 			@user.reload
 			sign_in @user

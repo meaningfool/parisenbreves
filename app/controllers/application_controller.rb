@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def authenticate
-		redirect_to signin_path unless signed_in?
+		redirect_to signin_path unless (signed_in? && admin?)
 	end
 
 end

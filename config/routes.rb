@@ -1,5 +1,7 @@
 Parisenbreves::Application.routes.draw do
 
+  ActiveAdmin.routes(self)
+
   root :to => 'static_pages#home'
 
   match '/contribuer', to: 'static_pages#contribute', as: 'contribute'
