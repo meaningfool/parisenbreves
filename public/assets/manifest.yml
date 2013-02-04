@@ -9,6 +9,8 @@ breve_form.js: breve_form-3167a3e33e9986b99312a376a467f217.js
 breve_form/index.js: breve_form-3167a3e33e9986b99312a376a467f217.js
 breve_show.js: breve_show-ee13f6b7a5f86bfeedaca8382eac57d6.js
 breve_show/index.js: breve_show-ee13f6b7a5f86bfeedaca8382eac57d6.js
+active_admin.css: active_admin-f58fc98e42733be6473403cf53156e11.css
+active_admin/index.css: active_admin-f58fc98e42733be6473403cf53156e11.css
 application.css: application-1f535312dfbac8e62d9bda1666fa0038.css
 application/index.css: application-1f535312dfbac8e62d9bda1666fa0038.css
 active_admin/admin_notes_icon.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
