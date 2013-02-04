@@ -5,6 +5,8 @@ rails.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
 rails/index.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
 application.js: application-edb14b1f60d3102fc14272919161cf91.js
 application/index.js: application-edb14b1f60d3102fc14272919161cf91.js
+breve_form.js: breve_form-3167a3e33e9986b99312a376a467f217.js
+breve_form/index.js: breve_form-3167a3e33e9986b99312a376a467f217.js
 breve_show.js: breve_show-ee13f6b7a5f86bfeedaca8382eac57d6.js
 breve_show/index.js: breve_show-ee13f6b7a5f86bfeedaca8382eac57d6.js
 application.css: application-1f535312dfbac8e62d9bda1666fa0038.css
