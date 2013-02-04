@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require breve_form.js
+//= require breve_show.js
 
 $(document).ready(function(){
     $('.carousel').carousel();
