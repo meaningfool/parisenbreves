@@ -12,9 +12,9 @@
 				</td>
 				<td>
 					<% if version.event != "create" %>
-						<%= link_to "Voir avant modification", breve_version_path(@breve, version) %>
+						<%= link_to "Voir avant modification", version_path(version) %>
 						<% if can? :revert, version %>
-							<%= link_to "Rétablir", revert_version_path(@breve, version), method: :post %>
+							<%= link_to "Rétablir", revert_version_path(version), method: :post %>
 						<% end %>
 					<% end %>
 				</td>

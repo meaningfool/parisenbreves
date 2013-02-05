@@ -1,7 +1,7 @@
 
 <% content_for :content do %>
 
-	<% if params[:controller] == "breves" %>
+	<% if params[:controller] == "breves" || params[:controller] == "versions" %>
 		<% if params[:action] == "published" || params[:action] == "drafts" %>
 			<% content_type = params[:action] %>
 		<% else %>

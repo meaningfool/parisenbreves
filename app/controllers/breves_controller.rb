@@ -4,6 +4,10 @@ class BrevesController < ApplicationController
 		@published_count = Breve.where("status='published'").count
 	end
 
+	def index
+		redirect_to :published
+	end
+
 	def published	
 		@content = Breve.where("status='published'").order("updated_at DESC").paginate(page: params[:page])
 		render template: 'shared/_content_list', layout: 'contents'

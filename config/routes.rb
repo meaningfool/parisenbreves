@@ -7,9 +7,9 @@ Parisenbreves::Application.routes.draw do
   match '/contribuer', to: 'static_pages#contribute', as: 'contribute'
 
 
-  resources :breves, except: [:index]  do
-    resources :versions, only: [:show]
-  end
+  resources :breves
+  resources :versions, only: [:show]
+  
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 
@@ -20,7 +20,7 @@ Parisenbreves::Application.routes.draw do
   match '/published', to: 'breves#published'
   match '/drafts', to: 'breves#drafts'
 
-  post '/breves/:breve_id/versions/:id' => 'versions#revert', as: 'revert_version' 
+  post '/versions/:id' => 'versions#revert', as: 'revert_version' 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
