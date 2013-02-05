@@ -1,3 +1,16 @@
+def compile_asset?(path)
+  # ignores any filename that begins with '_' (e.g. sass partials)
+  # all other css/js/sass/image files are processed
+  if File.basename(path) =~ /^[^_].*\.\w+$/
+    puts "Compiling: #{path}"
+    true
+  else
+    puts "Ignoring: #{path}"
+    false
+  end
+end
+
+
 Parisenbreves::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -46,9 +59,7 @@ Parisenbreves::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( breve_show.js )
-  config.assets.precompile += %w( breve_form.js )
-  config.assets.precompile += %w( active_admin.css )
+  config.assets.precompile = [ method(:compile_asset?).to_proc ]
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
