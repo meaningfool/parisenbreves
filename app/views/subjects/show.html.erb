@@ -1,0 +1,11 @@
+<div class="span4 sidebar">
+	<div>Sujets</div>
+		<%= render "shared/sidebar_content_list", content: @subjects[0..9], type: "subjects", detail: "update_based" %>
+</div>
+
+<div class="span8">
+	<div>
+		<%= render 'layouts/static_messages' %>
+		<%= render 'subjects/subject_content' %>
+	</div>
+</div>

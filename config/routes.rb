@@ -8,8 +8,9 @@ Parisenbreves::Application.routes.draw do
 
 
   resources :breves
+  resources :subjects
   resources :versions, only: [:show]
-  
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 

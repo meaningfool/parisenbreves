@@ -1,0 +1,20 @@
+<h2 class='title'><%= @subject.title %></h2>
+<div class="text-content">
+	<p class='description'><%= @subject.description %></p>
+</div>		
+<div class="action">
+	<% if @view_pane != 'history' %>
+		<% if can? :update, @subject %>
+			<%= link_to 'Editer', edit_subject_path(@subject), :class => "btn btn-large edit-btn" %>
+		<% end %>
+		<% if can? :create, Breve %>
+			<%= link_to 'Ecrire une brève sur ce sujet', new_breve_path(Breve.new), :class => "btn btn-large edit-btn" %>
+		<% end %>
+		<% if can? :update, @subject %>
+			<%= link_to 'Marquer comme lu', subject_path(@subject, status: "treated"), method: :put, :class => "btn btn-large edit-btn" %>
+		<% end %>
+		<% if can? :destroy, @subject %>
+			<%= link_to 'Delete', @breve, method: :delete, data: { :confirm => "Are you sure ?"} %>
+		<% end %>
+	<% end %>
+</div>

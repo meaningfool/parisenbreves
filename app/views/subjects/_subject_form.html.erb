@@ -1,0 +1,22 @@
+<%= form_for @subject, html: {multipart: true, class: "form-horizontal subject-form"} do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="control-group">
+		<%= f.label "Titre", class: "control-label", for: "breve_title" %>
+		<div class="controls">
+			<%= f.text_field :title, placeholder: "Titre" %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label "Description", class: "control-label", for: "breve_description" %>
+		<div class="controls">
+			<%= f.text_area :description, placeholder: "Description" %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<div class="controls">
+			<%= f.submit "Enregistrer", class: "btn btn-primary" %>
+			<%= link_to "Annuler", @subject, class: "btn" %>
+		</div>
+	</div>
+<% end %>
