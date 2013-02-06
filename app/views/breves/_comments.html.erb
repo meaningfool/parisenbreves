@@ -1,0 +1,11 @@
+<table class="table table-hover">
+	<tbody>
+		<% @breve.comments.reverse_each do |comment| %>
+			<tr>
+				<td><%= "#{comment.user_id} à #{comment.created_at}" %></br>
+					<p><%= comment.content %></p>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
