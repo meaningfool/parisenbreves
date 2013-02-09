@@ -31,9 +31,16 @@ class BrevesController < ApplicationController
 	end
 
 	def show
-		@view_pane = "content"
+		@active_tab = session[:active_tab]
+		@active_pane = session[:active_pane]
+		session[:active_tab] = nil
+		session[:active_pane] = nil
+		if request.referer.try {|p| p.include? "versions"} && Version.find_by_id(URI.parse(request.referer).path.split('/').last).reify == @breve
+			@active_tab = "history_tab"
+			@active_pane = "history_pane"
+		end
 		@reference_point = [@breve.latitude, @breve.longitude]
-		@closeby = @breve.find_near(10000).paginate(page: params[:page])
+		@closeby = @breve.find_near(10000)
 		render layout: 'contents'
 	end
 

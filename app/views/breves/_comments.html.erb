@@ -1,9 +1,13 @@
 <table class="table table-hover">
+	<% if signed_in? %>
+		<%= render 'breves/comment_form' %>
+	<% end %>
 	<tbody>
 		<% @breve.comments.reverse_each do |comment| %>
 			<tr>
-				<td><%= "#{comment.user_id} à #{comment.created_at}" %></br>
-					<p><%= comment.content %></p>
+				<td><%= comment.user.name %>
+					<p><%= comment.content %></p></br>
+					<%= comment.created_at %>
 				</td>
 			</tr>
 		<% end %>

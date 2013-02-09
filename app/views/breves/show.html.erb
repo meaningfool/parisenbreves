@@ -3,6 +3,10 @@
 	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
 <% end %>
 
+<% @active_tab ||= "content_tab" %>
+<% @active_pane ||= "content_pane" %>
+
+
 
 <div class="span4 sidebar">
 	<div><%= @breve.status == "published" ? "Brèves" : "Brouillons" %> à proximité</div>
@@ -12,30 +16,36 @@
 </div>
 
 <div class="span8">
-	<div class="tabbable">		
-		<% if @view_pane != 'history' %>
-			<ul class="nav nav-tabs">
-				<li class="active"><a href="#tab1" data-toggle="tab"><%= @breve.status == "published" ? "Brève" : "Brouillon" %></a></li>
-				<li><a href="#tab2" data-toggle="tab">Discussion</a></li>
-				<li><a href="#tab3" data-toggle="tab">Historique</a></li>
-			</ul>
-		<% else %>
+	<div class="tabbable">	
+		<% if @active_tab == "history_tab" && @active_pane == "content_pane" %>
 			<ul class="nav nav-tabs history">
 				<li class="disabled"><a href="#"><%= @breve.status == "published" ? "Brève" : "Brouillon" %></a></li>
 				<li class="disabled"><a href="#">Discussion</a></li>
 				<li class="active"><a href="" data-toggle="tab">Historique</a></li>
 			</ul>
+		<% else %>	
+			<ul class="nav nav-tabs">
+				<li class=<%= @active_tab == "content_tab" ? "active" : ""%>>
+					<a href="#tab1" data-toggle="tab"><%= @breve.status == "published" ? "Brève" : "Brouillon" %></a>
+				</li>
+				<li class=<%= @active_tab == "comment_tab" ? "active" : ""%>>
+					<a href="#tab2" data-toggle="tab">Discussion</a>
+				</li>
+				<li class=<%= @active_tab == "history_tab" ? "active" : ""%>>
+					<a href="#tab3" data-toggle="tab">Historique</a>
+				</li>
+			</ul>
 		<% end %>
 		<div class="tab-content">
-			<div class="tab-pane active breve-content" id="tab1">
+			<div class="tab-pane breve-content <%= @active_pane == 'content_pane' ? 'active' : '' %>" id="tab1">
 				<%= render 'layouts/static_messages' %>
 				<%= render 'breves/breve_content' %>
 			</div>
-			<div class="tab-pane comments" id="tab2">
+			<div class="tab-pane comments <%= @active_pane == 'comment_pane' ? 'active' : '' %>" id="tab2">
 				<%= render 'layouts/static_messages' %>
 				<%= render 'breves/comments' %>
 			</div>
-			<div class="tab-pane breve-history" id="tab3">
+			<div class="tab-pane breve-history <%= @active_pane == 'history_pane' ? 'active' : '' %>" id="tab3">
 				<%= render 'layouts/static_messages' %>
 				<%= render 'breves/versions_history' %>
 			</div>

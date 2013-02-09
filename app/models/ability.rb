@@ -20,16 +20,19 @@ class Ability
             version.reify.status == "draft"
         end
         can [:read, :create, :update, :destroy], Subject
+        can [:create], Comment
         can :read, User
     elsif user.role == "editor"
         can [:read, :published, :drafts, :create, :update, :destroy], Breve
         can [:read, :revert], Version
         can [:read, :create, :update, :destroy], Subject
+        can :manage, Comment
         can :read, User
     elsif user.role == "admin"
         can :manage, Breve
         can [:read, :revert], Version
         can [:read, :create, :update, :destroy], Subject
+        can :manage, Comment
         can :manage, User
     end
     #binding.pry

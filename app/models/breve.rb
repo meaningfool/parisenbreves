@@ -42,17 +42,19 @@ class Breve < ActiveRecord::Base
 
   def find_near(distance)
     breve_coordinates = [self.latitude, self.longitude]
-    return (Breve.find_near(breve_coordinates, distance) - [self])
+    return (Breve.find_near(breve_coordinates, distance, self.status) - [self])
   end
 
   private
 
-      def self.find_near(coordinates, distance)
+      def self.find_near(coordinates, distance, status)
         nearby_breves = self.near(coordinates, distance)
         breves_array = []
         nearby_breves.each do |breve|
-          breve_coordinates = [breve.latitude, breve.longitude]
-          breves_array.push([breve, Geocoder::Calculations.distance_between(coordinates, breve_coordinates)])
+          if breve.status == status
+            breve_coordinates = [breve.latitude, breve.longitude]
+            breves_array.push([breve, Geocoder::Calculations.distance_between(coordinates, breve_coordinates)])
+          end
         end
         breves_array = breves_array.sort { |a,b| a[1] <=> b[1] }
         ordered_breves = []
