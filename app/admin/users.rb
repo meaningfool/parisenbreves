@@ -1,10 +1,14 @@
 
-
-
 ActiveAdmin.register User do
 	controller do 
 		with_role :admin 
 	end
+
+	menu :priority => 1
+
+	scope :admin
+	scope :editor
+	scope :standard
 
 	index do 
 		column :id
@@ -24,7 +28,7 @@ ActiveAdmin.register User do
 				f.input :password
 				f.input :password_confirmation
 			end
-			f.input :role
+			f.input :role, :as => :select, :collection => ["standard", "editor", "admin"]
 		end
 		f.buttons
 	end

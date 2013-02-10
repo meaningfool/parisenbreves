@@ -2,6 +2,11 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
   attr_accessible :email, :name, :password, :password_confirmation, :role, as: :admin
   has_many :comments, dependent: :destroy
+
+  scope :admin, where( :role => "admin" )
+  scope :editor, where( :role => "editor" )
+  scope :standard, where( :role => "standard" )
+
   has_secure_password
 
   before_save { |user| user.email = user.email.downcase }

@@ -1,6 +1,10 @@
 class Breve < ActiveRecord::Base
   attr_accessible :description, :title, :location, :source_name, :source_URL, :latitude, :longitude, :photo, :status
   has_many :comments, dependent: :destroy
+
+  scope :published, where(:status => "published" )
+  scope :draft, where( :status => "draft" )
+
   has_paper_trail
   reverse_geocoded_by :latitude, :longitude
 
