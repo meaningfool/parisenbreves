@@ -26,9 +26,17 @@ class SubjectsController < ApplicationController
 
 	def update
 		if @subject.update_attributes params[:subject]
-			redirect_to @subject
+			if URI(request.referer).path == edit_subject_path(@subject)
+				redirect_to @subject, notice: "Modifications enregistrees"
+			else
+				redirect_to subjects_path, notice: "Sujet marque comme traite"
+			end
 		else
-			render 'edit'
+			if URI(request.referer).path == edit_subject_path(@subject)
+				render 'edit', notice: "Les modifications ne sont pas valides"
+			else
+				redirect_to subjects_path, notice: "Le sujet non marque comme traite"
+			end
 		end
 	end
 

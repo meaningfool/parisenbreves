@@ -9,6 +9,11 @@
 					<p><%= comment.content %></p></br>
 					<%= comment.created_at %>
 				</td>
+				<% if can? :destroy, comment %>
+					<td>
+						<%= link_to 'Supprimer', [@breve, comment], method: :delete, data: { :confirm => "Are you sure ?"} %>
+					</td>
+				<% end %>
 			</tr>
 		<% end %>
 	</tbody>

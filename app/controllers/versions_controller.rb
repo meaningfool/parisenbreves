@@ -5,8 +5,7 @@ class VersionsController < ApplicationController
 		@published_count = Breve.where("status='published'").count
 		@breve = Version.find(params[:id]).reify
 		@content_type = @breve.status
-		@active_tab = "history_tab"
-		@active_pane = "content_pane"
+		@tab_mode = "version"
 		@reference_point = [@breve.latitude, @breve.longitude]
 		@closeby = @breve.find_near(10000)
 		back_link = view_context.link_to "Retour a la version courante", breve_path(@breve)

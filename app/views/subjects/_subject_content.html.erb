@@ -11,7 +11,7 @@
 			<%= link_to 'Ecrire une brève sur ce sujet', new_breve_path(Breve.new), :class => "btn btn-large edit-btn" %>
 		<% end %>
 		<% if can? :update, @subject %>
-			<%= link_to 'Marquer comme lu', subject_path(@subject, status: "treated"), method: :put, :class => "btn btn-large edit-btn" %>
+			<%= link_to 'Marquer comme lu', subject_path(@subject, :subject => { status: "treated"} ), method: :put, :class => "btn btn-large edit-btn" %>
 		<% end %>
 		<% if can? :destroy, @subject %>
 			<%= link_to 'Delete', @breve, method: :delete, data: { :confirm => "Are you sure ?"} %>

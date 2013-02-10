@@ -17,7 +17,13 @@ class CommentsController < ApplicationController
 	end
 
 	def destroy
-
+		if @comment.delete
+			flash[:success] = "Le commentaire a ete supprime"
+		else
+			flash[:error] = "Le commentaire n'a pu etre supprime"
+		end
+		session[:tab_mode] = "comment"
+		redirect_to @comment.breve
 	end
 
 end
