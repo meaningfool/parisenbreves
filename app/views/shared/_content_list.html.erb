@@ -14,7 +14,7 @@
 							<% end %>
 							<p><%= truncate item.description, length: 200 %></p>
 							<% time = item.updated_at %>
-							<span>Mis à jour le <%= time.day %>/<%= time.month %>/<%= time.year %> à <%= time.hour %>:<%= time.min %></span>
+							<span>Updated <%= distance_of_time_in_words_to_now(time, include_seconds = false) %> ago</span>
 						<% end %>
 					</div>
 				</li>
