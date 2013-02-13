@@ -3,12 +3,7 @@
 		<% @breve.versions.reverse_each do |version| %>
 			<tr>
 				<td><%= distance_of_time_in_words_to_now(version.created_at, include_seconds = false) %> ago</td>
-				<td><%= version.whodunnit == nil ? "Paris en brèves " : User.find_by_id(version.whodunnit).name %></td>
-				<td>
-					<%= version.event == "create" ? "a créé la brève" : "a mis à jour" %>
-					<% if version.event == "update" %>
-						<%= version.changeset.keys.join(", ") %>
-					<% end %>
+				<td><%= history_to_s version %>
 				</td>
 				<td>
 					<% if version.event != "create" %>

@@ -5,7 +5,7 @@ class Breve < ActiveRecord::Base
   scope :published, where(:status => "published" )
   scope :draft, where( :status => "draft" )
 
-  has_paper_trail
+  has_paper_trail 
   reverse_geocoded_by :latitude, :longitude
 
   STATUS = %w[draft published]

@@ -17,6 +17,10 @@ class VersionsController < ApplicationController
 		@version = Version.find params[:id]
 		@breve = @version.reify
 		@breve.save!
+		@breve.reload
+		last_version = @breve.versions.last
+		last_version.edit_type = "revert"
+		last_version.save!
 		redirect_to @breve, notice: "Retablissement de la version en date du #{@version.created_at} reussi"
 	end
 end
