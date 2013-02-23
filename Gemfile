@@ -16,6 +16,8 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'cancan'
 gem 'activeadmin'
+gem "sass_rails_patch", "~> 0.0.1"
+gem "font-awesome-rails"
 
 # Gems used only for assets and not required
 # in production environments by default.

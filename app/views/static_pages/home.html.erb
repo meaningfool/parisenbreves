@@ -4,7 +4,7 @@
 		    <div class="item <%= index == 0 ? 'active' : '' %>"><!-- class of active since it's the first item -->
 		      	<%= image_tag breve.photo.url(:large) %>
 		      	<div class="carousel-breve">
-		        	<h3><%= breve.title %></h3>
+		        	<h2><%= breve.title %></h2>
 		        	<span><%= breve.location %></span>
 		        	<p><%= breve.description %></p>
 		      	</div>
@@ -13,13 +13,16 @@
   	</div><!-- /.carousel-inner -->
   	<div class="carousel-principes">
     	<div>
+            <i class="icon-camera-retro"></i></br>
     		<span>Les imaginaires des lieux de Paris racontés... en brèves</span>
     	</div>
     	<div>
+            <i class='icon-user icon-white'></i><i class='icon-user icon-white'></i><i class='icon-user icon-white'></i></br>
     		<span>Un projet associatif et contributif.</span>
     		<span>Rejoignez-nous !</span>
     	</div>
     	<div>
+            <span class="creative-commons">CC</span></br>
     		<span>Des contenus sous licence Creative Commons</span>
     	</div>
     </div>
