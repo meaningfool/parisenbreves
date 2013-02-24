@@ -15,6 +15,7 @@
 //= require bootstrap
 //= require breve_form
 //= require breve_show
+//= require bootstrap-lightbox
 
 $(document).ready(function(){
     $('.carousel').carousel();

@@ -117,6 +117,33 @@ footer {
     right:0;
 }
 
+/* Ecrire Lightbox */
+#writeLightBox {
+  position: fixed;
+  top: 200px;
+  left: 0px;
+  display: block;
+
+
+}
+.lightbox-content {
+  padding: 20px;
+  margin-left: -43px;
+  text-align: left;
+  h3 {
+    text-align: center;
+  }
+  ul {
+    margin-left: 40px;
+  }
+  div {
+    text-align: center;
+    span {
+      display: block;
+      margin: 10px 0;
+    }
+  }
+}
 
 /* item list */
 

@@ -8,6 +8,7 @@
           <li><%= link_to "Brèves", published_path, :id => "content" %></li>
           <li><%= link_to "Contribuer", contribute_path, :id => "contribute" %></li>
         </ul>
+
         <ul class="nav pull-right">
           <% if signed_in? %>
             <li id="fat-menu" class="dropdown">
@@ -27,6 +28,15 @@
             <li><%= link_to "Connexion", signin_path, :id => "log_in" %></li>
           <% end %>
         </ul>
+
+        <% if signed_in? %>
+          <div class="nav pull-right">
+            <a class="btn" data-toggle="lightbox" href="#writeLightbox">Ecrire une brève</a>
+          </div>
+
+            
+        <% end %>
+
       </nav>
     </div>
   </div>

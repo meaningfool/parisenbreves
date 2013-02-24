@@ -16,6 +16,38 @@
 		<div id="main" role="main">
 			<div class="container">
 				<div class="row">
+
+				<div id="writeLightbox" class="container span9 lightbox hide fade"  tabindex="-1" role="dialog" aria-hidden="true">
+	              <div class='lightbox-header'>
+	                <button type="button" class="close" data-dismiss="lightbox" aria-hidden="true">&times;</button>
+	              </div>
+	              <div class='lightbox-content'>
+	                <h3>Ecrire</h3>
+	                <p>La création de brèves se fait par étapes :</p>
+	                <ul>
+	                  <li>Vous pouvez créer un nouveau sujet si vous avez des idées ou des sources qui pourraient servir à la création de nouvelles brèves.</li>
+	                  <li>Vous pouvez créer un brouillon, en prenant pour point de départ un des sujets existant si vous n'avez pas d'idée.</li>
+	                  <li>Vous pouvez améliorer un brouillon existant.</li>
+	                </ul>
+	                <p>Si vous n'avez encore jamais contribué à Paris en brèves, vous pouvez lire les renseignements sur le fonctionnement de Paris en brèves et le processus éditorial. Vous trouverez aussi quelques astuces pour écrire des brèves de qualité.</p>
+	                <div class="row">
+	                  <div class="span3">
+	                    <span><%= link_to "Créer un nouveau sujet", new_subject_path, class: "btn" %></span></br>
+	                    <span>Ou</span></br>
+	                    <span><%= link_to "Consulter la liste des sujets existants", subjects_path %></span>
+	                  </div>
+	                  <div class="span3">
+	                    <span><%= link_to "Créer un nouveau brouillon", new_breve_path, class: "btn" %></span></br>
+	                    <span>Ou</span></br>
+	                    <span><%= link_to "Consulter la liste des brouillons existants", drafts_path %></span>
+	                  </div>
+	                  <div class="span3">
+	                    <span><%= link_to "Lire les conseils", new_breve_path, class: "btn" %></span>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+
 					<%= content_for?(:content) ? yield(:content) : yield %>
 				</div>
 			</div> <!--! end of .container -->
