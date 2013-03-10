@@ -1,67 +1,104 @@
-<div class="span12">
-	<h2>Les principes de Paris en brèves</h2>
-	<div class="span8 offset2">
-		<div class="row">
-			<div class="span4">
-				<p>Raconter Paris et ses imaginaires au travers de ses lieux. L'histoire (la petite comme la grande), la littérature, le cinéma aussi bien que les légendes y trouvent leur place.</p>
-			</div>
-			<div class="span4">
-				<p>Paris en brèves repose sur la bonne volonté de ses contributeurs qui collaborent bénévolement au projet. Rejoignez-nous !</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="span4">
-				<p>Paris en brèves est un projet associatif à but non lucratif.</p>
-			</div>
-			<div class="span4">
-				<p>Pour garantir l'accès et la réutilisation des contenus créés, les textes comme les photos sont publiés sauf mention contraire sous licence Creative Commons CC-BY-SA.</p>
+<div class="principles">
+	<div class="container">
+	    <div class="row">
+			<div class="span12">
+				<h2>Les principes de Paris en brèves</h2>
+				<div class="span12">
+					<div class="row">
+						<div class="principle span6">
+							<div class="row">
+								<div class="principes-icons span2"><i class='icon-quote-left'></i><span> ... </span><i class='icon-quote-right'></i></div>
+								<div class="span4 principle-text">
+									<p>Raconter Paris et ses imaginaires au travers de ses lieux. L'histoire (la petite comme la grande), la littérature, le cinéma aussi bien que les légendes y trouvent leur place.</p>
+								</div>
+							</div>
+						</div>
+						<div class="principle span6">
+							<div class="row">
+								<div class="principes-icons span2"><i class='icon-group'></i></div>
+								<div class="span4 principle-text">
+									<p>Paris en brèves repose sur la bonne volonté de ses contributeurs qui collaborent bénévolement au projet. Rejoignez-nous !</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="principle span6">
+							<div class="row">
+								<div class="principes-icons span2"><i class='icon-group'></i></div>
+								<div class="span4 principle-text">
+									<p>Paris en brèves est un projet associatif à but non lucratif.</p>
+								</div>
+							</div>
+						</div>
+						<div class="principle span6">
+							<div class="row">
+								<div class="principes-icons span2"><span class="creative-commons">CC</span></div>
+								<div class="span4 principle-text">
+									<p>Pour garantir l'accès et la réutilisation des contenus créés, les textes comme les photos sont publiés sauf mention contraire sous licence Creative Commons CC-BY-SA.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<div class="span12">
-	<div class="row">
-		<h2>Je ne pense pas pouvoir aider parce que...</h2>
-		<div class="span4">
-			<h3>Je n'aime pas écrire</h3>
-			<p>Mais vous connaissez peut-être des histoires qui pourraient servir à la rédaction de brèves. Vous connaissez des livres ou des sites web dont les contributeurs pourraient s'emparer. Alimentez Paris en brèves de vos idées en créant des Sujets. Il vous suffit de fournir les contenus brut ou les sources et d'autres continueront le travail.</p>
-			<%= link_to "Voir la liste des Sujets", subjects_path, class: "btn" %>
-		</div>
-		<div class="span4">
-			<h3>Je n'ai pas d'idée</h3>
-			<p>Vous avez envie d'écrire mais vous ne connaissez pas bien Paris. Alors consultez la liste des sujets proposés : trouvez un lieu et un histoire à raconter et créez un brouillon. Si vous n'arrivez pas à faire court au premier essai ce n'est pas grave. C'est dans l'esprit collaboratif du projet : d'autres contributeurs repasseront après vous pour améliorer la brève jusqu'à ce qu'elle soit publiable.</p>
-			<%= link_to "Voir la liste des Sujets", subjects_path, class: "btn" %>
-		</div>
-		<div class="span4">
-			<h3>Je ne sais pas raconter une histoire</h3>
-			<p>Vous avez du mal à identifier un lieu et une histoire à raconter ? Tournez-vous vers les Brouillons : modifiez la formulation pour les rendre plus claires, simplifiez-les pour les rendre plus courtes, apportez du contexte, corrigez les fautes d'orthographe. Ou plus simplement participez à la discussion, donnez votre avis pour aider les autres contributeurs à améliorer la brève.</p>
-			<%= link_to "Voir la liste des Brouillons", drafts_path, class: "btn" %>
+</div>	
+<div class="help">
+	<div class="container">
+	    <div class="row">
+			<div class="span12">
+				<div class="row">
+					<h2>Je ne pense pas pouvoir aider parce que...</h2>
+					<div class="span4">
+						<h3>Je n'aime pas écrire</h3>
+						<p>Mais vous connaissez peut-être des histoires qui pourraient servir à la rédaction de brèves. Vous connaissez des livres ou des sites web dont les contributeurs pourraient s'emparer. Alimentez Paris en brèves de vos idées en créant des Sujets. Il vous suffit de fournir les contenus brut ou les sources et d'autres continueront le travail.</p>
+						<%= link_to "Voir la liste des Sujets", subjects_path, class: "btn" %>
+					</div>
+					<div class="span4">
+						<h3>Je n'ai pas d'idée</h3>
+						<p>Vous avez envie d'écrire mais vous ne connaissez pas bien Paris. Alors consultez la liste des sujets proposés : trouvez un lieu et un histoire à raconter et créez un brouillon. Si vous n'arrivez pas à faire court au premier essai ce n'est pas grave. C'est dans l'esprit collaboratif du projet : d'autres contributeurs repasseront après vous pour améliorer la brève jusqu'à ce qu'elle soit publiable.</p>
+						<%= link_to "Voir la liste des Sujets", subjects_path, class: "btn" %>
+					</div>
+					<div class="span4">
+						<h3>Je ne sais pas raconter</br> une histoire</h3>
+						<p>Vous avez du mal à identifier un lieu et une histoire à raconter ? Tournez-vous vers les Brouillons : modifiez la formulation pour les rendre plus claires, simplifiez-les pour les rendre plus courtes, apportez du contexte, corrigez les fautes d'orthographe. Ou plus simplement participez à la discussion, donnez votre avis pour aider les autres contributeurs à améliorer la brève.</p>
+						<%= link_to "Voir la liste des Brouillons", drafts_path, class: "btn" %>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="span12">
-	<div class="row">
-		<h2>Comment ça marche ?</h2>
+</div>	
+<div class="process">
+	<div class="container">
+	    <div class="row">
+			<div class="span12">
+				<div class="row">
+					<h2>Comment ça marche ?</h2>
 
-		<div class="span2">Processus</div>
-		<div class="span10">Le Sujet, source d'inspiration, devient Brouillon qui lui-même, lorsqu'il atteint une qualité suffisante, devient Brève lorsqu'il est publié par un éditeur. Les brèves publiées sont celles que l'on retrouve en page d'accueil.</div>
+					<div class="span2"><p>Processus</p></div>
+					<div class="span10"><p>Le Sujet, source d'inspiration, devient Brouillon qui lui-même, lorsqu'il atteint une qualité suffisante, devient Brève lorsqu'il est publié par un éditeur. Les brèves publiées sont celles que l'on retrouve en page d'accueil.</p></div>
 
-		<div class="span2">Sujet</div>
-		<div class="span10">L'objet d'un sujet est de nourrir les contributeurs qui n'ont pas nécessairement une connaissance de Paris ou des sources qui leur permettraient de rédiger une brève. Un sujet peut prendre la forme d'un extrait de texte, d'un lien vers un site web ou d'une référence à un livre...</div>
+					<div class="span2"><p>Sujet</p></div>
+					<div class="span10"><p>L'objet d'un sujet est de nourrir les contributeurs qui n'ont pas nécessairement une connaissance de Paris ou des sources qui leur permettraient de rédiger une brève. Un sujet peut prendre la forme d'un extrait de texte, d'un lien vers un site web ou d'une référence à un livre...</p></div>
 
-		<div class="span2">Brouillon</div>
-		<div class="span10">
-			<p>Un brouillon est une brève potentielle. Lorsqu'il a atteint une qualité suffisante il est publié. Les axes d'amélioration les plus souvent rencontrés sont les suivants :</p>
-			<ul>
-				<li>Longueur : une brève doit être courte, l'objectif est d'atteindre 400 caractères.</li>
-				<li>Focus : une brève se concentre sur une idée forte. Le but n'est donc pas de raconter toute l'histoire d'un lieu mais d'en donner des aperçus, éventuellement au travers de plusieurs brèves.</li>
-				<li>Contexte : les brèves doivent rester accessibles au plus grand nombre. Pour en limiter la longueur il peut être tentant des passer sous silence certaines "évidences" qui ne le sont pas pour tous (qualité des personnages évoqués, contexte historique,...). Il y a un équilibre à trouver entre intelligibilité et concision.</li>
-				<li>Equilibre précision / narration : à l'inverse, un désir de précision historique et/ou géographique peut conduire à accumuler les dates et les éléments de localisation pour des lieux n'existant plus. Il faut cependant cette précision avec la dimension narrative, c'est-à-dire avec l'intérêt pour le lecteur. Paris en brèves se contente d'ouvrir des portes que le lecteur est libre d'emprunter.</li>
-				<li>Formulation : réduire le nombre de caractères peut amener à utiliser des formulations alambiquées. Une brève doit rester simple à lire. Ce problème de formulation est généralement lié à un problème de focus : on cherche à en dire trop.</li>
-			</ul>
+					<div class="span2"><p>Brouillon</p></div>
+					<div class="span10">
+						<p>Un brouillon est une brève potentielle. Lorsqu'il a atteint une qualité suffisante il est publié. Les axes d'amélioration les plus souvent rencontrés sont les suivants :</p>
+						<ul>
+							<li><p>Longueur : une brève doit être courte, l'objectif est d'atteindre 400 caractères.</p></li>
+							<li><p>Focus : une brève se concentre sur une idée forte. Le but n'est donc pas de raconter toute l'histoire d'un lieu mais d'en donner des aperçus, éventuellement au travers de plusieurs brèves.</p></li>
+							<li><p>Contexte : les brèves doivent rester accessibles au plus grand nombre. Pour en limiter la longueur il peut être tentant des passer sous silence certaines "évidences" qui ne le sont pas pour tous (qualité des personnages évoqués, contexte historique,...). Il y a un équilibre à trouver entre intelligibilité et concision.</p></li>
+							<li><p>Equilibre précision / narration : à l'inverse, un désir de précision historique et/ou géographique peut conduire à accumuler les dates et les éléments de localisation pour des lieux n'existant plus. Il faut cependant cette précision avec la dimension narrative, c'est-à-dire avec l'intérêt pour le lecteur. Paris en brèves se contente d'ouvrir des portes que le lecteur est libre d'emprunter.</p></li>
+							<li><p>Formulation : réduire le nombre de caractères peut amener à utiliser des formulations alambiquées. Une brève doit rester simple à lire. Ce problème de formulation est généralement lié à un problème de focus : on cherche à en dire trop.</p></li>
+						</ul>
+					</div>
+
+					<div class="span2"><p>Editeur</p></div>
+					<div class="span10"><p>Les éditeurs sont des contributeurs chevronnés qui accompagnent les autres contributeurs dans le processus de création de brèves. Par ailleurs ce sont eux qui décident de la publiction d'un Brouillon, ou qui ajoutent les illustrations aux brèves.</p></div>
+				</div>
+			</div>
 		</div>
-
-		<div class="span2">Editeur</div>
-		<div class="span10">Les éditeurs sont des contributeurs chevronnés qui accompagnent les autres contributeurs dans le processus de création de brèves. Par ailleurs ce sont eux qui décident de la publiction d'un Brouillon, ou qui ajoutent les illustrations aux brèves.</div>
 	</div>
-</div>

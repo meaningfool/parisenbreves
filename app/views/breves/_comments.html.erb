@@ -1,20 +1,21 @@
-<table class="table table-hover">
-	<% if signed_in? %>
-		<%= render 'breves/comment_form' %>
-	<% end %>
-	<tbody>
-		<% @breve.comments.reverse_each do |comment| %>
-			<tr>
-				<td><%= comment.user.name %>
-					<p><%= comment.content %></p></br>
-					<%= comment.created_at %>
-				</td>
+<% if signed_in? %>
+	<%= render 'breves/comment_form' %>
+<% end %>
+<div class="comments">
+	<% @breve.comments.reverse_each do |comment| %>
+		<div class="comment">
+			<div>
+				<%= link_to comment.user.name, comment.user %>
+				<span class="comment-date"><%= distance_of_time_in_words_to_now(comment.created_at, include_seconds = false) %> ago</span>
+			</div>
+			<div class="comment-text">
+				<p><%= comment.content %></p>
 				<% if can? :destroy, comment %>
-					<td>
-						<%= link_to 'Supprimer', [@breve, comment], method: :delete, data: { :confirm => "Are you sure ?"} %>
-					</td>
+						<%= link_to [@breve, comment], method: :delete, data: { :confirm => "Are you sure ?"} do %>
+							<i class='icon-trash'></i>
+						<% end %>
 				<% end %>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+			</div>
+		</div>
+	<% end %>
+</div>

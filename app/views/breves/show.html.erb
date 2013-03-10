@@ -3,48 +3,56 @@
 	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
 <% end %>
 
+<div class="container">
+	<div class="row">
+		<div class="span8 breve">
+			<% if @breve.status == "published" %>
+				<%= image_tag @breve.photo.url(:large) %>
+			<% end %>
+			<h2 class='title'><%= @breve.title %></h2>
+			<span class='location'><%= @breve.location %></span>
 
-<div class="span4 sidebar">
-	<div><%= @breve.status == "published" ? "Brèves" : "Brouillons" %> à proximité</div>
-	<% if @closeby.any? %>
-		<%= render "shared/sidebar_content_list", content: @closeby[0..9], type: @breve.status, detail: "distance_based" %>
-	<% end %>
-</div>
-
-<div class="span8">
-	<div class="tabbable">	
-		<% if @tab_mode == "version" %>
-			<ul class="nav nav-tabs history">
-				<li class="disabled"><a href="#"><%= @breve.status == "published" ? "Brève" : "Brouillon" %></a></li>
-				<li class="disabled"><a href="#">Discussion</a></li>
-				<li class="active"><a href="" data-toggle="tab">Historique</a></li>
-			</ul>
-		<% else %>	
-			<ul class="nav nav-tabs">
-				<li class=<%= @tab_mode == "content" ? "active" : ""%>>
-					<a href="#tab1" data-toggle="tab"><%= @breve.status == "published" ? "Brève" : "Brouillon" %></a>
-				</li>
-				<li class=<%= @tab_mode == "comment" ? "active" : ""%>>
-					<a href="#tab2" data-toggle="tab">Discussion</a>
-				</li>
-				<li class=<%= @tab_mode == "history" ? "active" : ""%>>
-					<a href="#tab3" data-toggle="tab">Historique</a>
-				</li>
-			</ul>
-		<% end %>
-		<div class="tab-content">
-			<div class="tab-pane breve-content <%= @tab_mode == 'content' || @tab_mode == 'version' ? 'active' : '' %>" id="tab1">
-				<%= render 'layouts/static_messages' %>
-				<%= render 'breves/breve_content' %>
+			<div class="tabbable">	
+				<% if @tab_mode == "version" %>
+					<ul class="nav nav-tabs history">
+						<li class="disabled"><a href="#"><%= @breve.status == "published" ? "Brève" : "Brouillon" %></a></li>
+						<li class="disabled"><a href="#">Discussion</a></li>
+						<li class="active"><a href="" data-toggle="tab">Historique</a></li>
+					</ul>
+				<% else %>	
+					<ul class="nav nav-tabs">
+						<li class=<%= @tab_mode == "content" ? "active" : ""%>>
+							<a href="#tab1" data-toggle="tab"><%= @breve.status == "published" ? "Brève" : "Brouillon" %></a>
+						</li>
+						<li class=<%= @tab_mode == "comment" ? "active" : ""%>>
+							<a href="#tab2" data-toggle="tab">Discussion</a>
+						</li>
+						<li class=<%= @tab_mode == "history" ? "active" : ""%>>
+							<a href="#tab3" data-toggle="tab">Historique</a>
+						</li>
+					</ul>
+				<% end %>
+				<div class="tab-content">
+					<div class="tab-pane breve-content <%= @tab_mode == 'content' || @tab_mode == 'version' ? 'active' : '' %>" id="tab1">
+						<%= render 'layouts/static_messages' %>
+						<%= render 'breves/breve_content' %>
+					</div>
+					<div class="tab-pane comment-pane <%= @tab_mode == 'comment' ? 'active' : '' %>" id="tab2">
+						<%= render 'layouts/static_messages' %>
+						<%= render 'breves/comments' %>
+					</div>
+					<div class="tab-pane version-pane <%= @tab_mode == 'history' ? 'active' : '' %>" id="tab3">
+						<%= render 'layouts/static_messages' %>
+						<%= render 'breves/versions_history' %>
+					</div>
+				</div>
 			</div>
-			<div class="tab-pane comments <%= @tab_mode == 'comment' ? 'active' : '' %>" id="tab2">
-				<%= render 'layouts/static_messages' %>
-				<%= render 'breves/comments' %>
-			</div>
-			<div class="tab-pane breve-history <%= @tab_mode == 'history' ? 'active' : '' %>" id="tab3">
-				<%= render 'layouts/static_messages' %>
-				<%= render 'breves/versions_history' %>
-			</div>
+		</div>
+		<div class="span4 sidebar">
+			<div><%= @breve.status == "published" ? "Brèves" : "Brouillons" %> à proximité</div>
+			<% if @closeby.any? %>
+				<%= render "shared/sidebar_content_list", content: @closeby[0..9], type: @breve.status, detail: "distance_based" %>
+			<% end %>
 		</div>
 	</div>
 </div>

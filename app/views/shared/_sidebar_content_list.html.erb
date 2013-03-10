@@ -1,23 +1,24 @@
 <ul class="sidebar-list">
 	<% content.each do |item| %>
-		<li>
-			<div>		
-				<%= link_to item do %> 
+		<li>		
+			<%= link_to item do %> 
+				<div class="item">
 					<% if type == 'published' %>
 						<%= image_tag item.photo.url(:thumb) %>
 					<% end %>
-					<h5><%= item.title %></h5>
-					<% if type == 'published' || type == 'draft' %>
-						<span><%= item.location %></span></br>
-					<% end %>
-					<% if detail == 'update_based' %>
-						<% time = item.updated_at %>
-						<span>Mis à jour le <%= time.day %>/<%= time.month %>/<%= time.year %> à <%= time.hour %>:<%= time.min %></span>
-					<% elsif detail == 'distance_based' %>
-						<span>A <%= (Geocoder::Calculations.distance_between(@reference_point, [item.latitude, item.longitude])*1000).floor %> mètres</span>
-					<% end %>
-				<% end %>
-			</div>
+					<div class="item-text">
+						<h5><%= item.title %></h5>
+						<% if type == 'published' || type == 'draft' %>
+							<span class="location"><%= item.location %></span>
+						<% end %>
+						<% if detail == 'update_based' %>
+							<span class="date"><%= distance_of_time_in_words_to_now(item.updated_at, include_seconds = false) %> ago</span>
+						<% elsif detail == 'distance_based' %>
+							<span class="date">A <%= (Geocoder::Calculations.distance_between(@reference_point, [item.latitude, item.longitude])*1000).floor %> mètres</span>
+						<% end %>
+					</div>
+				</div>
+			<% end %>
 		</li>
 	<% end %>
 </ul>

@@ -2,7 +2,10 @@ class VersionsController < ApplicationController
 	load_and_authorize_resource
 
 	def show
+		@subject_count = Subject.where("status='active'").count
+		@draft_count = Breve.where("status='draft'").count
 		@published_count = Breve.where("status='published'").count
+		
 		@breve = Version.find(params[:id]).reify
 		@content_type = @breve.status
 		@tab_mode = "version"

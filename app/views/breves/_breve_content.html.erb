@@ -1,20 +1,17 @@
-<h2 class='title'><%= @breve.title %></h2>
-<span class='location'><%= @breve.location %></span>
-<%= image_tag @breve.photo.url(:large) %>
 <div class="text-content">
 	<p class='description'><%= @breve.description %></p>
 	<a class='source' href="<%= @breve.source_URL %>"><%= @breve.source_name %></a>
 	<span class='latitude' id='breve_latitude'><%= @breve.latitude %></span>
 	<span class='longitude' id='breve_longitude'><%= @breve.longitude %></span>
+	<div class="action">
+		<% if @tab_mode != 'version' %>
+			<% if can? :update, @breve %>
+				<%= link_to 'Editer', edit_breve_path(@breve), :class => "btn btn-large edit-btn" %>
+			<% end %>
+			<% if can? :destroy, @breve %>
+				<%= link_to 'Supprimer', @breve, method: :delete, data: { :confirm => "Are you sure ?"} %>
+			<% end %>
+		<% end %>
+	</div>
 </div>		
 <div id="map_canvas"></div>
-<div class="action">
-	<% if @tab_mode != 'version' %>
-		<% if can? :update, @breve %>
-			<%= link_to 'Editer', edit_breve_path(@breve), :class => "btn btn-large edit-btn" %>
-		<% end %>
-		<% if can? :destroy, @breve %>
-			<%= link_to 'Supprimer', @breve, method: :delete, data: { :confirm => "Are you sure ?"} %>
-		<% end %>
-	<% end %>
-</div>

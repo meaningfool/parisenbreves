@@ -293,6 +293,7 @@ DEPENDENCIES
   bcrypt-ruby
   bootstrap-sass
   bootstrap-will_paginate
+  bourbon
   cancan
   capybara
   coffee-rails (~> 3.2.1)

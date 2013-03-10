@@ -3,6 +3,8 @@
 @import "font-awesome";
 @import "bootstrap-lightbox";
 
+
+
 /* universal */
 
 html {
@@ -10,7 +12,9 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 40px;
+  font-family: "PT Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: 0.1em;
 }
 
 section {
@@ -29,10 +33,15 @@ textarea {
   margin-bottom: 10px;
 }
 
+a, a:hover {
+  text-decoration: none;
+}
+
 /* typography */
 
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
+h1, h2, h3, h4, h5, h6, #logo {
+  font-family: "Arvo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.3;
 }
 
 h1 {
@@ -48,11 +57,10 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #999;
 }
 
-p {
-  line-height: 1.7em;
+p, ul, li {
+  line-height: 1.5em;
 }
 
 .tab-content {

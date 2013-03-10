@@ -1,6 +1,8 @@
 class BrevesController < ApplicationController
 	load_and_authorize_resource
 	before_filter do
+		@subject_count = Subject.where("status='active'").count
+		@draft_count = Breve.where("status='draft'").count
 		@published_count = Breve.where("status='published'").count
 	end
 

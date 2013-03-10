@@ -1,25 +1,10 @@
-<div class="span8 offset4">
-	<% if @content.any? %>
-		<ul class="list">
-			<% @content.each do |item| %>
-				<li>
-					<div>		
-						<%= link_to item do %> 
-							<% if params[:action] == 'published' %>
-								<%= image_tag item.photo.url(:thumb) %>
-							<% end %>
-							<h4><%= item.title %></h4>
-							<% if params[:action] == 'published' || params[:action] == 'drafts' %>
-								<span><%= item.location %></span>
-							<% end %>
-							<p><%= truncate item.description, length: 200 %></p>
-							<% time = item.updated_at %>
-							<span>Updated <%= distance_of_time_in_words_to_now(time, include_seconds = false) %> ago</span>
-						<% end %>
-					</div>
-				</li>
+<div class="container">
+	<% if @content.any? %>	
+			<% if params[:action] == 'published' %>
+				<%= render :partial => 'shared/one_col_list' %>
+			<% else %>
+				<%= render :partial => 'shared/two_col_list' %>
 			<% end %>
-		</ul>
 	<% end %>
+	<%= will_paginate @content %>
 </div>
-<%= will_paginate @content %>

@@ -1,42 +1,72 @@
-
 <% content_for :content do %>
+	<div class="content_nav">
+		<div class="container">
+			<div class="row">
+				<% if params[:controller] == "breves" || params[:controller] == "versions" %>
+					<% if params[:action] == "published" || params[:action] == "drafts" %>
+						<% content_type = params[:action] %>
+					<% else %>
+						<% content_type = @breve.status %>
+					<% end %>
+				<% else %>
+					<% content_type = "subject" %>
+				<% end %>
 
-	<% if params[:controller] == "breves" || params[:controller] == "versions" %>
-		<% if params[:action] == "published" || params[:action] == "drafts" %>
-			<% content_type = params[:action] %>
-		<% else %>
-			<% content_type = @breve.status %>
-		<% end %>
-	<% else %>
-		<% content_type = "subject" %>
-	<% end %>
-
-	<div class="span12">
-		<div class="row">
-			<ul class="nav nav-pills">
-				<li class="span4 <%= content_type == 'subject' ? 'active' : '' %>">
-					<%= link_to subjects_path do %>
-						<h5>Sujets</h5>
-						<span>Les sujets regroupent des documents ou des extraits de textes pouvant donner lieu à la création de brèves. Vous avez une idée ? Ajoutez un sujet ! Ou alors emparez-vous de l'un d'eux et traitez-le !</span>
-					<% end %>
-				</li>
-				<li class="span4 <%= (content_type == 'drafts' || content_type == 'draft') ? 'active' : '' %>">
-					<%= link_to drafts_path do %>
-						<h5>Brouillons</h5>
-						<span>Les brouillons sont de futures brèves qui nécessitent encore un travail d'écriture pour atteindre les critères de publication d'une brève. La section Contribuer vous donne des astuces pour améliorer les brouillons.</span>
-					<% end %>
-				</li>
-				<li class="span4 <%= content_type == 'published' ? 'active' : '' %>">
-					<%= link_to published_path do %>
-						<h5>Brèves</h5>
-						<span>aujourd'hui au nombre de</span>
-						<span><%= @published_count %></span>
-					<% end %>
-				</li>
-			</ul>
+				<div class="span12">
+					<div>
+						<ul class="breadcrumb">
+							<li class="<%= content_type == 'subject' ? 'active' : '' %>">
+								<%= link_to subjects_path, :class => "#{content_type == 'subject' ? 'active' : ''}"  do %>
+									<h5>Sujets</h5>
+								<% end %>
+								<span class="divider">></span>
+							</li>
+							<li>
+								<%= link_to drafts_path, :class => "#{(content_type == 'drafts' || content_type == 'draft') ? 'active' : ''}" do %>
+									<h5>Brouillons</h5>
+								<% end %>
+								<span class="divider">></span>
+							</li>
+							<li>
+								<%= link_to published_path, :class => "#{content_type == 'published' ? 'active' : ''}" do %>
+									<h5>Brèves</h5>
+								<% end %>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span9 content_description">			
+					<ul>
+						<li class="<%= content_type == 'subject' ? 'active' : '' %>" >
+							<span>Les sujets regroupent des documents ou des extraits de textes pouvant donner lieu à la création de brèves. Vous avez une idée ? Ajoutez un sujet ! Ou alors emparez-vous de l'un d'eux et traitez-le !</span>
+						</li>
+						<li class="<%= (content_type == 'drafts' || content_type == 'draft') ? 'active' : '' %>">
+							<span>Les brouillons sont de futures brèves qui nécessitent encore un travail d'écriture pour atteindre les critères de publication d'une brève. La section Contribuer vous donne des astuces pour améliorer les brouillons.</span>
+						</li>
+						<li class="<%= content_type == 'published' ? 'active' : '' %>">
+							<span>Les brèves sont le résultat du processus collectif d'écriture et d'amélioration des brouillons. Participez à la rédaction pour que nous atteignons ensemble l'objectif de 1 000 brèves publiées.</span>
+						</li>
+					</ul>
+				</div>
+				<div class="span3 content_badge">
+					<div class="pull-right">
+						<% if content_type == 'subject' %>
+							<span class="content_count"><%= @subject_count %></span><span>sujets</span>
+						<% elsif (content_type == 'drafts' || content_type == 'draft') %>
+							<span class="content_count"><%= @draft_count %></span><span>brouillons</span>
+						<% else %>
+							<span class="content_count"><%= @published_count %></span><span>brèves</span>
+						<% end %>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<%= yield %>
 <% end %>
+
+	
 
 <%= render :template =>'layouts/application' %>

@@ -3,18 +3,27 @@
 	<p class='description'><%= @subject.description %></p>
 </div>		
 <div class="action">
-	<% if @view_pane != 'history' %>
-		<% if can? :update, @subject %>
-			<%= link_to 'Editer', edit_subject_path(@subject), :class => "btn btn-large edit-btn" %>
-		<% end %>
-		<% if can? :create, Breve %>
-			<%= link_to 'Ecrire une brève sur ce sujet', new_breve_path(Breve.new), :class => "btn btn-large edit-btn" %>
-		<% end %>
-		<% if can? :update, @subject %>
-			<%= link_to 'Marquer comme lu', subject_path(@subject, :subject => { status: "treated"} ), method: :put, :class => "btn btn-large edit-btn" %>
-		<% end %>
+	<% if @view_pane != 'history' && signed_in? %>
+		<div class="btn-group">
+			<a class="btn dropdown-toggle btn-large" data-toggle="dropdown" href="#">
+				Action
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+				<% if can? :update, @subject %>
+					<li><%= link_to 'Editer', edit_subject_path(@subject) %></li>
+				<% end %>
+				<% if can? :create, Breve %>
+					<li><%= link_to 'Ecrire une brève sur ce sujet', new_breve_path(Breve.new) %></li>
+				<% end %>
+				<% if can? :update, @subject %>
+					<li><%= link_to 'Marquer comme traité', subject_path(@subject, :subject => { status: "treated"} ), method: :put %></li>
+				<% end %>
+			</ul>
+		</div>
+			
 		<% if can? :destroy, @subject %>
-			<%= link_to 'Delete', @breve, method: :delete, data: { :confirm => "Are you sure ?"} %>
+			<%= link_to 'Supprimer', @breve, method: :delete, data: { :confirm => "Are you sure ?"} %>
 		<% end %>
 	<% end %>
 </div>

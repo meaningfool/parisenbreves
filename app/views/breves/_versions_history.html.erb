@@ -1,19 +1,16 @@
-<table class="table table-hover">
-	<tbody>
-		<% @breve.versions.reverse_each do |version| %>
-			<tr>
-				<td><%= distance_of_time_in_words_to_now(version.created_at, include_seconds = false) %> ago</td>
-				<td><%= history_to_s version %>
-				</td>
-				<td>
-					<% if version.event != "create" %>
-						<%= link_to "Voir avant modification", version_path(version) %>
-						<% if can? :revert, version %>
-							<%= link_to "Rétablir", revert_version_path(version), method: :post %>
-						<% end %>
+<div class="versions">
+	<% @breve.versions.reverse_each do |version| %>
+		<div class="version">
+			<span class="modification"><%= history_to_s version %></span>
+			<span class="version-date"><%= distance_of_time_in_words_to_now(version.created_at, include_seconds = false) %> ago</span>
+			<div class="action">
+				<% if version.event != "create" %>
+					<%= link_to "Voir avant modification", version_path(version), :target => '_blank' %>
+					<% if can? :revert, version %>
+						<span> | </span><%= link_to "Rétablir", revert_version_path(version), method: :post %>
 					<% end %>
-				</td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+</div>

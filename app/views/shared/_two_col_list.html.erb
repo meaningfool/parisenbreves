@@ -1,0 +1,21 @@
+<% @content.each_slice(2) do |duo| %>
+	<div class="row">
+		<div class="span12">	
+			<div class="row">
+				<% duo.each do |item| %>
+					<%= link_to item do %> 
+						<div class="span6 two-col-item ">
+							<h4><%= item.title %></h4>
+							<% if params[:action] == 'drafts' %>
+								<span><%= item.location %></span>
+							<% end %>
+							<p><%= truncate item.description, length: 600 %></p>
+							<% time = item.updated_at %>
+							<span>Updated <%= distance_of_time_in_words_to_now(time, include_seconds = false) %> ago</span>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+<% end %>
