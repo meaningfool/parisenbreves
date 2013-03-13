@@ -5,7 +5,7 @@
 			<span class="version-date"><%= distance_of_time_in_words_to_now(version.created_at, include_seconds = false) %> ago</span>
 			<div class="action">
 				<% if version.event != "create" %>
-					<%= link_to "Voir avant modification", version_path(version), :target => '_blank' %>
+					<%= link_to "Voir avant modification", version_path(version) %>
 					<% if can? :revert, version %>
 						<span> | </span><%= link_to "Rétablir", revert_version_path(version), method: :post %>
 					<% end %>

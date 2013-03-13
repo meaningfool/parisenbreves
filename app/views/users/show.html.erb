@@ -1,12 +1,11 @@
-<div class="span8">
+<div class="container">
 	<div class="row">
-		<h2>Profile</h2>
-		Name : <span class="user_name"><%= @user.name %></span></br>
-		Email : <span class="user_email"><%= @user.email %></span>
-	</div>
-	<div class="row">
-		<% if signed_in? %>
-			<%= link_to 'Delete', @user, method: :delete, :id => "delete_user_#{@user.id}", data: { :confirm => "Are you sure ?"} %>
-		<% end %>
+		<div class="span10 offset1">
+			<div class="row">
+				<h2>Profile</h2>
+				Nom : <span class="user_name"><%= @user.name %></span></br>
+				Email : <span class="user_email"><%= @user.email %></span>
+			</div>
+		</div>
 	</div>
 </div>

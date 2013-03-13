@@ -1,19 +1,20 @@
-<h1>Connexion</h1>
+<div class="container">
+  <div class="row">
+    <div class="span6 offset3 login">
+      <h2>Connexion</h2>
+      <%= form_for(:session, url: sessions_path) do |f| %>
+        <%= render 'layouts/messages' %>
 
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(:session, url: sessions_path) do |f| %>
-      <%= render 'layouts/messages' %>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
 
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+        <%= f.label :password, "Mot de passe" %>
+        <%= f.password_field :password %>
 
-      <%= f.label :password, "Mot de passe" %>
-      <%= f.password_field :password %>
+        <%= f.submit "Connexion", class: "btn btn-primary" %>
+      <% end %>
 
-      <%= f.submit "Connexion", class: "btn btn-large btn-primary" %>
-    <% end %>
-
-    <p>Vous n'avez pas de compte ? <%= link_to "Inscrivez-vous !", signup_path %></p>
+      <p>Vous n'avez pas de compte ? <%= link_to "Inscrivez-vous !", signup_path %></p>
+    </div>
   </div>
 </div>

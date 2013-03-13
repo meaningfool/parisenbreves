@@ -9,6 +9,7 @@ $(document).ready ->
 
   if $("#breve_latitude").val() isnt "" and $("#breve_longitude").val() isnt ""
     p = new google.maps.LatLng($("#breve_latitude").val(), $("#breve_longitude").val())
+    window.map.setCenter p
     addMarker p
 
   $("#search_button").click ->
@@ -17,9 +18,12 @@ $(document).ready ->
 
 initialize = ->
   mapOptions =
-    zoom: 11
+    zoom: 14
     center: new google.maps.LatLng 48.848933230926534, 2.3467287359375177
     mapTypeId: google.maps.MapTypeId.ROADMAP
+    disableDefaultUI: true
+    scrollwheel: false
+    zoomControl: true
   window.map = new google.maps.Map document.getElementById("map_canvas"), mapOptions 
   window.markersArray = []
   google.maps.event.addListener map, "click", (event) ->

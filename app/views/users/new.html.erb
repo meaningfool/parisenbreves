@@ -1,18 +1,19 @@
-<h1>Créer un compte</h1>
-
-<div class="row">
-	<div class="span6 offset3">
-		<%= form_for(@user) do |f| %>
-			<%= render 'shared/error_messages', object: f.object %>
-			<%= f.label :name, "Nom d'uilisateur" %>
-			<%= f.text_field :name %>
-			<%= f.label :email %>
-			<%= f.text_field :email %>
-			<%= f.label :password, "Mot de passe" %>
-			<%= f.password_field :password %>
-			<%= f.label :password_confirmation, "Confirmez votre mot de passe" %>
-			<%= f.password_field :password_confirmation %>
-			<%= f.submit "Valider", class: "btn btn-large btn-primary" %>
-		<% end %>
+<div class="container">
+	<div class="row">
+		<div class="span6 offset3 register">
+			<h2>Créer un compte</h2>
+			<%= form_for(@user) do |f| %>
+        <%= render 'layouts/messages' %>
+				<%= f.label :name, "Nom d'utilisateur" %>
+				<%= f.text_field :name %>
+				<%= f.label :email %>
+				<%= f.text_field :email %>
+				<%= f.label :password, "Mot de passe" %>
+				<%= f.password_field :password %>
+				<%= f.label :password_confirmation, "Confirmez votre mot de passe" %>
+				<%= f.password_field :password_confirmation %>
+				<%= f.submit "Valider", class: "btn btn-primary" %>
+			<% end %>
+		</div>
 	</div>
 </div>

@@ -4,9 +4,9 @@
       <%= link_to "Paris en brèves", root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-left">
-          <li><%= link_to "Accueil", root_path, :id => "home" %></li>
-          <li><%= link_to "Brèves", published_path, :id => "content" %></li>
-          <li><%= link_to "Contribuer", contribute_path, :id => "contribute" %></li>
+          <li><%= link_to "Accueil", root_path, :id => "home", :class => "#{request.path == root_path ? 'active' : ''}" %></li>
+          <li><%= link_to "Brèves", published_path, :id => "content", :class => "#{request.path == published_path ? 'active' : ''}" %></li>
+          <li><%= link_to "Contribuer", contribute_path, :id => "contribute", :class => "#{request.path == contribute_path ? 'active' : ''}" %></li>
         </ul>
 
         <ul class="nav pull-right">

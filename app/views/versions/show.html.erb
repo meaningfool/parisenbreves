@@ -1,0 +1,12 @@
+<% content_for(:head) do %>
+	<%= javascript_include_tag 'breve_show' %>
+	<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
+<% end %>
+
+<div id="breve-container" class="container">
+	<div class="row">
+		<div class="span8 offset2 breve">
+			<%= render "breves/breve" %>
+		</div>
+	</div>
+</div>

@@ -11,9 +11,13 @@ $(document).ready ->
 initialize = ->
   if $("#breve_latitude").text() isnt "" and $("#breve_longitude").text() isnt ""
     mapOptions =
-      zoom: 11
+      zoom: 14
       center: new google.maps.LatLng $("#breve_latitude").text(), $("#breve_longitude").text()
       mapTypeId: google.maps.MapTypeId.ROADMAP
+      disableDefaultUI: true
+      draggable: false
+      scrollwheel: false
+      zoomControl: true
     window.map = new google.maps.Map document.getElementById("map_canvas"), mapOptions 
     window.markersArray = []
     p = new google.maps.LatLng($("#breve_latitude").text(), $("#breve_longitude").text())

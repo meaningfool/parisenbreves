@@ -18,6 +18,14 @@
 //= require bootstrap-lightbox
 
 $(document).ready(function(){
-    $('.carousel').carousel();
+    $('.carousel').carousel({
+    	interval: 8000
+    });
     $('.dropdown-toggle').dropdown()
   });
+
+$(document).ready(function(){
+	$('#main').bind('ajax:complete',function(evt,xhr,status){
+	  eval(xhr.responseText);
+	});
+});

@@ -43,8 +43,14 @@ h2, h4, a, a:hover {
   @include box-shadow(0 0 5px $main-darker-gradient);
 
   .nav > li > a {
-    color: $grey-lighter;
+    color: $main-light;
     padding: 10px 0 10px 15px;
+    &.active, &:hover {
+      color: $grey-lighter;
+    }
+  }
+  .nav.pull-right > li > a {
+    color: $grey-lighter;
   }
 }
 
@@ -111,7 +117,7 @@ footer {
 
   h2 {
     color: #fff;
-    font-size: 2.5em;
+    font-size: 2.2em;
     margin-bottom: 40px;
     text-align: left;
     letter-spacing: 0.05em;
@@ -121,14 +127,14 @@ footer {
   span {
     display: block;
     color: #eee;
-    font-size: 1.6em;
+    font-size: 1.4em;
     margin-bottom: 40px;
     letter-spacing: 0.1em;
   }
 
   p {
     color: #eee;
-    font-size: 1.4em;
+    font-size: 1.2em;
     letter-spacing: 0.1em;
   }
 }
@@ -253,40 +259,51 @@ footer {
   text-align: center;
 }
 
-/* Ecrire Lightbox */
+/* Modal boxes */
 #writeLightBox {
   position: fixed;
   top: 200px;
   left: 0px;
   display: block;
+  margin-left: 0;
 
-
+  .lightbox-content {
+    padding: 20px;
+    margin-left: -43px;
+    text-align: left;
+    h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      margin-top: 0px;
+      padding: 10px;
+      border-bottom: solid 2px $main-dark;
+    }
+    ul {
+      margin-left: 40px;
+      li{
+        margin-bottom: 10px;
+      }
+    }
+    div {
+      text-align: center;
+      span {
+        display: block;
+        margin: 10px 0;
+      }
+    }
+  }
 }
-.lightbox-content {
+
+.register, .login {
+  background-color: #fdfdfd;    
   padding: 20px;
-  margin-left: -43px;
-  text-align: left;
-  h3 {
-    text-align: center;
-    margin-bottom: 20px;
-    margin-top: 0px;
-    padding: 10px;
-    border-bottom: solid 2px $main-dark;
+  @include box-shadow(0 2px 2px $main-standard);
+  margin-top: 20px;
+
+  .form {
+    margin: 0;
   }
-  ul {
-    margin-left: 40px;
-    li{
-      margin-bottom: 10px;
-    }
-  }
-  div {
-    text-align: center;
-    span {
-      display: block;
-      margin: 10px 0;
-    }
-  }
-}
+} 
 
 /* Content header */
 
@@ -461,6 +478,9 @@ footer {
 }
 
 .breve-content {
+  padding-right: 20px;
+  padding-left: 20px;
+
   .text-content {
     min-height: 300px;
     width: 50%;
