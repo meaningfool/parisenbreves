@@ -3,7 +3,6 @@
 	<%= javascript_include_tag 'breve_form' %>
 <% end %>
 
-<h2>Editer <%= @breve.status == "published" ? "la brève" : "le brouillon" %></h2>
 <%= form_for @breve, html: {multipart: true, class: "form-horizontal breve-form"} do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="control-group">

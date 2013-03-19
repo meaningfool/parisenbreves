@@ -15,6 +15,15 @@ class SubjectsController < ApplicationController
 		render layout: 'contents'
 	end
 
+	def create 
+		@subject = Subject.new params[:subject]
+		if @subject.save
+			redirect_to @subject
+		else
+			render :action => :new
+		end
+	end
+
 	def show
 		@view_pane = "content"
 		subject = Subject.find_by_id params[:id]

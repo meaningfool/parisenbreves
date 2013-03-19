@@ -2,6 +2,7 @@
 	<div class="row">
 		<div class="span8 offset2 content-edit">
 			<div>
+				<h2>Editer <%= @breve.status == "published" ? "la brève" : "le brouillon" %></h2>
 				<%= render 'breve_form' %>
 			</div>
 		</div>
