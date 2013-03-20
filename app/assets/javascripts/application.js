@@ -25,7 +25,22 @@ $(document).ready(function(){
   });
 
 $(document).ready(function(){
+	
 	$('#main').bind('ajax:complete',function(evt,xhr,status){
 	  eval(xhr.responseText);
 	});
+});
+
+$(document).ready(function(){
+	if ($('#breve-textarea').length) {
+		var text_length = $('#breve-textarea').val().length;
+		$('#charNum').text(text_length);
+		$('#breve-textarea').bind('keyup', function() {
+			var len = $('#breve-textarea').val().length;
+	        if (len > 400) {
+	          $('#charNum').addClass("out-of-bound");
+	        }
+			$('#charNum').text(len);
+		});
+	}
 });

@@ -27,10 +27,11 @@
 			<div id="map_canvas"></div>
 		</div>
 	</div>
+	<div id="counter"><span>Nombre de caractères (objectif < 400) : </span><span id="charNum"></span></div>
 	<div class="control-group">
 		<%= f.label "Description", class: "control-label", for: "breve_description" %>
 		<div class="controls">
-			<%= f.text_area :description, placeholder: "Description" %>
+			<%= f.text_area :description, placeholder: "Description", :id => "breve-textarea" %>
 		</div>
 	</div>
 	<div class="control-group">
