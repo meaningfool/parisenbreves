@@ -117,6 +117,7 @@ GEM
     formtastic (2.2.1)
       actionpack (>= 3.0)
     geocoder (1.1.6)
+    google-analytics-rails (0.0.4)
     guard (1.6.2)
       listen (>= 0.6.0)
       lumberjack (>= 1.0.2)
@@ -299,6 +300,7 @@ DEPENDENCIES
   faker
   font-awesome-rails
   geocoder
+  google-analytics-rails
   guard-rspec
   jquery-rails
   launchy

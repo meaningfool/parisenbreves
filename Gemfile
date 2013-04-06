@@ -52,6 +52,7 @@ group :production do
 	gem 'pg'
 	gem 'thin'
 	gem 'pgbackups-archive'
+	gem 'google-analytics-rails'
 end
 
 # To use ActiveModel has_secure_password
