@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class SubjectsController < ApplicationController
 	load_and_authorize_resource
 	before_filter do
@@ -38,15 +40,15 @@ class SubjectsController < ApplicationController
 	def update
 		if @subject.update_attributes params[:subject]
 			if URI(request.referer).path == edit_subject_path(@subject)
-				redirect_to @subject, notice: "Modifications enregistrees"
+				redirect_to @subject, notice: "Modifications enregistrées"
 			else
-				redirect_to subjects_path, notice: "Sujet marque comme traite"
+				redirect_to subjects_path, notice: "Sujet marqué comme traité"
 			end
 		else
 			if URI(request.referer).path == edit_subject_path(@subject)
 				render 'edit', notice: "Les modifications ne sont pas valides"
 			else
-				redirect_to subjects_path, notice: "Le sujet non marque comme traite"
+				redirect_to subjects_path, notice: "Le sujet n'a pas été marqué comme traité"
 			end
 		end
 	end

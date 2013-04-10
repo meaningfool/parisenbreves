@@ -2,7 +2,7 @@
 <%= form_for [@breve, @comment], html: {multipart: true, class: "comment-form"} do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="control-group">
-		<div class="controls">
+		<div class="controls clearfix">
 			<%= f.text_area :content, placeholder: "Entrez votre commentaire...", rows: 3 %>
 			<%= f.submit "Commenter", class: "btn btn-primary pull-right" %>
 		</div>

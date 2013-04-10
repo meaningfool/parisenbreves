@@ -38,7 +38,8 @@ h2, h4, a, a:hover {
 
 .navbar-inverse .navbar-inner {
   height: 40px;
-  @include background-image( linear-gradient($main-darker,$main-darker-gradient));
+  @include background-image( linear-gradient($main-darker,$main-darker-gradient)); 
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + $main-darker + "', EndColorStr='" + $main-darker-gradient + "')"; /* IE8 */
   border-color: $main-darker-gradient;
   @include box-shadow(0 0 5px $main-darker-gradient);
 
@@ -83,6 +84,7 @@ footer {
   margin-top: 45px;
   padding-top: 5px;
   @include background-image( linear-gradient($main-darker-gradient,$main-darker));
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + $main-darker-gradient + "', EndColorStr='" + $main-darker + "')"; /* IE8 */
   border-color: $main-darker-gradient;
   color: $grey-light;
 
@@ -236,10 +238,6 @@ footer {
   }
 }
 
-.one-col-item h4{
-  padding-top: 4%;
-}
-
 .one-col-item:hover, .two-col-item:hover{
   @include box-shadow(3px 0 3px 0 $second-dark);
   h4 { color: $second-dark;}
@@ -283,8 +281,11 @@ footer {
         margin-bottom: 10px;
       }
     }
+    .row {
+      margin-left: 0;
+    }
     .row>div {
-      width: 33%;
+      width: 32%;
       display: inline-block;
       text-align: center;
       vertical-align: top;
@@ -525,17 +526,12 @@ footer {
   .control-group {
     margin-bottom: 20px;
     .controls {
-      @include display-box;
-      @include box-orient(vertical);
-
       textarea {
         margin-bottom: 10px;
       }
     }
   }
   .comment {
-    @include display-box;
-    @include box-orient(vertical);
     padding: 5px 0;
     border-top: solid $grey-light 1px;
     .comment:first-child {
@@ -752,14 +748,18 @@ input {
 }
 .help {
   text-align: center;
+  th {
+    font-weight: normal;
+    vertical-align: top;
+  }
   h3 {
     font-size: 1.7em;
-    height: 2.5em;
     margin-bottom: 20px;
   }
   p {
     text-align: left;
-    height: 13em;
     margin-bottom: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
   }
 }

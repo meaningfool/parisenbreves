@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class UsersController < ApplicationController
 	load_and_authorize_resource
 
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
 		if @user.save
 			@user.reload
 			sign_in @user
-  			flash[:success] = "Welcome to the Sample App!"
+  			flash[:success] = "Bienvenue sur Paris en brèves"
 			redirect_to @user
 		else
 			flash.now[:error] = 'Formulaire incomplet'
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
 		if @user.save
 			@user.reload
 			sign_in @user
-  			flash[:success] = "Welcome to the Sample App!"
+  			flash[:success] = "Modifications enregistrées"
 			redirect_to @user
 		else
 			flash.now[:error] = 'Formulaire incomplet'

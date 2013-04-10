@@ -51,21 +51,36 @@
 			<div class="span12">
 				<div class="row">
 					<h2>Je ne pense pas pouvoir aider parce que...</h2>
-					<div class="span4">
-						<h3>Je n'aime pas écrire</h3>
-						<p>Mais vous connaissez peut-être des histoires qui pourraient servir à la rédaction de brèves. Vous connaissez des livres ou des sites web dont les contributeurs pourraient s'emparer. Alimentez Paris en brèves de vos idées en créant des Sujets. Il vous suffit de fournir les contenus brut ou les sources et d'autres continueront le travail.</p>
-						<%= link_to "Voir la liste des Sujets", subjects_path, class: "btn" %>
-					</div>
-					<div class="span4">
-						<h3>Je n'ai pas d'idée</h3>
-						<p>Vous avez envie d'écrire mais vous ne connaissez pas bien Paris. Alors consultez la liste des sujets proposés : trouvez un lieu et un histoire à raconter et créez un brouillon. Si vous n'arrivez pas à faire court au premier essai ce n'est pas grave. C'est dans l'esprit collaboratif du projet : d'autres contributeurs repasseront après vous pour améliorer la brève jusqu'à ce qu'elle soit publiable.</p>
-						<%= link_to "Voir la liste des Sujets", subjects_path, class: "btn" %>
-					</div>
-					<div class="span4">
-						<h3>Je ne sais pas raconter</br> une histoire</h3>
-						<p>Vous avez du mal à identifier un lieu et une histoire à raconter ? Tournez-vous vers les Brouillons : modifiez la formulation pour les rendre plus claires, simplifiez-les pour les rendre plus courtes, apportez du contexte, corrigez les fautes d'orthographe. Ou plus simplement participez à la discussion, donnez votre avis pour aider les autres contributeurs à améliorer la brève.</p>
-						<%= link_to "Voir la liste des Brouillons", drafts_path, class: "btn" %>
-					</div>
+					<table>
+						<tr>
+							<th><h3>Je n'aime pas écrire</h3></th>
+							<th><h3>Je n'ai pas d'idée</h3></th>
+							<th><h3>Je ne sais pas raconter</br> une histoire</h3></th>
+						</tr>
+						<tr>
+							<th>
+								<p>Mais vous connaissez peut-être des histoires qui pourraient servir à la rédaction de brèves. Vous connaissez des livres ou des sites web dont les contributeurs pourraient s'emparer. Alimentez Paris en brèves de vos idées en créant des Sujets. Il vous suffit de fournir les contenus brut ou les sources et d'autres continueront le travail.</p>
+							</th>
+							<th>
+								<p>Vous avez envie d'écrire mais vous ne connaissez pas bien Paris. Alors consultez la liste des sujets proposés : trouvez un lieu et un histoire à raconter et créez un brouillon. Si vous n'arrivez pas à faire court au premier essai ce n'est pas grave. C'est dans l'esprit collaboratif du projet : d'autres contributeurs repasseront après vous pour améliorer la brève jusqu'à ce qu'elle soit publiable.</p>
+							</th>
+							<th>
+								<p>Vous avez du mal à identifier un lieu et une histoire à raconter ? Tournez-vous vers les Brouillons : modifiez la formulation pour les rendre plus claires, simplifiez-les pour les rendre plus courtes, apportez du contexte, corrigez les fautes d'orthographe. Ou plus simplement participez à la discussion, donnez votre avis pour aider les autres contributeurs à améliorer la brève.</p>
+							</th>
+						</tr>
+						<tr>
+							<th>
+								<%= link_to "Voir la liste des Sujets", subjects_path, class: "btn" %>
+							</th>
+							<th>
+								<%= link_to "Voir la liste des Sujets", subjects_path, class: "btn" %>
+							</th>
+							<th>
+								<%= link_to "Voir la liste des Brouillons", drafts_path, class: "btn" %>
+							</th>
+						</tr>
+					</table>
+					
 				</div>
 			</div>
 		</div>

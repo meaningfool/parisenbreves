@@ -63,6 +63,18 @@
 				<%= f.file_field :photo %>
 			</div>
 		</div>
+		<div class="control-group">
+			<%= f.label "Crédit photo", class: "control-label", for: "breve_photo_credit_name" %>
+			<div class="controls">
+				<%= f.text_field :photo_credit_name %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label "URL du crédit photo", class: "control-label", for: "breve_photo_credit_URL" %>
+			<div class="controls">
+				<%= f.text_field :photo_credit_URL %>
+			</div>
+		</div>
 	<% end %>
 	<div class="control-group">
 		<div class="controls">

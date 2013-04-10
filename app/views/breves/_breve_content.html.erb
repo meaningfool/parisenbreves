@@ -1,6 +1,7 @@
 <div class="text-content">
 	<p class='description'><%= @breve.description %></p>
-	<a class='source' href="<%= @breve.source_URL %>"><%= @breve.source_name %></a>
+	<p>Source : <a class='source' href="<%= @breve.source_URL %>"><%= @breve.source_name %></a></p>
+	<p>Crédit photo : <a class='source' href="<%= @breve.photo_credit_URL %>"><%= @breve.photo_credit_name %></a></p>
 	<span class='latitude' id='breve_latitude'><%= @breve.latitude %></span>
 	<span class='longitude' id='breve_longitude'><%= @breve.longitude %></span>
 	<div class="action">

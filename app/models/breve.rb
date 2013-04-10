@@ -1,5 +1,5 @@
 class Breve < ActiveRecord::Base
-  attr_accessible :description, :title, :location, :source_name, :source_URL, :latitude, :longitude, :photo, :status
+  attr_accessible :description, :title, :location, :source_name, :source_URL, :latitude, :longitude, :photo, :photo_credit_name, :photo_credit_URL, :status
   has_many :comments, dependent: :destroy
 
   scope :published, where(:status => "published" )
@@ -16,6 +16,7 @@ class Breve < ActiveRecord::Base
   validates :location, :length => { :maximum => 100 }
   validates :description, :length => { :maximum => 2000 }
   validates :source_name, :length => { :maximum => 100 }
+  validates :photo_credit_name, :length => { :maximum => 100 }
 
   validates :latitude, presence: true
   validates :latitude, numericality: true
