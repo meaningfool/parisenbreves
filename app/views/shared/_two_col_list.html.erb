@@ -11,7 +11,11 @@
 							<% end %>
 							<p><%= truncate item.description, length: 600 %></p>
 							<% time = item.updated_at %>
-							<span>Updated <%= distance_of_time_in_words_to_now(time, include_seconds = false) %> ago</span>
+							<% if @search_type && @search_type == 'location' %>
+								<span class="date">A <%= (Geocoder::Calculations.distance_between(@reference_point, [item.latitude, item.longitude])*1000).floor %> mètres</span>
+							<% else %>
+								<span>Updated <%= distance_of_time_in_words_to_now(time, include_seconds = false) %> ago</span>
+							<% end %>
 						</div>
 					<% end %>
 				<% end %>

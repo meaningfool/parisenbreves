@@ -7,6 +7,8 @@
           <li><%= link_to "Accueil", root_path, :id => "home", :class => "#{request.path == root_path ? 'active' : ''}" %></li>
           <li><%= link_to "Brèves", published_path, :id => "content", :class => "#{request.path == published_path ? 'active' : ''}" %></li>
           <li><%= link_to "Contribuer", contribute_path, :id => "contribute", :class => "#{request.path == contribute_path ? 'active' : ''}" %></li>
+          <li><%= link_to "Carte", map_path, :id => "map", :class => "#{request.path == map_path ? 'active' : ''}" %></li>
+          <li><%= link_to "Recherche", search_path, :id => "search", :class => "#{request.path == search_path ? 'active' : ''}" %></li>
         </ul>
 
         <ul class="nav pull-right">

@@ -1,0 +1,7 @@
+<div class="container search">
+	<% if @content.any? && @content_type == 'published' %>	
+		<%= render :partial => 'shared/one_col_list' %>
+	<% else %>
+		<%= render :partial => 'shared/two_col_list' %>
+	<% end %>
+</div>

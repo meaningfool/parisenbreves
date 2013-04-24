@@ -16,19 +16,19 @@
 					<div>
 						<ul class="breadcrumb">
 							<li class="<%= content_type == 'subject' ? 'active' : '' %>">
-								<%= link_to subjects_path, :class => "#{content_type == 'subject' ? 'active' : ''}"  do %>
+								<%= link_to subjects_path  do %>
 									<h5>Sujets</h5>
 								<% end %>
 								<span class="divider">></span>
 							</li>
-							<li>
-								<%= link_to drafts_path, :class => "#{(content_type == 'drafts' || content_type == 'draft') ? 'active' : ''}" do %>
+							<li class="<%= (content_type == 'drafts' || content_type == 'draft') ? 'active' : '' %>">
+								<%= link_to drafts_path do %>
 									<h5>Brouillons</h5>
 								<% end %>
 								<span class="divider">></span>
 							</li>
-							<li>
-								<%= link_to published_path, :class => "#{content_type == 'published' ? 'active' : ''}" do %>
+							<li class="<%= content_type == 'published' ? 'active' : '' %>">
+								<%= link_to published_path do %>
 									<h5>Brèves</h5>
 								<% end %>
 							</li>

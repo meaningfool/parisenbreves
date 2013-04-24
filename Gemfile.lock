@@ -117,6 +117,9 @@ GEM
     formtastic (2.2.1)
       actionpack (>= 3.0)
     geocoder (1.1.6)
+    gon (4.0.2)
+      actionpack (>= 2.3.0)
+      json
     google-analytics-rails (0.0.4)
     guard (1.6.2)
       listen (>= 0.6.0)
@@ -302,6 +305,7 @@ DEPENDENCIES
   faker
   font-awesome-rails
   geocoder
+  gon
   google-analytics-rails
   guard-rspec
   html5shiv-rails

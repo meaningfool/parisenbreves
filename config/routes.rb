@@ -5,6 +5,8 @@ Parisenbreves::Application.routes.draw do
   root :to => 'static_pages#home'
 
   match '/contribuer', to: 'static_pages#contribute', as: 'contribute'
+  get '/carte' => 'static_pages#map', as: 'map'
+  get '/recherche' => 'static_pages#search', as: 'search'
 
 
   resources :breves do 
