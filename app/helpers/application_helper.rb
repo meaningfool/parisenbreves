@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module ApplicationHelper
 
 	def parent_layout(layout)
@@ -40,6 +41,14 @@ module ApplicationHelper
 
 		return history
 
+	end
+
+	def peb_image_tag(item, *args)
+		if item.photo.file?
+			return image_tag item.photo.url(args[0])
+		else
+			render :partial => "shared/missing_photo", :locals => {:size => args[0]}
+		end	
 	end
 
 end

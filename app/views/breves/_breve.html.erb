@@ -1,5 +1,5 @@
 <% if @breve.status == "published" %>
-	<%= image_tag @breve.photo.url(:large) %>
+	<div class="breve-image-wrap"><%= peb_image_tag @breve, :large  %></div>
 <% end %>
 <h2 class='title'><%= @breve.title %></h2>
 <span class='location'><%= @breve.location %></span>

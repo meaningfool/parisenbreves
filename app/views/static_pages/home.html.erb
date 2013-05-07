@@ -4,7 +4,7 @@
             <div class="carousel-inner">
                 <% @carousel_features.each_with_index do |breve, index| %>
                     <div class="item <%= index == 0 ? 'active' : '' %>"><!-- class of active since it's the first item -->
-                        <%= image_tag breve.photo.url(:large) %>
+                        <%= peb_image_tag breve, :large  %>
                         <div class="carousel-breve">
                             <h2><%= breve.title %></h2>
                             <span><%= breve.location %></span>
@@ -39,7 +39,7 @@
                     <li class="span3">
                         <%= link_to breve do %>
                         <div class='thumbnail'>
-                            <%= image_tag breve.photo.url(:medium) %>
+                            <%= peb_image_tag breve, :medium %>
                             <h4><%= breve.title %></h4>
                             <span><%= breve.location %></span>
                         </div>

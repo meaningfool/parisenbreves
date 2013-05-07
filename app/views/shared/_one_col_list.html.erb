@@ -1,10 +1,14 @@
+<% content_for(:head) do %>
+	<%= javascript_include_tag 'one_col_list' %>
+<% end %>
+
 <% @content.each do |item| %>
 	<div class="row">
 		<%= link_to item do %> 
 			<div class="one-col-item span10 offset1">	
 				<div class="row">
-					<div class="span4">
-						<%= image_tag item.photo.url(:medium) %>
+					<div class="span4">	
+						<%= peb_image_tag item, :medium %>
 					</div>
 					<div class="span6">
 						<h4><%= item.title %></h4>

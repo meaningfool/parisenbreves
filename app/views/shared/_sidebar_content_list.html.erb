@@ -1,10 +1,13 @@
+<% content_for(:head) do %>
+	<%= javascript_include_tag 'sidebar_list' %>
+<% end %>
 <ul class="sidebar-list">
 	<% content.each do |item| %>
 		<li>		
 			<%= link_to item do %> 
 				<div class="item">
-					<% if type == 'published' %>
-						<%= image_tag item.photo.url(:thumb) %>
+					<% if type == 'published' || type == 'draft' %>
+						<div class="sb-image-wrapper"><%= peb_image_tag item, :thumb  %></div>
 					<% end %>
 					<div class="item-text">
 						<h5><%= item.title %></h5>
