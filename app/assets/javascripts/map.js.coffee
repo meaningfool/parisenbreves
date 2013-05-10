@@ -6,7 +6,7 @@ $(document).ready ->
 initialize = ->
   mapOptions =
     zoom: 14
-    center: new google.maps.LatLng '48.855', '2.333'
+    center: new google.maps.LatLng '48.86', '2.34'
     mapTypeId: google.maps.MapTypeId.ROADMAP
     disableDefaultUI: true
     draggable: true
@@ -43,7 +43,10 @@ initialize = ->
 
 makePublishedWindowEvent = (map, infowindow, breve, marker) ->
   google.maps.event.addListener marker, "click", ->
-    content = "<div class='published_window'><img src='" + breve.photo_file_name + "'></img><a href='" + gon.root + "breves/" + breve.id + "'><h4>" + breve.title + "</h4></a></div>"
+    if breve.photo_file_size != null
+      content = "<div class='published_window'><div class='map-image-wrapper'><img src='" + breve.photo_file_name + "'></img></div><a href='" + gon.root + "breves/" + breve.id + "'><h4>" + breve.title + "</h4></a></div>"
+    else
+      content = "<div class='published_window'><div class='map-image-wrapper'><div class='missing-photo thumb'><span>.illustration_attendue</span></div></div><a href='" + gon.root + "breves/" + breve.id + "'><h4>" + breve.title + "</h4></a></div>"
     infowindow.setContent content
     infowindow.open map, marker
 

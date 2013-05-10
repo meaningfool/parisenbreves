@@ -11,15 +11,18 @@
 						<%= peb_image_tag item, :medium %>
 					</div>
 					<div class="span6">
-						<h4><%= item.title %></h4>
-						<span><%= item.location %></span>
-						<p><%= truncate item.description, length: 400 %></p>
-						<% time = item.updated_at %>
-						<% if @search_type && @search_type == 'location' %>
-							<span class="date">A <%= (Geocoder::Calculations.distance_between(@reference_point, [item.latitude, item.longitude])*1000).floor %> mètres</span>
-						<% else %>
-							<span>Updated <%= distance_of_time_in_words_to_now(time, include_seconds = false) %> ago</span>
-						<% end %>
+						<div class"centered">
+							<h4><%= item.title %></h4>
+							<span><%= item.location %></span>
+							<p><%= truncate item.description, length: 400 %></p>
+							<% time = item.updated_at %>
+							<% if @search_type && @search_type == 'location' %>
+								<span class="date">A <%= (Geocoder::Calculations.distance_between(@reference_point, [item.latitude, item.longitude])*1000).floor %> mètres</span>
+							<% else %>
+								<span>Updated <%= distance_of_time_in_words_to_now(time, include_seconds = false) %> ago</span>
+							<% end %>
+						</div>
+							
 					</div>
 				</div>
 			</div>

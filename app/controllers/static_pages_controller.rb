@@ -30,7 +30,7 @@ class StaticPagesController < ApplicationController
 
 	def map
 		@published = Breve.where("status='published'")
-		@published.map{|k,v| k.photo_file_name = k.photo.url(:medium) }
+		@published.map{|k,v| k.photo_file_name = k.photo.url(:thumb) }
 		gon.root = root_url
 		gon.published = @published
 		gon.draft = Breve.where("status='draft'")

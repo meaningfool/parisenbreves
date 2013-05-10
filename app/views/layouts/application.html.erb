@@ -17,9 +17,9 @@
 		<%= analytics_init if Rails.env.production? %>
 		<%= yield(:head) %>
 	</head>
-	<body>	
+	<body class="<%= request.path==root_path || request.path == map_path ? 'full-screen' : '' %>">	
 		<%= render 'layouts/header' %>
-		<% if request.path != map_path %>
+		<% if request.path != map_path && request.path != root_path %>
 			<div id="main" role="main">
 				<div class="container">
 					<div class="row">

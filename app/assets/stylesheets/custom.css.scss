@@ -70,6 +70,17 @@ h2, h4, a, a:hover {
   height: 80px;
 }
 
+.map-image-wrapper {
+  height: 80px;
+  width: 120px;
+  float: left;
+  overflow: hidden;
+  img {
+    max-width: 150%;
+    max-height: 150%;
+  }
+}
+
 /* header */
 
 .navbar-inverse .navbar-inner {
@@ -136,100 +147,127 @@ footer {
 
 /* Home page */
 
-.content_link {
-  text-align: center;
-  font-size: 20px;
+body.full-screen {
+  padding: 0;
 }
 
-.carousel-inner {
-  
-  .item {
-    height: 780px;
-    overflow: hidden;
-    background-color: $grey-light;
-    img {
-      max-height: 150%;
-      max-width: 150%
+.carousel {
+  height: 100%;
+  .carousel-inner {
+    height: 100%;
+    .item {
+      background-color: $grey-standard;
+      overflow: hidden;
+      height: 100%;
+      img {
+        max-height: 150%;
+        max-width: 150%
+      }
     }
+    
+
+    .carousel-breve {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      padding: 60px 40px 20px 20px;
+      height: 100%;
+      width: 30%;
+      background: #333333;
+      background: rgba(0, 0, 0, 0.6);
+
+
+      h2 {
+        color: #fff;
+        font-size: 2.2em;
+        margin-bottom: 40px;
+        margin-right: 100px;
+        text-align: left;
+        letter-spacing: 0.05em;
+        line-height: 1.3em;
+      }
+
+      span {
+        display: block;
+        color: #eee;
+        font-size: 1.6em;
+        margin-bottom: 40px;
+        letter-spacing: 0.1em;
+      }
+
+      p {
+        color: #eee;
+        font-size: 1.3em;
+        letter-spacing: 0.1em;
+        margin-right: 20px;
+      }
+        
+    }   
   }
 
-  .carousel-breve {
-  position: absolute;
-  top: 20px;
-  right: 50px;
-  bottom: 140px;
-  padding: 30px 20px;
-  width: 30%;
-  background: #333333;
-  background: rgba(0, 0, 0, 0.6);
-  box-shadow: 10px 10px 10px #888;
-
-
-  h2 {
-    color: #fff;
-    font-size: 2.2em;
-    margin-bottom: 40px;
-    text-align: left;
-    letter-spacing: 0.05em;
-    line-height: 1.3em;
-  }
-
-  span {
-    display: block;
-    color: #eee;
-    font-size: 1.4em;
-    margin-bottom: 40px;
-    letter-spacing: 0.1em;
-  }
-
-  p {
-    color: #eee;
-    font-size: 1.2em;
-    letter-spacing: 0.1em;
-  }
-}
-}
-
-
-.carousel-principes {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 10px;
-  background: #333333;
-  background: rgba(0, 0, 0, 0.75);
-  font-size: 1.3em;
-
-    div {
-      float: left;
-      width: 33%;
-      text-align: center;
-    }
-    span {
-    color: #fff;
-  }
-
-  i, .creative-commons {
-    color: #fff;
-    font-size: 2em;
-  }
-  .creative-commons {
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  .principes-icons {
-    margin-bottom: 5px;
+  .content_link {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    width: 100px;
+    padding: 10px 10px;
+    background-color: $main-darker;
     text-align: center;
-    width: 100%;
+    font-size: 1em;
+      display: block;
+      color: #fff; 
   }
 
-  .principes-text{
-    line-height: 1.2em;
-  }
+  .carousel-principes {
+    padding: 10px;
+    font-size: 1em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 
+      &>div {
+        float: left;
+        text-align: center;
+        width: 100px;
+        height: 80px;
+        margin-right: 10px;
+        padding: 10px 5px;
+        background-color: $second-dark;
+      }
+      &>div:first-child {
+        float: none;
+        margin-bottom: 10px;
+      }
+      span {
+      color: #fff;
+    }
+
+    i, .creative-commons {
+      color: #fff;
+      font-size: 1em;
+    }
+    .creative-commons {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .principes-icons {
+      margin-bottom: 5px;
+      text-align: center;
+      width: 100%;
+      span {
+        display: inline;
+      }
+    }
+
+    .principes-text{
+      line-height: 1.2em;
+      font-size: 0.8em;
+    }
+  }
 }
+
+           
 
 .carousel-control {
   border: 0;
@@ -261,6 +299,17 @@ footer {
   span {
     color: $grey-dark;
   }
+  .span6:before {
+      content: '';
+      display: inline-block;
+      height: 100%; 
+      vertical-align: middle;
+      margin-right: -0.25em; /* Adjusts for spacing */
+  }
+  .centered {
+    display: inline-block;
+    vertical-align: middle;
+ }
 }
 
 .thumbnail {
@@ -277,6 +326,7 @@ footer {
   .span4 {
     height: 247px;
     overflow: hidden;
+    background-color: $grey-standard;
     img {
       max-height: 150%;
       max-width: 150%
@@ -332,13 +382,9 @@ footer {
 }
 
 #map_page .published_window {
-  img {
-    width: 40%;
-    float: left;
-  }
   h4 {
-    max-width: 56%;
-    margin: 0 2%;
+    max-width: 200px;
+    margin: 0 10px;
     float: left;
   }
 }

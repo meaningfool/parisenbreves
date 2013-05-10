@@ -1,54 +1,46 @@
-<div class="container">
-    <div class="row">
-        <div id="this-carousel-id" class="carousel slide span12" data-interval="8000"><!-- class of slide for animation -->
+<% content_for(:head) do %>
+    <%= javascript_include_tag 'home' %>
+<% end %>
+
+        <div id="this-carousel-id" class="carousel slide" data-interval="8000"><!-- class of slide for animation -->
             <div class="carousel-inner">
-                <% @carousel_features.each_with_index do |breve, index| %>
-                    <div class="item <%= index == 0 ? 'active' : '' %>"><!-- class of active since it's the first item -->
-                        <%= peb_image_tag breve, :large  %>
-                        <div class="carousel-breve">
-                            <h2><%= breve.title %></h2>
-                            <span><%= breve.location %></span>
-                            <p><%= breve.description %></p>
+                    <% @carousel_features.each_with_index do |breve, index| %>
+                        <div class="item <%= index == 0 ? 'active' : '' %>"><!-- class of active since it's the first item -->
+                            <%= peb_image_tag breve, :large  %>
+                            <div class="carousel-breve">
+                                <div class="breve-item">
+                                <h2><%= breve.title %></h2>
+                                <span><%= breve.location %></span>
+                                <p><%= breve.description %></p>
+                                </div>
+                                
+                            </div>
+
                         </div>
-                    </div>
-                <% end %>
+                    <% end %>  
+                                   
             </div><!-- /.carousel-inner -->
+            <%= link_to "Voir l'ensemble des brèves", published_path, :class => "content_link" %>
+
             <div class="carousel-principes">
                 <div>
-                    <div class="principes-icons"><i class='icon-quote-left'></i><span> ... </span><i class='icon-quote-right'></i></div></br>
+                    <div class="principes-icons"><i class='icon-quote-left'></i><span> ... </span><i class='icon-quote-right'></i></div>
                     <span class="principes-text">Les imaginaires des lieux de Paris racontés... en brèves</span>
                 </div>
                 <div>
-                    <div class="principes-icons"><i class='icon-group'></i></div></br>
+                    <div class="principes-icons"><i class='icon-group'></i></div>
                     <span class="principes-text">Un projet associatif et contributif.</br>Rejoignez-nous !</span>
                 </div>
                 <div>
                     <span class="creative-commons">CC</span>
                     <span class="principes-text">Des contenus sous licence</br>Creative Commons</span>
                 </div>
-            </div>
+            </div> 
+               
           <!--  Next and Previous controls below
                 href values must reference the id for this carousel -->
             <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
             <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
         </div><!-- /.carousel -->
 
-        <div class="span12">
-            <ul class='thumbnails'>
-                <% @secondary_features.each do |breve| %>
-                    <li class="span3">
-                        <%= link_to breve do %>
-                        <div class='thumbnail'>
-                            <%= peb_image_tag breve, :medium %>
-                            <h4><%= breve.title %></h4>
-                            <span><%= breve.location %></span>
-                        </div>
-                        <% end %>
-                    </li>
-                <% end %>
-            </ul>
-        </div>
-        <div class="span12 content_link"><%= link_to "Voir l'ensemble des brèves", published_path  %></a></div>
-    </div>
-</div>
         

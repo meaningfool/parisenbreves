@@ -14,10 +14,11 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-lightbox
+//= require jquery.imagesloaded
 
 $(document).ready(function(){
     $('.carousel').carousel({
-    	interval: 8000
+    	interval: 20000
     });
     $('.dropdown-toggle').dropdown()
   });
