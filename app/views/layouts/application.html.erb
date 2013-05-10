@@ -14,7 +14,6 @@
   			<%= javascript_include_tag 'html5shiv-printshiv' %>
 		<![endif]-->
 		<%= csrf_meta_tags %>
-		<%= analytics_init if Rails.env.production? %>
 		<%= yield(:head) %>
 	</head>
 	<body class="<%= request.path==root_path || request.path == map_path ? 'full-screen' : '' %>">	

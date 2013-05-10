@@ -86,9 +86,9 @@ Parisenbreves::Application.configure do
       :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
-  # Google Analytics Tracker  
-  GA.tracker = "UA-22151227-1"
   } 
 
+  # Configure Rack::GoogleAnalytics
+  config.middleware.use("Rack::GoogleAnalytics", :web_property_id => "UA-22151227-1")
   
 end

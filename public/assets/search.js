@@ -1,0 +1,1 @@
+(function(){$(document).ready(function(){return $(".search-form").find("select").bind("change",function(){return $(this).closest("form").trigger("submit")})})}).call(this);
