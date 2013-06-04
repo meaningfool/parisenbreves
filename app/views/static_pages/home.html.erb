@@ -23,18 +23,24 @@
             <%= link_to "Voir l'ensemble des brèves", published_path, :class => "content_link" %>
 
             <div class="carousel-principes">
-                <div>
-                    <div class="principes-icons"><i class='icon-quote-left'></i><span> ... </span><i class='icon-quote-right'></i></div>
-                    <span class="principes-text">Les imaginaires des lieux de Paris racontés... en brèves</span>
-                </div>
-                <div>
-                    <div class="principes-icons"><i class='icon-group'></i></div>
-                    <span class="principes-text">Un projet associatif et contributif.</br>Rejoignez-nous !</span>
-                </div>
-                <div>
-                    <span class="creative-commons">CC</span>
-                    <span class="principes-text">Des contenus sous licence</br>Creative Commons</span>
-                </div>
+                <%= link_to contribute_path do %>
+                    <div>
+                        <div class="principes-icons"><i class='icon-quote-left'></i><span> ... </span><i class='icon-quote-right'></i></div>
+                        <span class="principes-text">Les imaginaires des lieux de Paris racontés... en brèves</span>
+                    </div>
+                <% end %>
+                <%= link_to contribute_path do %>
+                    <div>
+                        <div class="principes-icons"><i class='icon-group'></i></div>
+                        <span class="principes-text">Un projet associatif et contributif.</br>Rejoignez-nous !</span>
+                    </div>
+                <% end %>
+                <%= link_to contribute_path do %>    
+                    <div>
+                        <span class="creative-commons">CC</span>
+                        <span class="principes-text">Des contenus sous licence</br>Creative Commons</span>
+                    </div>
+                <% end %>   
             </div> 
                
           <!--  Next and Previous controls below

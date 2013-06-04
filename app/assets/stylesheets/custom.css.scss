@@ -225,7 +225,7 @@ body.full-screen {
     bottom: 0;
     left: 0;
 
-      &>div {
+      &>a>div {
         float: left;
         text-align: center;
         width: 100px;
@@ -234,7 +234,7 @@ body.full-screen {
         padding: 10px 5px;
         background-color: $second-dark;
       }
-      &>div:first-child {
+      &>a:first-child>div {
         float: none;
         margin-bottom: 10px;
       }
