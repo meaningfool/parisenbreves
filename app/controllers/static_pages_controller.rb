@@ -4,8 +4,9 @@ class StaticPagesController < ApplicationController
 
 	def home
 		carousel_features_number = 15
-		featured_breves = Breve.where("status='published'").order("random()").limit(carousel_features_number)
+		featured_breves = Breve.where("status='published' AND photo_file_name IS NOT NULL").order("random()").limit(carousel_features_number)
 		#featured_breves = Breve.where("status='published'").order("updated_at DESC").limit(carousel_features_number+8)
+		#binding.pry
 		@carousel_features = featured_breves
 	end
 
