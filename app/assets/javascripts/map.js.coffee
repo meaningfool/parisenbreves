@@ -4,6 +4,7 @@ $(document).ready ->
 
 
 initialize = ->
+  $("#map_page").css 'height', $(window).height()-40
   mapOptions =
     zoom: 14
     center: new google.maps.LatLng '48.86', '2.34'

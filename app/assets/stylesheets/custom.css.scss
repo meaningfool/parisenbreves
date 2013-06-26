@@ -83,16 +83,19 @@ h2, h4, a, a:hover {
 
 /* header */
 
+.navbar-fixed-top {
+  margin: 0;
+  position: static;
+}
+
 .navbar-inverse .navbar-inner {
-  height: 40px;
   @include background-image( linear-gradient($main-darker,$main-darker-gradient)); 
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + $main-darker + "', EndColorStr='" + $main-darker-gradient + "')"; /* IE8 */
-  border-color: $main-darker-gradient;
-  @include box-shadow(0 0 5px $main-darker-gradient);
+  border: none;
 
   .nav > li > a {
     color: $main-light;
-    padding: 10px 0 10px 15px;
+    padding: 10px 0 8px 15px;
     &.active, &:hover {
       color: $grey-lighter;
     }
@@ -147,40 +150,158 @@ footer {
 
 /* Home page */
 
-body.full-screen {
+body{
   padding: 0;
 }
 
-.carousel {
-  height: 100%;
-  .carousel-inner {
-    height: 100%;
-    .item {
-      background-color: $grey-standard;
-      overflow: hidden;
-      height: 100%;
-      img {
-        max-height: 150%;
-        max-width: 150%
+#home-wrapper {
+  background-color: #000;
+  overflow: auto;
+  .container{
+    position: relative;
+  }
+}
+.item.home-principles {
+  font-size: 1em;
+  line-height: 1em;
+  &>div {
+    float: left !important;
+    &.span6 {
+      text-align: center;
+      &>div {
+        @media screen and (max-width: 979px) {
+          &>div {
+            display: inline-block;
+          }
+        }
       }
     }
+    &.span4 {
+      padding-right: 30px;
+      @media screen and (max-width: 979px) {
+        padding-left: 30px;
+      }
+      @include box-sizing(border-box);
+      &>div {
+        display: inline-block;
+        vertical-align: middle;
+        &:first-child {
+          height: 100%;
+        }
+        &:last-child {
+          font-size: 1.3em;
+          letter-spacing: 0.1em;
+          line-height: 1.5em;
+          color: #eee;
+          width: 98%;
+        }
+      }
+    }
+  }
+  &>div>div {
+    margin-top: 0 !important;
+    &>div>a>div{
+      margin-left: 30px;
+      margin-bottom: 30px;
+      float: right;
+      text-align: center;
+      width: 140px;
+      height: 130px;
+      padding: 10px 5px;
+      background-color: $second-dark;
+    }
+    &:last-child>div>a>div {
+      margin-bottom: 0;
+      background-color: #000;
+      &>i {
+        font-size: 12.5em;
+        margin-left: -5px;
+        margin-top: -22px;
+        color: $second-dark;
+      }
+    }
+  }
     
+  span {
+    color: #fff;
+  }
+
+  i, .creative-commons {
+    color: #fff;
+    font-size: 3em;
+  }
+  .creative-commons {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+
+  .content_link {
+    font-size: 1em;
+  }
+
+  .principles-icon {
+    margin-bottom: 7px;
+  }
+
+  .principles-text{
+    line-height: 1.2em;
+    font-size: 1.1em;
+  }
+}
+
+.carousel {
+    margin-bottom: 20px;
+  .carousel-inner {
+    .item {
+      background-color: #000;
+      height: inherit;
+      &>div {
+        margin-top: 20px;
+        float:none;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .photo-wrapper {
+        overflow: hidden;
+        padding-left: 30px;
+
+        &>div {
+          display: inline-block;
+          vertical-align: middle;
+          height: 100%;
+        }
+        
+        @media screen and (max-width: 979px) {
+          padding-right: 30px;
+        }
+
+        margin: auto;
+        text-align: center;
+        img {
+          max-width: 99%;
+          border: 5px solid  #fff;
+          @include box-sizing(border-box);
+        }  
+      }
+        
+    }
+  
 
     .carousel-breve {
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      padding: 60px 40px 20px 20px;
       height: 100%;
-      width: 30%;
-      background: #333333;
-      background: rgba(0, 0, 0, 0.6);
-
+      .breve-item {
+        padding-right: 30px; 
+        @media screen and (max-width: 979px) {
+          padding-left: 30px;
+        }
+      }
 
       h2 {
         color: #fff;
         font-size: 2.2em;
         margin-bottom: 40px;
+        margin-top: 0;
         margin-right: 100px;
         text-align: left;
         letter-spacing: 0.05em;
@@ -201,70 +322,22 @@ body.full-screen {
         letter-spacing: 0.1em;
         margin-right: 20px;
       }
-        
-    }   
-  }
-
-  .content_link {
-    position: absolute;
-    top: 70px;
-    right: 20px;
-    width: 100px;
-    padding: 10px 10px;
-    background-color: $main-darker;
-    text-align: center;
-    font-size: 1em;
-      display: block;
-      color: #fff; 
-  }
-
-  .carousel-principes {
-    padding: 10px;
-    font-size: 1em;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
-      &>a>div {
-        float: left;
+      
+      .content-link {
+        float: right;
         text-align: center;
         width: 100px;
         height: 80px;
-        margin-right: 10px;
         padding: 10px 5px;
-        background-color: $second-dark;
-      }
-      &>a:first-child>div {
-        float: none;
-        margin-bottom: 10px;
-      }
-      span {
-      color: #fff;
-    }
-
-    i, .creative-commons {
-      color: #fff;
-      font-size: 1em;
-    }
-    .creative-commons {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .principes-icons {
-      margin-bottom: 5px;
-      text-align: center;
-      width: 100%;
-      span {
-        display: inline;
-      }
-    }
-
-    .principes-text{
-      line-height: 1.2em;
-      font-size: 0.8em;
-    }
-  }
+        background-color: $main-darker;
+        span {
+          margin: 0;
+          font-size: 1.3em;
+          margin-top: 12px;
+        }
+      }    
+    }   
+  }   
 }
 
            
@@ -273,9 +346,9 @@ body.full-screen {
   border: 0;
   border-radius: 0;
   width: 30px;
-  top: 45%;
+  top: 49%;
   margin-top: 0;
-  
+  background: #000;
 }
 .carousel-control.left { 
     left:0;
