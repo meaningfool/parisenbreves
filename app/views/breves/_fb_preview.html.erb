@@ -1,0 +1,8 @@
+<meta property="og:title" content="<%= @breve.title %>" />
+<meta property="og:type" content="article" />
+<% if @breve.photo.file? %>
+	<meta property="og:image" content="<%= @breve.photo.url(:thumb) %>" />
+<% else %>
+	<meta property="og:image" content="https://s3.amazonaws.com/paris_en_breves/static-assets/Alexander+III2.jpg" />
+<% end %>
+<meta property="og:description" content="<%= @breve.description %>" />

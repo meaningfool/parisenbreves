@@ -1,5 +1,6 @@
 <% content_for(:head) do %>
     <%= javascript_include_tag 'home' %>
+    <%= render :partial => 'shared/fb_preview' %>
 <% end %>
 
 <div id="home-wrapper">
@@ -15,7 +16,9 @@
                                 <div class="span7">
                                     <div class="photo-wrapper">
                                         <div> </div>
-                                        <%= peb_image_tag breve, :large  %>
+                                        <%= link_to breve do %>
+                                            <%= peb_image_tag breve, :large  %>
+                                        <% end %>
                                     </div>
                                 </div><div class="carousel-breve span5">
                                     <div class="breve-item">
@@ -24,9 +27,11 @@
                                                     <span class="content_link">Voir l'ensemble des brèves</span>
                                                 </div>
                                             <% end %>
-                                        <h2><%= breve.title %></h2>
-                                        <span><%= breve.location %></span>
-                                        <p><%= breve.description %></p>
+                                        <%= link_to breve do %>
+                                            <h2><%= breve.title %></h2>
+                                            <span><%= breve.location %></span>
+                                            <p><%= breve.description %></p>
+                                        <% end %>
                                     </div>                                        
                                 </div>
                             </div>

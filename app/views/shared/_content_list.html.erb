@@ -1,3 +1,6 @@
+<% content_for(:head) do %>
+	<%= render :partial => 'shared/fb_preview' %>
+<% end %>
 <div class="container">
 	<% if @content.any? %>	
 			<% if params[:action] == 'published' %>
