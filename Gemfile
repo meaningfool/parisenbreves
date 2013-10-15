@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
-gem 'rails', '3.2.11'
+ruby '2.0.0'
+gem 'rails', '3.2.14'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -21,6 +21,7 @@ gem "font-awesome-rails"
 gem 'bourbon'
 gem 'html5shiv-rails'
 gem 'gon'
+gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -52,7 +53,6 @@ end
 
 group :production do
 	gem 'pg'
-	gem 'thin'
 	gem 'pgbackups-archive'
 	gem 'rack-google_analytics', :require => "rack/google_analytics"
 end
