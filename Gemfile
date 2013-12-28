@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.0.0'
-gem 'rails', '3.2.14'
+gem 'rails', '4.0.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -10,25 +10,25 @@ gem 'bootstrap-sass'
 #gem 'bcrypt-ruby'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-gem 'paper_trail', '~> 2.7-stable'
+gem 'paper_trail', '~> 3.0.0'
 #gem 'paper_trail', :git => 'git://github.com/airblade/paper_trail.git'
 gem 'geocoder'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'cancan'
-gem 'activeadmin'
+gem 'activeadmin', github: 'gregbell/active_admin'
 gem "sass_rails_patch", "~> 0.0.1"
 gem "font-awesome-rails"
 gem 'bourbon'
 gem 'html5shiv-rails'
-gem 'gon'
+gem 'gon','~> 4.1.1'
 gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails'
+  gem 'coffee-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
