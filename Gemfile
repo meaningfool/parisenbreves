@@ -7,10 +7,10 @@ gem 'rails', '3.2.14'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'bootstrap-sass'
-gem 'bcrypt-ruby'
+#gem 'bcrypt-ruby'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-gem 'paper_trail'
+gem 'paper_trail', '~> 2.7-stable'
 #gem 'paper_trail', :git => 'git://github.com/airblade/paper_trail.git'
 gem 'geocoder'
 gem 'paperclip'
@@ -59,7 +59,7 @@ group :production do
 end
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
