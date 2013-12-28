@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   before_save { |user| user.email = user.email.downcase }
   before_save :create_remember_token
 
-  VALID_NAME_REGEX = /^\w+$/i
+  VALID_NAME_REGEX = /\A\w+\z/i
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   ROLES = %w[guest standard editor admin]
 

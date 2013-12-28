@@ -23,18 +23,22 @@ gem 'bourbon'
 gem 'html5shiv-rails'
 gem 'gon','~> 4.1.1'
 gem 'thin'
+gem 'bcrypt-ruby'
+gem "activeresource", "~> 4.0.0"
+gem 'protected_attributes'
+gem 'rails-observers'
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+gem 'sass-rails'
+gem 'coffee-rails'
 
-  gem 'uglifier', '>= 1.0.3'
-end
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer', :platforms => :ruby
+
+gem 'uglifier', '>= 1.0.3'
+
 
 gem 'jquery-rails'
 
@@ -59,7 +63,7 @@ group :production do
 end
 
 # To use ActiveModel has_secure_password
- gem 'bcrypt-ruby', '~> 3.0.0'
+# gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

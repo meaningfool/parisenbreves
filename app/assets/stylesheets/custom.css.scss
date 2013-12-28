@@ -28,6 +28,8 @@ $grey-standard: #AAAAAA;
 $grey-dark: #333333;
 $grey-darker: #222222;
 
+$green: #458B00;
+
 /* universal */
 
 h2, h4, a, a:hover {
@@ -576,7 +578,7 @@ body{
     font-size: 2em;
   }
   .content_count {
-    @include border-radius(5px);
+    border-radius : 5px;
     background-color: #fdfdfd;
     padding: 5px;
     font-weight: bold;
@@ -605,9 +607,9 @@ body{
   li {
     overflow: auto;
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid $grey-lighter;
     &:last-child {
-      border-bottom: 1px solid $grayLighter;
+      border-bottom: 1px solid $grey-lighter;
     }
   }
 
@@ -944,9 +946,9 @@ input {
   li {
     overflow: auto;
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid $grey-lighter;
     &:last-child {
-      border-bottom: 1px solid $grayLighter;
+      border-bottom: 1px solid $grey-lighter;
     }
   }
 }

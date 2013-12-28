@@ -4,7 +4,7 @@ Parisenbreves::Application.routes.draw do
 
   root :to => 'static_pages#home'
 
-  match '/contribuer', to: 'static_pages#contribute', as: 'contribute'
+  get '/contribuer', to: 'static_pages#contribute', as: 'contribute'
   get '/carte' => 'static_pages#map', as: 'map'
   get '/recherche' => 'static_pages#search', as: 'search'
 
@@ -18,12 +18,12 @@ Parisenbreves::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 
-  match '/signup',  to: 'users#new'
-  match '/signin',  to: 'sessions#new'
+  get '/signup',  to: 'users#new'
+  get '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
-  match '/published', to: 'breves#published'
-  match '/drafts', to: 'breves#drafts'
+  get '/published', to: 'breves#published'
+  get '/drafts', to: 'breves#drafts'
 
   post '/versions/:id' => 'versions#revert', as: 'revert_version' 
 
