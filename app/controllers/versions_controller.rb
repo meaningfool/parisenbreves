@@ -7,8 +7,7 @@ class VersionsController < ApplicationController
 		@subject_count = Subject.where("status='active'").count
 		@draft_count = Breve.where("status='draft'").count
 		@published_count = Breve.where("status='published'").count
-		
-		@breve = Version.find(params[:id]).reify
+		@breve = PaperTrail::Version.find(params[:id]).reify
 		@content_type = @breve.status
 		@tab_mode = "version"
 		@reference_point = [@breve.latitude, @breve.longitude]
@@ -28,4 +27,11 @@ class VersionsController < ApplicationController
 		last_version.save!
 		redirect_to @breve, notice: "Rétablissement de la version en date du #{@version.created_at} réussi"
 	end
+
+	private
+	
+		def version_params
+			params.require(:version).permit(:id)
+		end
+
 end
