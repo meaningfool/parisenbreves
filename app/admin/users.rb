@@ -23,14 +23,11 @@ ActiveAdmin.register User do
 		f.inputs "User details" do
 			f.input :name
 			f.input :email
-			# when the following is false the block returns nil
-			unless f.object.persisted?
-				f.input :password
-				f.input :password_confirmation
-			end
+			f.input :password
+			f.input :password_confirmation
 			f.input :role, :as => :select, :collection => ["standard", "editor", "admin"]
 		end
-		f.buttons
+		f.actions
 	end
   	
 end

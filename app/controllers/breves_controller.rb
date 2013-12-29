@@ -12,17 +12,17 @@ class BrevesController < ApplicationController
 	end
 
 	def published	
-		@content = Breve.where("status='published'").order("updated_at DESC").paginate(page: params[:page])
+		@content = Breve.where("status='published'").order("updated_at DESC").paginate(page: page_params[:page])
 		render template: 'shared/_content_list', layout: 'contents'
 	end
 
 	def drafts
-		@content = Breve.where("status='draft'").order("updated_at DESC").paginate(page: params[:page])
+		@content = Breve.where("status='draft'").order("updated_at DESC").paginate(page: page_params[:page])
 		render template: 'shared/_content_list', layout: 'contents'
 	end
 
 	def create 
-		@breve = Breve.new params[:breve]
+		@breve = Breve.new breve_params
 		if !(current_user.role == "editor" || current_user.role == "admin")
 			@breve.status = "draft"
 		end
@@ -54,10 +54,7 @@ class BrevesController < ApplicationController
 	end
 
 	def update
-		if current_user.role == nil || current_user.role == "guest" || current_user.role == "standard"
-			params[:breve][:status] = @breve.status
-		end
-		if @breve.update_attributes params[:breve]
+		if @breve.update_attributes breve_params
 			redirect_to @breve
 		else
 			render 'edit'
@@ -81,5 +78,12 @@ class BrevesController < ApplicationController
 			end
 		end
 
+		def breve_params
+			params.require(:breve).permit(:description, :title, :location, :source_name, :source_URL, :latitude, :longitude, :photo, :photo_credit_name, :photo_credit_URL, :status)
+		end
+
+		def page_params
+			params.permit(:page)
+		end
 
 end

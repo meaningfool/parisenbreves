@@ -4,9 +4,9 @@ class CommentsController < ApplicationController
 
 	def create
 		@comment = Comment.new 
-		@comment.breve_id = params[:breve_id]
+		@comment.breve_id = breve_params
 		@comment.user = current_user
-		@comment.content = params[:comment][:content]
+		@comment.content = comment_params[:content]
 		if @comment.save
 			flash[:success] = "Commentaire enregistré"
 		else
@@ -26,4 +26,13 @@ class CommentsController < ApplicationController
 		redirect_to @comment.breve
 	end
 
+	private
+
+		def comment_params
+			params.require(:comment).permit(:content)
+		end
+
+		def breve_params
+			params.require(:breve_id)
+		end
 end

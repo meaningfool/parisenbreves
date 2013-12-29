@@ -1,5 +1,4 @@
 class Subject < ActiveRecord::Base
-	attr_accessible :title, :description, :status
 
 	STATUS = %w[active treated]
 

@@ -28,10 +28,4 @@ class VersionsController < ApplicationController
 		redirect_to @breve, notice: "Rétablissement de la version en date du #{@version.created_at} réussi"
 	end
 
-	private
-	
-		def version_params
-			params.require(:version).permit(:id)
-		end
-
 end

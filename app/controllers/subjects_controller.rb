@@ -18,7 +18,7 @@ class SubjectsController < ApplicationController
 	end
 
 	def create 
-		@subject = Subject.new params[:subject]
+		@subject = Subject.new subject_params
 		if @subject.save
 			redirect_to @subject
 		else
@@ -29,7 +29,7 @@ class SubjectsController < ApplicationController
 	def show
 		@view_pane = "content"
 		subject = Subject.find_by_id params[:id]
-		@subjects = (Subject.where("status='active'").order("updated_at DESC")-[subject]).paginate(page: params[:page])
+		@subjects = (Subject.where("status='active'").order("random()")-[subject])
 		render layout: 'contents'
 	end
 
@@ -38,7 +38,7 @@ class SubjectsController < ApplicationController
 	end
 
 	def update
-		if @subject.update_attributes params[:subject]
+		if @subject.update_attributes subject_params
 			if URI(request.referer).path == edit_subject_path(@subject)
 				redirect_to @subject, notice: "Modifications enregistrées"
 			else
@@ -61,4 +61,8 @@ class SubjectsController < ApplicationController
 		end
 	end
 
+	private
+		def subject_params
+			params.require(:subject).permit(:title, :description, :status)
+		end
 end

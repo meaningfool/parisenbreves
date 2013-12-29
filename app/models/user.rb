@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation
-  attr_accessible :email, :name, :password, :password_confirmation, :role, as: :admin
   has_many :comments, dependent: :destroy
 
   scope :admin, where( :role => "admin" )

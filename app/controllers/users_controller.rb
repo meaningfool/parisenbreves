@@ -12,13 +12,8 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		if signed_in? && admin?
-			@user = User.new(params[:user], as: :admin)
-			@user.role ||= "standard"
-		else
-			@user = User.new params[:user]
-			@user.role ||= "standard"
-		end
+		@user = User.new user_params
+		@user.role ||= "standard"
 		
 		if @user.save
 			@user.reload
@@ -32,14 +27,8 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		params[:user].delete(:password) if params[:user][:password].blank?
-		if signed_in? && admin?
-			@user = User.new(params[:user], as: :admin)
-			@user.role ||= "standard"
-		else
-			@user = User.new params[:user]
-			@user.role ||= "standard"
-		end
+		@user = User.new user_params
+		@user.role ||= "standard"
 
 		if @user.save
 			@user.reload
@@ -71,5 +60,13 @@ class UsersController < ApplicationController
 			unless admin?
 				not_found 
 			end
+		end
+
+		def user_params
+			allowed_attributes = [:email, :name, :password, :password_confirmation]
+			if signed_in? && admin?
+				allowed_attributes += [:role]
+			end
+			params.require(:user).permit(*allowed_attributes)
 		end
 end

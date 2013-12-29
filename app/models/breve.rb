@@ -1,5 +1,4 @@
 class Breve < ActiveRecord::Base
-  attr_accessible :description, :title, :location, :source_name, :source_URL, :latitude, :longitude, :photo, :photo_credit_name, :photo_credit_URL, :status
   has_many :comments, dependent: :destroy
 
   scope :published, where(:status => "published" )
