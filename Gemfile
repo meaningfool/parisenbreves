@@ -61,7 +61,7 @@ end
 group :production do
 	gem 'pg'
 	gem 'pgbackups-archive'
-	gem 'rack-google_analytics', :require => "rack/google_analytics"
+	gem 'analytics-ruby', '<1.0'
 end
 
 # To use ActiveModel has_secure_password
