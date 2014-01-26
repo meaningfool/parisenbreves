@@ -65,7 +65,7 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
-    bootstrap-sass (3.0.3.0)
+    bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
     bootstrap-will_paginate (0.0.10)
       will_paginate
@@ -319,7 +319,7 @@ DEPENDENCIES
   analytics-ruby (< 1.0)
   aws-sdk
   bcrypt-ruby
-  bootstrap-sass
+  bootstrap-sass (< 3.0)
   bootstrap-will_paginate
   bourbon
   cancan
