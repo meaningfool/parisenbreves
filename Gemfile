@@ -59,6 +59,7 @@ group :test, :development do
 end
 
 group :production do
+	gem 'rails_12factor'
 	gem 'pg'
 	gem 'pgbackups-archive'
 end
