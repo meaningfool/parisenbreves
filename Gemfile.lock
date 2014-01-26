@@ -127,7 +127,7 @@ GEM
     formtastic (2.3.0.rc2)
       actionpack (>= 3.0)
     geocoder (1.1.9)
-    gon (4.1.1)
+    gon (5.0.1)
       actionpack (>= 2.3.0)
       json
     guard (2.2.5)
@@ -187,6 +187,7 @@ GEM
     netrc (0.7.7)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
+    oj (2.5.1)
     orm_adapter (0.5.0)
     paper_trail (3.0.0)
       activerecord (>= 3.0, < 5.0)
@@ -211,6 +212,8 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    rabl (0.9.3)
+      activesupport (>= 2.3.14)
     rack (1.5.2)
     rack-google_analytics (1.0.2)
       rack
@@ -266,8 +269,6 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
-    sass_rails_patch (0.0.2)
-      sass-rails
     slop (3.4.7)
     sprockets (2.10.1)
       hike (~> 1.2)
@@ -323,17 +324,19 @@ DEPENDENCIES
   faker
   font-awesome-rails
   geocoder
-  gon (~> 4.1.1)
+  gon
   guard-rspec
   html5shiv-rails
   jquery-rails
   launchy
+  oj
   paper_trail (~> 3.0.0)
   paperclip
   pg
   pgbackups-archive
   protected_attributes
   pry
+  rabl
   rack-google_analytics
   rails (= 4.0.2)
   rails-observers
@@ -341,7 +344,6 @@ DEPENDENCIES
   rspec-rails
   ruby_gntp
   sass-rails
-  sass_rails_patch (~> 0.0.1)
   sqlite3
   thin
   uglifier (>= 1.0.3)

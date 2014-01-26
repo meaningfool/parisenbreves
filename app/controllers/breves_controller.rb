@@ -37,11 +37,12 @@ class BrevesController < ApplicationController
 		@tab_mode = session[:tab_mode]
 		session[:tab_mode] = nil
 		@tab_mode ||= "content"
-		if request.referer.try {|p| p.include? "versions"} && Version.find_by_id(URI.parse(request.referer).path.split('/').last).reify == @breve
+		if request.referer.try {|p| p.include? "versions"} && PaperTrail::Version.find_by_id(URI.parse(request.referer).path.split('/').last).reify == @breve
 			@tab_mode = "history"
 		end
 		@reference_point = [@breve.latitude, @breve.longitude]
 		@closeby = @breve.find_near(10000)
+		#binding.pry
 		render layout: 'contents'
 	end
 

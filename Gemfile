@@ -17,11 +17,11 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'cancan'
 gem 'activeadmin', github: 'gregbell/active_admin'
-gem "sass_rails_patch", "~> 0.0.1"
+#gem "sass_rails_patch", "~> 0.0.1"
 gem "font-awesome-rails"
 gem 'bourbon'
 gem 'html5shiv-rails'
-gem 'gon','~> 4.1.1'
+gem 'gon'
 gem 'thin'
 gem 'bcrypt-ruby'
 gem "activeresource", "~> 4.0.0"
@@ -29,6 +29,8 @@ gem 'protected_attributes'
 gem 'rails-observers'
 gem 'actionpack-page_caching'
 gem 'actionpack-action_caching'
+gem 'oj'
+gem 'rabl'
 
 
 gem 'sass-rails'

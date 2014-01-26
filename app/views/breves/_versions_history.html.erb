@@ -6,7 +6,7 @@
 			<div class="action">
 				<% if version.event != "create" %>
 					<%= link_to "Voir avant modification", version_path(version) %>
-					<% if can? :revert, version %>
+					<% if can? :revert, Version %>
 						<span> | </span><%= link_to "Rétablir", revert_version_path(version), method: :post %>
 					<% end %>
 				<% end %>

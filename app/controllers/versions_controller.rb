@@ -1,9 +1,12 @@
 # encoding: UTF-8
 class VersionsController < ApplicationController
+
 	load_and_authorize_resource
+		#binding.pry
 	respond_to :html
 
 	def show
+		#binding.py
 		@subject_count = Subject.where("status='active'").count
 		@draft_count = Breve.where("status='draft'").count
 		@published_count = Breve.where("status='published'").count
@@ -18,7 +21,7 @@ class VersionsController < ApplicationController
 	end
 
 	def revert
-		@version = Version.find params[:id]
+		@version = PaperTrail::Version.find params[:id]
 		@breve = @version.reify
 		@breve.save!
 		@breve.reload

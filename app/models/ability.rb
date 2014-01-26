@@ -30,6 +30,7 @@ class Ability
         can :read, User
     elsif user.role == "admin"
         can :manage, Breve
+        #can [:read, :revert], Version
         can [:read, :revert], Version
         can [:read, :create, :update, :destroy], Subject
         can :manage, Comment
