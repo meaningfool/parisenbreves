@@ -17,7 +17,6 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'cancan'
 gem 'activeadmin', github: 'gregbell/active_admin'
-#gem "sass_rails_patch", "~> 0.0.1"
 gem "font-awesome-rails"
 gem 'bourbon'
 gem 'html5shiv-rails'
@@ -43,6 +42,7 @@ gem 'uglifier', '>= 1.0.3'
 
 
 gem 'jquery-rails'
+gem 'analytics-ruby', '<1.0'
 
 group :test, :development do
 	gem 'rspec-rails'
@@ -61,7 +61,6 @@ end
 group :production do
 	gem 'pg'
 	gem 'pgbackups-archive'
-	gem 'analytics-ruby', '<1.0'
 end
 
 # To use ActiveModel has_secure_password

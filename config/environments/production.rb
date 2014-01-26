@@ -89,8 +89,5 @@ Parisenbreves::Application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   } 
-
-  # Configure Rack::GoogleAnalytics
-  config.middleware.use("Rack::GoogleAnalytics", :web_property_id => "UA-22151227-1")
-  
+    
 end

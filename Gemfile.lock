@@ -52,6 +52,10 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
+    analytics-ruby (0.5.3)
+      faraday (>= 0.8, < 0.10)
+      faraday_middleware (>= 0.8, < 0.10)
+      multi_json (~> 1.0)
     arbre (1.0.1)
       activesupport (>= 3.0.0)
     arel (4.0.1)
@@ -110,6 +114,10 @@ GEM
       railties (>= 3.0.0)
     faker (1.2.0)
       i18n (~> 0.5)
+    faraday (0.8.9)
+      multipart-post (~> 1.2.0)
+    faraday_middleware (0.9.0)
+      faraday (>= 0.7.4, < 0.9)
     ffi (1.9.3)
     fog (1.15.0)
       builder
@@ -181,6 +189,7 @@ GEM
     mini_portile (0.5.2)
     minitest (4.7.5)
     multi_json (1.8.2)
+    multipart-post (1.2.0)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
@@ -215,8 +224,6 @@ GEM
     rabl (0.9.3)
       activesupport (>= 2.3.14)
     rack (1.5.2)
-    rack-google_analytics (1.0.2)
-      rack
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.0.2)
@@ -311,6 +318,7 @@ DEPENDENCIES
   actionpack-page_caching
   activeadmin!
   activeresource (~> 4.0.0)
+  analytics-ruby (< 1.0)
   aws-sdk
   bcrypt-ruby
   bootstrap-sass
@@ -337,7 +345,6 @@ DEPENDENCIES
   protected_attributes
   pry
   rabl
-  rack-google_analytics
   rails (= 4.0.2)
   rails-observers
   rb-fsevent
