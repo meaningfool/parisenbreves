@@ -19,7 +19,7 @@ gem 'cancan'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem "font-awesome-rails"
 gem 'bourbon'
-gem 'html5shiv-rails'
+#gem 'html5shiv-rails'
 gem 'gon'
 gem 'thin'
 gem 'bcrypt-ruby'
