@@ -22,3 +22,4 @@
 
 #Ignore the s3 credentials file
 /config/s3_credentials.yml
+config/s3_credentials.yml
